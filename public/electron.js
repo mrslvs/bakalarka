@@ -12,7 +12,6 @@ const createWindow = () => {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, "preload.js"),
       nodeIntegration: true,
     },
   });
@@ -20,7 +19,6 @@ const createWindow = () => {
   // and load the index.html of the app.
   //   mainWindow.loadFile(path.join(__dirname, "index.html"));
   if (app.isPackaged) {
-    console.log("trying to acces dist");
     mainWindow.loadFile(path.join(__dirname, "../dist/index.html"));
   } else {
     mainWindow.loadURL("http://localhost:5173");
