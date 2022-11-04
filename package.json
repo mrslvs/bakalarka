@@ -9,8 +9,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "electronreact": "concurrently \"BROWSER=none yarn run dev\" \"wait-on http://localhost:5173 && yarn electron .\"",
-    "er": "concurrently \"yarn run dev\" \"wait-on http://localhost:5173 && yarn electron .\""
+    "electronreact": "concurrently \"BROWSER=none yarn run dev\" \"wait-on http://localhost:5173 && yarn electron .\""
   },
   "dependencies": {
     "concurrently": "^7.5.0",
