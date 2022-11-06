@@ -1,12 +1,33 @@
 import { useState } from 'react';
 
+// https://github.com/electron/electron/issues/9920
+//      import { ipcRenderer } from 'electron'; NOT WORKING
+//      solution provided by Amthieu
+const { ipcRenderer } = window.require('electron');
+
 function App() {
-    const { ports, setPorts } = useState();
+    const [port, setPort] = useState('');
+
+    const getPorts = () => {
+        ipcRenderer.send('portRequest', 'client portRequest');
+    };
+
+    ipcRenderer.on('portResponse', (event, data) => {
+        console.log(data);
+    });
 
     return (
         <div className="App">
-            <h1>Hello electron world!</h1>
-            <p>{ports ? ports : 'no ports'}</p>
+            <h1>Hello, electron world!</h1>
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    getPorts();
+                }}
+            >
+                <button>getPorts</button>
+            </form>
+            <p>{port ? port : 'no ports available'}</p>
         </div>
     );
 }
