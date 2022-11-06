@@ -32,8 +32,15 @@ const { SerialPort, ReadlineParser } = require('serialport');
 //   }
 // });
 
-SerialPort.list().then((ports) => {
-    ports.forEach(function (port) {
-        console.log(port.path);
-    });
-});
+// SerialPort.list().then((ports) => {
+//     ports.forEach(function (port) {
+//         console.log(port.path);
+//     });
+// });
+
+const getAvailablePorts = async () => {
+    const ports = await SerialPort.list();
+    return ports;
+};
+
+module.exports = { getAvailablePorts };
