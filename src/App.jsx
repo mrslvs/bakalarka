@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './Assets/Styles/index.css';
 
 // https://github.com/electron/electron/issues/9920
 //      import { ipcRenderer } from 'electron'; NOT WORKING
@@ -17,8 +18,8 @@ function App() {
     });
 
     return (
-        <div className="App">
-            <h1>Hello, electron world!</h1>
+        <div className="App bg-slate-400">
+            <h1 className="text-blue-600">Hello, electron world!</h1>
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
