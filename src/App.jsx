@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Assets/Styles/index.css';
+import PortForm from './Components/PortForm';
 
 // https://github.com/electron/electron/issues/9920
 //      import { ipcRenderer } from 'electron'; NOT WORKING
@@ -8,6 +9,9 @@ const { ipcRenderer } = window.require('electron');
 
 function App() {
     const [port, setPort] = useState('');
+    useEffect(() => {
+        console.log('usefect ports, rerending hopefully');
+    }, [port]);
 
     const getPorts = () => {
         ipcRenderer.send('portRequest', 'client portRequest');
@@ -15,6 +19,7 @@ function App() {
 
     ipcRenderer.on('portResponse', (event, data) => {
         console.log(data);
+        setPort(data);
     });
 
     return (
@@ -28,7 +33,7 @@ function App() {
             >
                 <button>getPorts</button>
             </form>
-            <p>{port ? port : 'no ports available'}</p>
+            <PortForm portsArray={port} />
         </div>
     );
 }
