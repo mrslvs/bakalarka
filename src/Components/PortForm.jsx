@@ -10,11 +10,13 @@ const PortForm = ({ portsArray }) => {
                         return port.manufacturer ? (
                             <option key={port.path}> {port.manufacturer} </option>
                         ) : (
-                            <option disabled={true}>{'unknwon manufacturer'}</option>
+                            <option disabled={true} key={port.path}>
+                                {'unknwon manufacturer'}
+                            </option>
                         );
                     })
                 ) : (
-                    <option disabled={true}>Get available ports first</option>
+                    <option disabled={true}>Update available ports first</option>
                 )}
             </select>
         </form>
