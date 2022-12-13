@@ -7,11 +7,10 @@ const PortForm = ({ portsArray }) => {
             <select id="ports">
                 {portsArray ? (
                     portsArray.map((port) => {
-                        return (
-                            <option key={port.path}>
-                                {port.manufacturer ? port.manufacturer : 'Unknown manufacturer'} (
-                                {port.path})
-                            </option>
+                        return port.manufacturer ? (
+                            <option key={port.path}> {port.manufacturer} </option>
+                        ) : (
+                            <option disabled={true}>{'unknwon manufacturer'}</option>
                         );
                     })
                 ) : (
