@@ -1,6 +1,6 @@
 const path = require('path');
 const { app, BrowserWindow, ipcMain } = require('electron');
-const { getAvailablePorts } = require('../src/API/serial');
+const { getAvailablePorts, startCom } = require('../src/API/serial');
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 // eslint-disable-next-line global-require
 // if (require("electron-squirrel-startup")) {
@@ -64,4 +64,11 @@ ipcMain.on('portRequest', async (event, data) => {
     console.log(data);
     const ports = await getAvailablePorts();
     event.reply('portResponse', ports);
+});
+
+ipcMain.on('startComRequest', async (event, data) => {
+    console.log('data received from electron: ' + data);
+    const msg = await startCom();
+    // const msg = 'msg';
+    event.reply('startComResponse', msg);
 });

@@ -5,7 +5,7 @@ import PortForm from './Components/PortForm';
 // https://github.com/electron/electron/issues/9920
 //      import { ipcRenderer } from 'electron'; NOT WORKING
 //      solution provided by Amthieu
-const { ipcRenderer } = window.require('electron');
+const { ipcRenderer } = require('electron');
 
 function App() {
     const [port, setPort] = useState('');
@@ -22,6 +22,14 @@ function App() {
         setPort(data);
     });
 
+    const startCommunication = () => {
+        ipcRenderer.send('startComRequest', 'client startComRequest');
+    };
+
+    ipcRenderer.on('startComResponse', (event, data) => {
+        console.log(data);
+    });
+
     return (
         <div className="App bg-slate-400">
             <h1 className="text-blue-600">Hello, electron world!</h1>
@@ -34,6 +42,15 @@ function App() {
                 <button>getPorts</button>
             </form>
             <PortForm portsArray={port} />
+
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    startCommunication();
+                }}
+            >
+                <button type="submit">Start Communication</button>
+            </form>
         </div>
     );
 }
