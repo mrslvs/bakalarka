@@ -55,10 +55,10 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 
-const serialStart = async () => {
-    const ports = await getAvailablePorts();
-    // console.log(ports);
-};
+// const serialStart = async () => {
+//     const ports = await getAvailablePorts();
+//     // console.log(ports);
+// };
 
 ipcMain.on('portRequest', async (event, data) => {
     console.log(data);
@@ -69,6 +69,8 @@ ipcMain.on('portRequest', async (event, data) => {
 ipcMain.on('startComRequest', async (event, data) => {
     console.log('data received from electron: ' + data);
     const msg = await startCom();
+    // console.log('message received from arduino on next line:');
+    // console.log(msg);
     // const msg = 'msg';
     event.reply('startComResponse', msg);
 });

@@ -27,7 +27,8 @@ function App() {
     };
 
     ipcRenderer.on('startComResponse', (event, data) => {
-        console.log(data);
+        console.log('log data inside app.jsx:');
+        console.log(event);
     });
 
     return (
