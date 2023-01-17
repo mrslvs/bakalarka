@@ -31,7 +31,9 @@ function App() {
         console.log(event);
     });
 
-    let arm = 151.5;
+    const armCenter = 151.5; // ++ = down (90)
+    const armDiff = 151.5 - 90;
+    let arm = armCenter + 50;
 
     return (
         <div className="App bg-slate-400">
