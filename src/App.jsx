@@ -9,9 +9,19 @@ const { ipcRenderer } = require('electron');
 
 function App() {
     const [port, setPort] = useState('');
+
+    const armCenter = 151.5; // ++ = down (90)
+    const armTop = 151.5 - 90; // nulled
+
+    const [armAnimation, setArmAnimation] = useState(armTop);
+
     useEffect(() => {
         console.log('usefect ports, rerending hopefully');
     }, [port]);
+
+    useEffect(() => {
+        console.log('usefect animation, rerending hopefully');
+    }, [armAnimation]);
 
     const getPorts = () => {
         ipcRenderer.send('portRequest', 'client portRequest');
@@ -27,13 +37,24 @@ function App() {
     };
 
     ipcRenderer.on('startComResponse', (event, data) => {
-        console.log('log data inside app.jsx:');
-        console.log(event);
+        // console.log('log message inside app.jsx:');
+        // xx,yyy
+        // console.log(data);
+        const divided = data.split(',');
+        const angle = divided[1];
+        // console.log(angle);
+        if (!isNaN(angle)) {
+            let newAngle = armTop + parseInt(angle);
+            console.log(newAngle);
+            // setArmAnimation(armTop + angle);
+            setArmAnimation(newAngle);
+        }
     });
 
-    const armCenter = 151.5; // ++ = down (90)
-    const armDiff = 151.5 - 90;
-    let arm = armCenter + 50;
+    ipcRenderer.on('sprava', (evt, message) => {
+        console.log('received sprava:');
+        console.log(message); // Returns: {'SAVED': 'File Saved'}
+    });
 
     return (
         <div className="App bg-slate-400">
@@ -68,7 +89,7 @@ function App() {
                         d="M1 300.5H301M1 0.5H301M300.5 301V1M0.500013 301L0.5 1M278.5 300V151"
                         stroke="black"
                     />
-                    <line x1="278" y1="151.5" x2="78" y2={arm} stroke="#FF0000" />
+                    <line x1="278" y1="151.5" x2="78" y2={armAnimation} stroke="#FF0000" />
                 </svg>
 
                 {/* center: <line x1="278" y1="151.5" x2="78" y2="151.5" stroke="#FF0000" /> */}

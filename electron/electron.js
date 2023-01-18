@@ -67,10 +67,17 @@ ipcMain.on('portRequest', async (event, data) => {
 });
 
 ipcMain.on('startComRequest', async (event, data) => {
-    console.log('data received from electron: ' + data);
-    const msg = await startCom();
-    // console.log('message received from arduino on next line:');
-    // console.log(msg);
+    try {
+        const msg = await startCom(event);
+    } catch (err) {
+        console.log(err);
+    }
     // const msg = 'msg';
-    event.reply('startComResponse', msg);
+    // event.reply('startComResponse', msg);
 });
+
+// (async () => {
+//     let msg = await startCom();
+//     console.log('electron:');
+//     console.log(msg);
+// })();
