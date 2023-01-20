@@ -81,3 +81,8 @@ ipcMain.on('startComRequest', async (event, data) => {
 //     console.log('electron:');
 //     console.log(msg);
 // })();
+
+// emulacia web app
+// moznosti vyberu databaz (vymenovat aspon 2) a odovodnit vyber (predchadzajuce skusenosti su dovod)
+
+// jun obhajoby

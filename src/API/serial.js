@@ -80,7 +80,7 @@ const startCom = async (event) => {
         if (data == 1111) {
             // console.log('comm initiated');
             // send joystick input
-            port.write('0.20\n');
+            port.write('0.20\n'); // rovnovazny stav 0,0
         } else {
             // funkcia2(data);
             funkcia3(event, data);
