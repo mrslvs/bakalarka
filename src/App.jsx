@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './Assets/Styles/index.css';
+import Animation from './Components/Animation';
 import PortForm from './Components/PortForm';
 
 // https://github.com/electron/electron/issues/9920
@@ -39,13 +40,13 @@ function App() {
     ipcRenderer.on('startComResponse', (event, data) => {
         // console.log('log message inside app.jsx:');
         // xx,yyy
-        // console.log(data);
+        console.log('comm response: ' + data);
         const divided = data.split(',');
         const angle = divided[1];
         // console.log(angle);
         if (!isNaN(angle)) {
             let newAngle = armTop + parseInt(angle);
-            console.log(newAngle);
+            // console.log(newAngle);
             // setArmAnimation(armTop + angle);
             setArmAnimation(newAngle);
         }
@@ -77,8 +78,10 @@ function App() {
             >
                 <button type="submit">Start Communication</button>
             </form>
+
+            <Animation angle={armAnimation} />
             <div>
-                <svg
+                {/* <svg
                     width="301"
                     height="301"
                     viewBox="0 0 301 301"
@@ -90,7 +93,7 @@ function App() {
                         stroke="black"
                     />
                     <line x1="278" y1="151.5" x2="78" y2={armAnimation} stroke="#FF0000" />
-                </svg>
+                </svg> */}
 
                 {/* center: <line x1="278" y1="151.5" x2="78" y2="151.5" stroke="#FF0000" /> */}
             </div>
