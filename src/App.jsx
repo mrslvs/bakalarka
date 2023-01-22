@@ -9,7 +9,8 @@ import PortForm from './Components/PortForm';
 const { ipcRenderer } = require('electron');
 
 function App() {
-    const [port, setPort] = useState('');
+    const [availablePorts, setAvailablePorts] = useState('');
+    const [selectedPort, setSelectedPort] = useState('');
 
     const armCenter = 151.5; // ++ = down (90)
     const armTop = 151.5 - 90; // nulled
@@ -18,11 +19,15 @@ function App() {
 
     useEffect(() => {
         console.log('usefect ports, rerending hopefully');
-    }, [port]);
+    }, [availablePorts]);
 
     useEffect(() => {
         console.log('usefect animation, rerending hopefully');
     }, [armAnimation]);
+
+    // useEffect(() => {
+    //     console.log('usefect selected port');
+    // }, [selectedPort]);
 
     const getPorts = () => {
         ipcRenderer.send('portRequest', 'client portRequest');
@@ -30,7 +35,7 @@ function App() {
 
     ipcRenderer.on('portResponse', (event, data) => {
         console.log(data);
-        setPort(data);
+        setAvailablePorts(data);
     });
 
     const startCommunication = () => {
@@ -68,7 +73,7 @@ function App() {
             >
                 <button>getPorts</button>
             </form>
-            <PortForm portsArray={port} />
+            <PortForm availablePorts={availablePorts} setSelectedPort={setSelectedPort} />
 
             <form
                 onSubmit={(e) => {
