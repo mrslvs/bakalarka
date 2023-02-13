@@ -18,6 +18,11 @@ function App() {
     const [armAnimation, setArmAnimation] = useState(armTop);
 
     useEffect(() => {
+        // run once on-load
+        // getPorts();
+    }, []);
+
+    useEffect(() => {
         console.log('usefect ports, rerending hopefully');
     }, [availablePorts]);
 
@@ -25,16 +30,17 @@ function App() {
         console.log('usefect animation, rerending hopefully');
     }, [armAnimation]);
 
-    // useEffect(() => {
-    //     console.log('usefect selected port');
-    // }, [selectedPort]);
+    useEffect(() => {
+        console.log('usefect selected port');
+        console.log(selectedPort);
+    }, [selectedPort]);
 
     const getPorts = () => {
         ipcRenderer.send('portRequest', 'client portRequest');
     };
 
     ipcRenderer.on('portResponse', (event, data) => {
-        console.log(data);
+        // console.log(data);
         setAvailablePorts(data);
     });
 
@@ -61,6 +67,14 @@ function App() {
         console.log('received sprava:');
         console.log(message); // Returns: {'SAVED': 'File Saved'}
     });
+
+    const showme = () => {
+        console.log(availablePorts);
+        console.log(selectedPort);
+        console.log('ok');
+    };
+
+    // getPorts();
 
     return (
         <div className="App bg-slate-400">
@@ -102,6 +116,7 @@ function App() {
 
                 {/* center: <line x1="278" y1="151.5" x2="78" y2="151.5" stroke="#FF0000" /> */}
             </div>
+            <button onClick={showme}>click me</button>
         </div>
     );
 }
