@@ -68,6 +68,13 @@ function App() {
         console.log(message); // Returns: {'SAVED': 'File Saved'}
     });
 
+    setInterval(() => {
+        const gamepads = navigator.getGamepads();
+        if (gamepads[0]) {
+            console.log(gamepads[0].axes);
+        }
+    }, 100);
+
     const showme = () => {
         console.log(availablePorts);
         console.log(selectedPort);

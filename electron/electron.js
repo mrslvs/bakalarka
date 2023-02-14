@@ -55,11 +55,6 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 
-// const serialStart = async () => {
-//     const ports = await getAvailablePorts();
-//     // console.log(ports);
-// };
-
 ipcMain.on('portRequest', async (event, data) => {
     console.log(data);
     const ports = await getAvailablePorts();
@@ -72,15 +67,17 @@ ipcMain.on('startComRequest', async (event, data) => {
     } catch (err) {
         console.log(err);
     }
-    // const msg = 'msg';
-    // event.reply('startComResponse', msg);
 });
 
-// (async () => {
-//     let msg = await startCom();
-//     console.log('electron:');
-//     console.log(msg);
-// })();
+// window.addEventListener('gamepadconnected', (e) => {
+//     console.log(
+//         'Gamepad connected at index %d: %s. %d buttons, %d axes.',
+//         e.gamepad.index,
+//         e.gamepad.id,
+//         e.gamepad.buttons.length,
+//         e.gamepad.axes.length
+//     );
+// });
 
 // emulacia web app
 // moznosti vyberu databaz (vymenovat aspon 2) a odovodnit vyber (predchadzajuce skusenosti su dovod)
