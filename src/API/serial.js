@@ -34,17 +34,29 @@ port.pipe(parser);
 
 const startCom = async (event) => {
     // zmenit funkcu startCom ab
-
-    port.write('1111\n');
+    let count = 0;
+    setInterval(function () {
+        // your code...
+        if (count < 5) {
+            port.write('1111LX0.00ly0.00rx0.00ry0.00\n');
+            // port.write('xy11111xy\n');
+        }
+        count++;
+    }, 300);
 };
 
 parser.on('data', (data) => {
-    if (data == 1111) {
-        // console.log('comm initiated');
-        // send joystick input
-        // port.write('11lx0.20\n'); // rovnovazny stav 0,0
-        console.log('received 1111');
-    }
+    // if (data == 1111) {
+    //     // console.log('comm initiated');
+    //     // send joystick input
+    //     // port.write('11lx0.20\n'); // rovnovazny stav 0,0
+    //     console.log('received ' + data);
+    // } else if (data == 5555) {
+    //     console.log('incorrect start message received');
+    // } else {
+    //     console.log(data);
+    // }
+    console.log(data);
 });
 
 // const funkcia3 = (event, sprava) => {
