@@ -38,7 +38,7 @@ const startCom = async (event) => {
     setInterval(function () {
         // your code...
         if (count < 5) {
-            port.write('1111LX0.00ly0.00rx0.00ry0.00\n');
+            port.write('startpassLX0.00ly0.00rx0.00ry0.00\n');
             // port.write('xy11111xy\n');
         }
         count++;
