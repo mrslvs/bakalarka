@@ -12,7 +12,7 @@ function App() {
     const [availablePorts, setAvailablePorts] = useState('');
     const [selectedPort, setSelectedPort] = useState('');
 
-    const armCenter = 151.5; // ++ = down (90)
+    const armCenter = 1.51; // ++ = down (90)
     const armTop = 151.5 - 90; // nulled
 
     const [armAnimation, setArmAnimation] = useState(armTop);
@@ -45,7 +45,7 @@ function App() {
     });
 
     const startCommunication = () => {
-        ipcRenderer.send('startComRequest', 'client startComRequest');
+        ipcRenderer.send('startComRequest', armCenter);
     };
 
     ipcRenderer.on('startComResponse', (event, data) => {
@@ -71,7 +71,7 @@ function App() {
     setInterval(() => {
         const gamepads = navigator.getGamepads();
         if (gamepads[0]) {
-            console.log(gamepads[0].axes);
+            console.log(gamepads[0].axes[1]);
         }
     }, 100);
 
@@ -79,6 +79,9 @@ function App() {
         console.log(availablePorts);
         console.log(selectedPort);
         console.log('ok');
+        let x = null;
+        let z = x || 0.11;
+        console.log(z);
     };
 
     // getPorts();

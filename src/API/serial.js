@@ -32,7 +32,7 @@ port.pipe(parser);
 //     });
 // };
 
-const startCom = async (event) => {
+const startCom = async (event, data) => {
     // zmenit funkcu startCom ab
     let count = 0;
     setInterval(function () {
@@ -40,7 +40,12 @@ const startCom = async (event) => {
         if (count < 5) {
             // port.write('startpassLX0.00ly0.00rx0.00ry0.00\n');
             // port.write('xy11111xy\n');
-            port.write('startpassLX0.00\n');
+
+            // port.write('startpassLX0.00\n');
+
+            // let tmp = 'startpassLX0.00\n';
+            let tmp = 'startpassLX' + data + '\n';
+            port.write(tmp);
         }
         count++;
     }, 300);

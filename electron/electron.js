@@ -63,7 +63,9 @@ ipcMain.on('portRequest', async (event, data) => {
 
 ipcMain.on('startComRequest', async (event, data) => {
     try {
-        const msg = await startCom(event);
+        console.log('ddd:');
+        console.log(data);
+        const msg = await startCom(event, data);
     } catch (err) {
         console.log(err);
     }
