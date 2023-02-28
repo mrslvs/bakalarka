@@ -62,7 +62,15 @@ function App() {
         // console.log(joystickPostion);
         // }
 
-        ipcRenderer.send('startComRequest', joystickPosition);
+        let iter = 0;
+
+        setInterval(() => {
+            if (iter < 10) {
+                ipcRenderer.send('startComRequest', joystickPosition);
+            }
+            iter++;
+        }, 400);
+        // ipcRenderer.send('startComRequest', joystickPosition);
     };
 
     ipcRenderer.on('startComResponse', (event, data) => {
