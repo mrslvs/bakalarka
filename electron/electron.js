@@ -1,6 +1,6 @@
 const path = require('path');
 const { app, BrowserWindow, ipcMain } = require('electron');
-const { getAvailablePorts, startCom } = require('../src/API/serial');
+const { getAvailablePorts, startCom, parser } = require('../src/API/serial');
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 // eslint-disable-next-line global-require
 // if (require("electron-squirrel-startup")) {
@@ -69,6 +69,20 @@ ipcMain.on('startComRequest', async (event, data) => {
     } catch (err) {
         console.log(err);
     }
+});
+
+parser.on('data', (data) => {
+    // if (data == 1111) {
+    //     // console.log('comm initiated');
+    //     // send joystick input
+    //     // port.write('11lx0.20\n'); // rovnovazny stav 0,0
+    //     console.log('received ' + data);
+    // } else if (data == 5555) {
+    //     console.log('incorrect start message received');
+    // } else {
+    //     console.log(data);
+    // }
+    console.log(data);
 });
 
 // window.addEventListener('gamepadconnected', (e) => {

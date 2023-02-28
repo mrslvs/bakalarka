@@ -55,19 +55,19 @@ const startCom = async (event, data) => {
     port.write(tmp);
 };
 
-parser.on('data', (data) => {
-    // if (data == 1111) {
-    //     // console.log('comm initiated');
-    //     // send joystick input
-    //     // port.write('11lx0.20\n'); // rovnovazny stav 0,0
-    //     console.log('received ' + data);
-    // } else if (data == 5555) {
-    //     console.log('incorrect start message received');
-    // } else {
-    //     console.log(data);
-    // }
-    console.log(data);
-});
+// parser.on('data', (data) => {
+//     // if (data == 1111) {
+//     //     // console.log('comm initiated');
+//     //     // send joystick input
+//     //     // port.write('11lx0.20\n'); // rovnovazny stav 0,0
+//     //     console.log('received ' + data);
+//     // } else if (data == 5555) {
+//     //     console.log('incorrect start message received');
+//     // } else {
+//     //     console.log(data);
+//     // }
+//     console.log(data);
+// });
 
 // const funkcia3 = (event, sprava) => {
 //     // console.log('funkcia3:');
@@ -80,4 +80,4 @@ const getAvailablePorts = async () => {
     return ports;
 };
 
-module.exports = { getAvailablePorts, startCom };
+module.exports = { getAvailablePorts, startCom, parser };
