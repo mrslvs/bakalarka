@@ -44,18 +44,25 @@ function App() {
         setAvailablePorts(data);
     });
 
-    const startCommunication = () => {
+    let joystickPosition;
+
+    setInterval(() => {
         const gamepads = navigator.getGamepads();
-        let joystickPostion = 3.11;
-
-        console.log('getting joystickposition...');
         if (gamepads[0]) {
-            joystickPostion = gamepads[0].axes[1];
+            joystickPosition = gamepads[0].axes[1];
         }
-        console.log('... got joystick position:');
-        console.log(joystickPostion);
+    }, 16);
 
-        ipcRenderer.send('startComRequest', 'joystickPostion');
+    const startCommunication = () => {
+        // if (gamepad == null) {
+        // console.log('gamepad is null');
+        // } else {
+        // joystickPostion = gamepads[0].axes[1];
+        // console.log('... got joystick position:');
+        // console.log(joystickPostion);
+        // }
+
+        ipcRenderer.send('startComRequest', joystickPosition);
     };
 
     ipcRenderer.on('startComResponse', (event, data) => {
@@ -77,13 +84,6 @@ function App() {
         console.log('received sprava:');
         console.log(message); // Returns: {'SAVED': 'File Saved'}
     });
-
-    // setInterval(() => {
-    //     const gamepads = navigator.getGamepads();
-    //     if (gamepads[0]) {
-    //         console.log(gamepads[0].axes[1]);
-    //     }
-    // }, 1000);
 
     const showme = () => {
         console.log(availablePorts);
