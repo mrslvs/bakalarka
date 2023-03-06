@@ -1,5 +1,5 @@
 const path = require('path');
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, ipcRenderer } = require('electron');
 const { getAvailablePorts, startCom, parser } = require('../src/API/serial');
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 // eslint-disable-next-line global-require
@@ -7,8 +7,11 @@ const { getAvailablePorts, startCom, parser } = require('../src/API/serial');
 //   app.quit();
 // }
 
+let mainWindow;
+
 const createWindow = () => {
-    const mainWindow = new BrowserWindow({
+    // const mainWindow = new BrowserWindow({
+    mainWindow = new BrowserWindow({
         width: 1280,
         height: 720,
         webPreferences: {
@@ -72,17 +75,9 @@ ipcMain.on('startComRequest', async (event, data) => {
 });
 
 parser.on('data', (data) => {
-    // if (data == 1111) {
-    //     // console.log('comm initiated');
-    //     // send joystick input
-    //     // port.write('11lx0.20\n'); // rovnovazny stav 0,0
-    //     console.log('received ' + data);
-    // } else if (data == 5555) {
-    //     console.log('incorrect start message received');
-    // } else {
-    //     console.log(data);
-    // }
     console.log(data);
+
+    mainWindow.webContents.send('startComResponseTest', data);
 });
 
 // window.addEventListener('gamepadconnected', (e) => {

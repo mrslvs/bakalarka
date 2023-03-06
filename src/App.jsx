@@ -93,6 +93,11 @@ function App() {
         console.log(message); // Returns: {'SAVED': 'File Saved'}
     });
 
+    ipcRenderer.on('startComResponseTest', (evt, message) => {
+        console.log('working test:');
+        console.log(message);
+    });
+
     const showme = () => {
         console.log(availablePorts);
         console.log(selectedPort);
