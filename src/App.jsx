@@ -14,6 +14,7 @@ function App() {
 
     const armCenter = 1.51; // ++ = down (90)
     const armTop = 151.5 - 90; // nulled
+    let valuesReceived = [];
 
     const [armAnimation, setArmAnimation] = useState(armTop);
 
@@ -94,8 +95,11 @@ function App() {
     });
 
     ipcRenderer.on('startComResponseTest', (evt, message) => {
-        console.log('working test:');
-        console.log(message);
+        // console.log('working test:');
+        let distance = message.split(',')[0];
+        valuesReceived.push(distance);
+        console.log(valuesReceived);
+        // console.log(message);
     });
 
     const showme = () => {
