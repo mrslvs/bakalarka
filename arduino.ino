@@ -4,7 +4,7 @@
 #define PIN_TRIGGER 12
 #define PIN_ECHO 13
 #define MAX_DISTANCE 450
-int servo_global = 0;
+int servo_global = 100;
 
 NewPing sonar(PIN_TRIGGER, PIN_ECHO, MAX_DISTANCE);
 Servo servo;
@@ -49,6 +49,8 @@ void processMessage(String output_message){
 //    Serial.println(str.substring(startString.length()));
     float tmp = getJoystick(str.substring(startString.length()));
 //    Serial.println(String(tmp));
+
+    moveArm(tmp);
     Serial.println(output_message);
   }
 }
@@ -59,4 +61,15 @@ float getJoystick(String msg){
 
   joystick = tmp.toFloat();
   return joystick;
+}
+
+void moveArm(float joystickPos){  
+  if(joystickPos >  0){
+    servo_global += 5;
+  }else if(joystickPos < 0){
+    servo_global -=5;
+  }
+
+  servo.write(servo_global);
+//  servo.write(30);
 }
