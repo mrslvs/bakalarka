@@ -26,12 +26,12 @@ void loop() {
   if(distance > 0){
     distance = 0;
 
-    for(int i = 0; i < 5; i++){
+    for(int i = 0; i < 2; i++){
       distance += sonar.ping_cm();
       delay(5);
     }
 
-    distance /= 5;
+    distance /= 2;
   }
 
   String output_message = String(distance) + ',' + String(servo_global);
@@ -71,5 +71,4 @@ void moveArm(float joystickPos){
   }
 
   servo.write(servo_global);
-//  servo.write(30);
 }
