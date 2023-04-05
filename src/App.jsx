@@ -66,11 +66,11 @@ function App() {
         let iter = 0;
 
         setInterval(() => {
-            if (iter < 10) {
+            if (iter < 300) {
                 ipcRenderer.send('startComRequest', joystickPosition);
             }
             iter++;
-        }, 400);
+        }, 90);
         // ipcRenderer.send('startComRequest', joystickPosition);
     };
 
