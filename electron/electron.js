@@ -1,6 +1,7 @@
 const path = require('path');
 const { app, BrowserWindow, ipcMain, ipcRenderer } = require('electron');
 const { getAvailablePorts, startCom, parser } = require('../src/API/serial');
+const { connect } = require('../src/API/mongo');
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 // eslint-disable-next-line global-require
 // if (require("electron-squirrel-startup")) {
@@ -57,6 +58,12 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+
+(async () => {
+    await connect(
+        'mongodb+srv://sekerkamiroslav:hesloheslo1@cluster0.ii5htzf.mongodb.net/?retryWrites=true&w=majority'
+    );
+})();
 
 ipcMain.on('portRequest', async (event, data) => {
     console.log(data);

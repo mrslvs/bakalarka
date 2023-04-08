@@ -8,6 +8,8 @@ import PortForm from './Components/PortForm';
 //      solution provided by Amthieu
 const { ipcRenderer } = require('electron');
 
+// mongodb+srv://sekerkamiroslav:hesloheslo1@cluster0.ii5htzf.mongodb.net/?retryWrites=true&w=majority
+
 function App() {
     const [availablePorts, setAvailablePorts] = useState('');
     const [selectedPort, setSelectedPort] = useState('');
