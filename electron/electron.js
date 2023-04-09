@@ -62,7 +62,7 @@ app.on('activate', () => {
 
 (async () => {
     await connect(
-        'mongodb+srv://sekerkamiroslav:oldpassforgetit@cluster0.ii5htzf.mongodb.net/?retryWrites=true&w=majority'
+        'mongodb+srv://sekerkamiroslav:oldpass@cluster0.ii5htzf.mongodb.net/bakalarka?retryWrites=true&w=majority'
     );
 
     let testArr = [3, 3, 3, 3, 3, 9, 9, 9, 9];
