@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './Assets/Styles/index.css';
 import Animation from './Components/Animation';
 import PortForm from './Components/PortForm';
+import Chart from './Components/Chart';
 
 // https://github.com/electron/electron/issues/9920
 //      import { ipcRenderer } from 'electron'; NOT WORKING
@@ -156,6 +157,7 @@ function App() {
                 {/* center: <line x1="278" y1="151.5" x2="78" y2="151.5" stroke="#FF0000" /> */}
             </div>
             <button onClick={showme}>click me</button>
+            <Chart />
         </div>
     );
 }

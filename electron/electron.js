@@ -73,13 +73,13 @@ app.on('activate', () => {
         distance: testArr,
     });
 
-    try {
-        await testMeasurement.save();
-        console.log('saved');
-    } catch (error) {
-        console.log("couldn't save the test data, error:");
-        console.log(error);
-    }
+    // try {
+    //     await testMeasurement.save();
+    //     console.log('saved');
+    // } catch (error) {
+    //     console.log("couldn't save the test data, error:");
+    //     console.log(error);
+    // }
 })();
 
 ipcMain.on('portRequest', async (event, data) => {
