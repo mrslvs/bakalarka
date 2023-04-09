@@ -2,7 +2,7 @@ const path = require('path');
 const { app, BrowserWindow, ipcMain, ipcRenderer } = require('electron');
 const { getAvailablePorts, startCom, parser } = require('../src/API/serial');
 const { connect } = require('../src/API/mongo');
-const { Measurement } = require('../src/Models/Measure');
+const { Measurement } = require('../src/Models/Measurement');
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 // eslint-disable-next-line global-require
 // if (require("electron-squirrel-startup")) {
