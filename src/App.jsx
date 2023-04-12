@@ -157,7 +157,9 @@ function App() {
                 {/* center: <line x1="278" y1="151.5" x2="78" y2="151.5" stroke="#FF0000" /> */}
             </div>
             <button onClick={showme}>click me</button>
-            <Chart />
+            <div className="w-200">
+                <Chart />
+            </div>
         </div>
     );
 }
