@@ -63,9 +63,7 @@ app.on('activate', () => {
 // code. You can also put them in separate files and import them here.
 
 (async () => {
-    await connect(
-        'mongodb+srv://sekerkamiroslav:oldpass@cluster0.ii5htzf.mongodb.net/bakalarka?retryWrites=true&w=majority'
-    );
+    await connect(process.env.DB_CONNECTION_URL);
 
     let testArr = [3, 3, 3, 3, 3, 9, 9, 9, 9];
 
