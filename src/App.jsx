@@ -41,15 +41,6 @@ function App() {
         console.log(selectedPort);
     }, [selectedPort]);
 
-    // const getPorts = () => {
-    //     ipcRenderer.send('portRequest', 'client portRequest');
-    // };
-
-    // ipcRenderer.on('portResponse', (event, data) => {
-    //     // console.log(data);
-    //     setAvailablePorts(data);
-    // });
-
     let joystickPosition;
 
     setInterval(() => {
@@ -71,7 +62,7 @@ function App() {
         let iter = 0;
 
         setInterval(() => {
-            if (iter < 300) {
+            if (iter < process.env.ITERATIONS) {
                 ipcRenderer.send('startComRequest', joystickPosition);
             }
             iter++;
