@@ -112,6 +112,9 @@ function App() {
         let x = null;
         let z = x || 0.11;
         console.log(z);
+
+        console.log('env: ');
+        console.log(process.env.ITERATIONS);
     };
 
     // getPorts();

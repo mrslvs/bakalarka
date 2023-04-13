@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const path = require('path');
 const { app, BrowserWindow, ipcMain, ipcRenderer } = require('electron');
 const { getAvailablePorts, startCom, parser } = require('../src/API/serial');
@@ -103,6 +105,8 @@ parser.on('data', (data) => {
 
     mainWindow.webContents.send('startComResponseTest', data);
 });
+
+console.log(process.env.ITERATIONS);
 
 // window.addEventListener('gamepadconnected', (e) => {
 //     console.log(
