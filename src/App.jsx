@@ -3,13 +3,15 @@ import './Assets/Styles/index.css';
 import Animation from './Components/Animation';
 import PortForm from './Components/PortForm';
 import Chart from './Components/Chart';
+import Port from './Components/Port';
 
 // https://github.com/electron/electron/issues/9920
 //      import { ipcRenderer } from 'electron'; NOT WORKING
 //      solution provided by Amthieu
 const { ipcRenderer } = require('electron');
 
-// mongodb+srv://sekerkamiroslav:hesloheslo1@cluster0.ii5htzf.mongodb.net/?retryWrites=true&w=majority
+// TODO:
+// delete PortForm.jsx ?
 
 function App() {
     const [availablePorts, setAvailablePorts] = useState('');
@@ -39,14 +41,14 @@ function App() {
         console.log(selectedPort);
     }, [selectedPort]);
 
-    const getPorts = () => {
-        ipcRenderer.send('portRequest', 'client portRequest');
-    };
+    // const getPorts = () => {
+    //     ipcRenderer.send('portRequest', 'client portRequest');
+    // };
 
-    ipcRenderer.on('portResponse', (event, data) => {
-        // console.log(data);
-        setAvailablePorts(data);
-    });
+    // ipcRenderer.on('portResponse', (event, data) => {
+    //     // console.log(data);
+    //     setAvailablePorts(data);
+    // });
 
     let joystickPosition;
 
@@ -122,15 +124,12 @@ function App() {
     return (
         <div className="App bg-slate-400">
             <h1 className="text-blue-600">Hello, electron world!</h1>
-            <form
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    getPorts();
-                }}
-            >
-                <button>getPorts</button>
-            </form>
-            <PortForm availablePorts={availablePorts} setSelectedPort={setSelectedPort} />
+
+            <Port
+                availablePorts={availablePorts}
+                setAvailablePorts={setAvailablePorts}
+                setSelectedPort={setSelectedPort}
+            />
 
             <form
                 onSubmit={(e) => {
