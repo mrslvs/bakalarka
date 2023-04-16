@@ -20,7 +20,7 @@ function App() {
     const [availablePorts, setAvailablePorts] = useState('');
     const [selectedPort, setSelectedPort] = useState('');
 
-    const [angleAnimation, setAngleAnimation] = useState(null);
+    const [angleAnimation, setAngleAnimation] = useState(0);
 
     useEffect(() => {
         // run once on-load

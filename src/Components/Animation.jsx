@@ -30,12 +30,9 @@ const Animation = ({ angle }) => {
                 <path d="M53 138H93V158H53V138Z" fill="black" />
                 <path d="M53 158H58V180H53V158Z" fill="black" />
                 <path d="M88 158H93V180H88V158Z" fill="black" />
-                <line x1="214" y1="70.5" x2="34" y2="30" stroke="#A30000" />
-                <line x1="214" y1="70.5" x2="34" y2="70" stroke="#A30000" />
-                <line x1="214" y1="70.5" x2="34" y2="110" stroke="#A30000" />
-                {/* <line x1="214" y1="30.5" x2="34" y2="30" stroke="#A30000" /> */}
-                {/* <line x1="214" y1="30.5" x2="34" y2={-10} stroke="#A30000" /> */}
-                {/* <line x1="214" y1="30.5" x2="34" y2={70} stroke="#A30000" /> */}
+                {/* <line x1="214" y1="70.5" x2="34" y2="30" stroke="#A30000" /> */}
+                <line x1="214" y1="70.5" x2="34" y2={angle - 50} stroke="#A30000" />
+                {/* <line x1="214" y1="70.5" x2="34" y2="110" stroke="#A30000" /> */}
                 <g filter="url(#filter2_d_0_1)">
                     <path
                         fillRule="evenodd"
