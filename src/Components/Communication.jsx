@@ -28,8 +28,7 @@ const Communication = () => {
                 ipcRenderer.send('startComRequest', joystickPosition);
             }
             iter++;
-        }, 90);
-        // ipcRenderer.send('startComRequest', joystickPosition);
+        }, process.env.COMMUNICATION_DELAY);
     };
 
     ipcRenderer.on('startComResponseTest', (evt, message) => {
