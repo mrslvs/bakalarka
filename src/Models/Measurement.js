@@ -14,6 +14,9 @@ const measurementSchema = new Schema({
     distance: {
         type: Array,
     },
+    angle: {
+        type: Array,
+    },
 });
 
 const Measurement = new mongoose.model('Measurement', measurementSchema);

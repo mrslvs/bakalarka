@@ -39,6 +39,17 @@ const Communication = ({ setAngle }) => {
         distancesReceived.push(distance);
         armAnglesReceived.push(armAngle);
 
+        if (distancesReceived.length == process.env.ITERATIONS) {
+            console.log('cycle end - lets save into DB');
+
+            let sendDataAsObject = {
+                distance: distancesReceived,
+                angle: armAnglesReceived,
+            };
+
+            ipcRenderer.send('saveToDatabase', sendDataAsObject);
+        }
+
         setAngle(armAngle);
 
         // console.log(distancesReceived);

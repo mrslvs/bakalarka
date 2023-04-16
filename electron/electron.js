@@ -104,7 +104,24 @@ parser.on('data', (data) => {
     mainWindow.webContents.send('startComResponseTest', data);
 });
 
-console.log(process.env.ITERATIONS);
+ipcMain.on('saveToDatabase', async (event, data) => {
+    try {
+        // parseInt() because IPC return integer as '140\r'
+        console.log('this is angle:');
+
+        const measurementToSave = new Measurement({
+            time_delta: process.env.COMMUNICATION_DELAY,
+            user: 'test_user',
+            angle: data.angle.map((angle) => parseInt(angle)),
+            distance: data.distance.map((distance) => parseInt(distance)),
+        });
+
+        // let angles = data.angle.map((angle) => parseInt(angle));
+        console.log(measurementToSave);
+    } catch (err) {
+        console.log('error while saving data');
+    }
+});
 
 // window.addEventListener('gamepadconnected', (e) => {
 //     console.log(
