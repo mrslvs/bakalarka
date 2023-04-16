@@ -15,6 +15,12 @@ const { ipcRenderer } = require('electron');
 // delete PortForm.jsx ?
 // separate joystick
 // min-max for arduino
+// changing animation only if in gamepad or arduino-joystick mode
+// modes:
+//      1. controlling arm
+//          1a USB gamepad
+//          1b arduino joystick
+//      2. reproducing measurements from DB file
 
 function App() {
     const [availablePorts, setAvailablePorts] = useState('');
