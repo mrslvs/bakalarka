@@ -14,6 +14,7 @@ const { ipcRenderer } = require('electron');
 // TODO:
 // delete PortForm.jsx ?
 // separate joystick
+// min-max for arduino
 
 function App() {
     const [availablePorts, setAvailablePorts] = useState('');
