@@ -77,7 +77,7 @@ function App() {
                 setSelectedPort={setSelectedPort}
             />
 
-            <Communication />
+            <Communication setAngle={setAngleAnimation} />
 
             <Animation angle={angleAnimation} />
 

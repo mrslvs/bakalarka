@@ -1,8 +1,9 @@
 import React from 'react';
 const { ipcRenderer } = require('electron');
 
-const Communication = () => {
-    let valuesReceived = [];
+const Communication = ({ setAngle }) => {
+    let distancesReceived = [];
+    let armAnglesReceived = [];
     let joystickPosition;
 
     setInterval(() => {
@@ -33,9 +34,14 @@ const Communication = () => {
 
     ipcRenderer.on('startComResponseTest', (evt, message) => {
         let distance = message.split(',')[0];
-        valuesReceived.push(distance);
+        let armAngle = message.split(',')[1];
 
-        console.log(valuesReceived);
+        distancesReceived.push(distance);
+        armAnglesReceived.push(armAngle);
+
+        setAngle(armAngle);
+
+        // console.log(distancesReceived);
     });
 
     return (
