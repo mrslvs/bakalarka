@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import './Assets/Styles/index.css';
 import Animation from './Components/Animation';
-import PortForm from './Components/PortForm';
+// import PortForm from './Components/PortForm';
 import Chart from './Components/Chart';
 import Port from './Components/Port';
+import Communication from './Components/Communication';
 
 // https://github.com/electron/electron/issues/9920
 //      import { ipcRenderer } from 'electron'; NOT WORKING
@@ -12,6 +13,7 @@ const { ipcRenderer } = require('electron');
 
 // TODO:
 // delete PortForm.jsx ?
+// separate joystick
 
 function App() {
     const [availablePorts, setAvailablePorts] = useState('');
@@ -19,7 +21,7 @@ function App() {
 
     const armCenter = 1.51; // ++ = down (90)
     const armTop = 151.5 - 90; // nulled
-    let valuesReceived = [];
+    // let valuesReceived = [];
 
     const [armAnimation, setArmAnimation] = useState(armTop);
 
@@ -41,34 +43,34 @@ function App() {
         console.log(selectedPort);
     }, [selectedPort]);
 
-    let joystickPosition;
+    // let joystickPosition;
 
-    setInterval(() => {
-        const gamepads = navigator.getGamepads();
-        if (gamepads[0]) {
-            joystickPosition = gamepads[0].axes[1];
-        }
-    }, 16);
+    // setInterval(() => {
+    //     const gamepads = navigator.getGamepads();
+    //     if (gamepads[0]) {
+    //         joystickPosition = gamepads[0].axes[1];
+    //     }
+    // }, 16);
 
-    const startCommunication = () => {
-        // if (gamepad == null) {
-        // console.log('gamepad is null');
-        // } else {
-        // joystickPostion = gamepads[0].axes[1];
-        // console.log('... got joystick position:');
-        // console.log(joystickPostion);
-        // }
+    // const startCommunication = () => {
+    //     // if (gamepad == null) {
+    //     // console.log('gamepad is null');
+    //     // } else {
+    //     // joystickPostion = gamepads[0].axes[1];
+    //     // console.log('... got joystick position:');
+    //     // console.log(joystickPostion);
+    //     // }
 
-        let iter = 0;
+    //     let iter = 0;
 
-        setInterval(() => {
-            if (iter < process.env.ITERATIONS) {
-                ipcRenderer.send('startComRequest', joystickPosition);
-            }
-            iter++;
-        }, 90);
-        // ipcRenderer.send('startComRequest', joystickPosition);
-    };
+    //     setInterval(() => {
+    //         if (iter < process.env.ITERATIONS) {
+    //             ipcRenderer.send('startComRequest', joystickPosition);
+    //         }
+    //         iter++;
+    //     }, 90);
+    //     // ipcRenderer.send('startComRequest', joystickPosition);
+    // };
 
     ipcRenderer.on('startComResponse', (event, data) => {
         // console.log('log message inside app.jsx:');
@@ -90,13 +92,13 @@ function App() {
         console.log(message); // Returns: {'SAVED': 'File Saved'}
     });
 
-    ipcRenderer.on('startComResponseTest', (evt, message) => {
-        // console.log('working test:');
-        let distance = message.split(',')[0];
-        valuesReceived.push(distance);
-        console.log(valuesReceived);
-        // console.log(message);
-    });
+    // ipcRenderer.on('startComResponseTest', (evt, message) => {
+    //     // console.log('working test:');
+    //     let distance = message.split(',')[0];
+    //     valuesReceived.push(distance);
+    //     console.log(valuesReceived);
+    //     // console.log(message);
+    // });
 
     const showme = () => {
         console.log(availablePorts);
@@ -122,14 +124,16 @@ function App() {
                 setSelectedPort={setSelectedPort}
             />
 
-            <form
+            {/* <form
                 onSubmit={(e) => {
                     e.preventDefault();
                     startCommunication();
                 }}
             >
                 <button type="submit">Start Communication</button>
-            </form>
+            </form> */}
+
+            <Communication />
 
             <Animation angle={armAnimation} />
             <div>
