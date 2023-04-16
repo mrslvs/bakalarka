@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const measurementSchema = new Schema({
-    time_delta: {
+    communication_delay: {
         type: Number,
         required: true,
     },

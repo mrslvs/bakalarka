@@ -110,14 +110,22 @@ ipcMain.on('saveToDatabase', async (event, data) => {
         console.log('this is angle:');
 
         const measurementToSave = new Measurement({
-            time_delta: process.env.COMMUNICATION_DELAY,
+            communication_delay: process.env.COMMUNICATION_DELAY,
             user: 'test_user',
             angle: data.angle.map((angle) => parseInt(angle)),
             distance: data.distance.map((distance) => parseInt(distance)),
         });
 
         // let angles = data.angle.map((angle) => parseInt(angle));
-        console.log(measurementToSave);
+        // console.log(measurementToSave);
+
+        try {
+            await measurementToSave.save();
+            console.log('saved');
+        } catch (error) {
+            console.log("couldn't save the test data, error:");
+            console.log(error);
+        }
     } catch (err) {
         console.log('error while saving data');
     }
