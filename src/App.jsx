@@ -20,10 +20,7 @@ function App() {
     const [availablePorts, setAvailablePorts] = useState('');
     const [selectedPort, setSelectedPort] = useState('');
 
-    const armCenter = 1.51; // ++ = down (90)
-    const armTop = 151.5 - 90; // nulled
-
-    const [armAnimation, setArmAnimation] = useState(armTop);
+    const [angleAnimation, setAngleAnimation] = useState(null);
 
     useEffect(() => {
         // run once on-load
@@ -36,7 +33,7 @@ function App() {
 
     useEffect(() => {
         console.log('usefect animation, rerending hopefully');
-    }, [armAnimation]);
+    }, [angleAnimation]);
 
     useEffect(() => {
         console.log('usefect selected port');
@@ -82,24 +79,8 @@ function App() {
 
             <Communication />
 
-            <Animation angle={armAnimation} />
-            <div>
-                {/* <svg
-                    width="301"
-                    height="301"
-                    viewBox="0 0 301 301"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        d="M1 300.5H301M1 0.5H301M300.5 301V1M0.500013 301L0.5 1M278.5 300V151"
-                        stroke="black"
-                    />
-                    <line x1="278" y1="151.5" x2="78" y2={armAnimation} stroke="#FF0000" />
-                </svg> */}
+            <Animation angle={angleAnimation} />
 
-                {/* center: <line x1="278" y1="151.5" x2="78" y2="151.5" stroke="#FF0000" /> */}
-            </div>
             <button onClick={showme}>click me</button>
             <div className="w-100">
                 <Chart />
