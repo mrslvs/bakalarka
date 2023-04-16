@@ -21,7 +21,6 @@ function App() {
 
     const armCenter = 1.51; // ++ = down (90)
     const armTop = 151.5 - 90; // nulled
-    // let valuesReceived = [];
 
     const [armAnimation, setArmAnimation] = useState(armTop);
 
@@ -43,61 +42,19 @@ function App() {
         console.log(selectedPort);
     }, [selectedPort]);
 
-    // let joystickPosition;
-
-    // setInterval(() => {
-    //     const gamepads = navigator.getGamepads();
-    //     if (gamepads[0]) {
-    //         joystickPosition = gamepads[0].axes[1];
+    // ipcRenderer.on('startComResponse', (event, data) => {
+    //     // console.log('log message inside app.jsx:');
+    //     // xx,yyy
+    //     console.log('comm response: ' + data);
+    //     const divided = data.split(',');
+    //     const angle = divided[1];
+    //     // console.log(angle);
+    //     if (!isNaN(angle)) {
+    //         let newAngle = armTop + parseInt(angle);
+    //         // console.log(newAngle);
+    //         // setArmAnimation(armTop + angle);
+    //         setArmAnimation(newAngle);
     //     }
-    // }, 16);
-
-    // const startCommunication = () => {
-    //     // if (gamepad == null) {
-    //     // console.log('gamepad is null');
-    //     // } else {
-    //     // joystickPostion = gamepads[0].axes[1];
-    //     // console.log('... got joystick position:');
-    //     // console.log(joystickPostion);
-    //     // }
-
-    //     let iter = 0;
-
-    //     setInterval(() => {
-    //         if (iter < process.env.ITERATIONS) {
-    //             ipcRenderer.send('startComRequest', joystickPosition);
-    //         }
-    //         iter++;
-    //     }, 90);
-    //     // ipcRenderer.send('startComRequest', joystickPosition);
-    // };
-
-    ipcRenderer.on('startComResponse', (event, data) => {
-        // console.log('log message inside app.jsx:');
-        // xx,yyy
-        console.log('comm response: ' + data);
-        const divided = data.split(',');
-        const angle = divided[1];
-        // console.log(angle);
-        if (!isNaN(angle)) {
-            let newAngle = armTop + parseInt(angle);
-            // console.log(newAngle);
-            // setArmAnimation(armTop + angle);
-            setArmAnimation(newAngle);
-        }
-    });
-
-    ipcRenderer.on('sprava', (evt, message) => {
-        console.log('received sprava:');
-        console.log(message); // Returns: {'SAVED': 'File Saved'}
-    });
-
-    // ipcRenderer.on('startComResponseTest', (evt, message) => {
-    //     // console.log('working test:');
-    //     let distance = message.split(',')[0];
-    //     valuesReceived.push(distance);
-    //     console.log(valuesReceived);
-    //     // console.log(message);
     // });
 
     const showme = () => {
@@ -112,8 +69,6 @@ function App() {
         console.log(process.env.ITERATIONS);
     };
 
-    // getPorts();
-
     return (
         <div className="App bg-slate-400">
             <h1 className="text-blue-600">Hello, electron world!</h1>
@@ -123,15 +78,6 @@ function App() {
                 setAvailablePorts={setAvailablePorts}
                 setSelectedPort={setSelectedPort}
             />
-
-            {/* <form
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    startCommunication();
-                }}
-            >
-                <button type="submit">Start Communication</button>
-            </form> */}
 
             <Communication />
 
@@ -154,7 +100,7 @@ function App() {
                 {/* center: <line x1="278" y1="151.5" x2="78" y2="151.5" stroke="#FF0000" /> */}
             </div>
             <button onClick={showme}>click me</button>
-            <div className="w-200">
+            <div className="w-100">
                 <Chart />
             </div>
         </div>
