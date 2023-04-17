@@ -25,6 +25,12 @@ const Chart = ({ chartData, setChartData }) => {
                 text: 'Chart.js Line Chart',
             },
         },
+        scales: {
+            y: {
+                suggestedMin: 0,
+                suggestedMax: 30,
+            },
+        },
     };
 
     let labels = [];

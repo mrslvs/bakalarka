@@ -44,8 +44,11 @@ function App() {
     }, [angleAnimation]);
 
     useEffect(() => {
-        console.log('(new distance received): ' + flagChart);
-        setChartData((oldArr) => [...oldArr, flagChart]);
+        if (flagChart != 0) {
+            console.log('(new distance received): ' + flagChart);
+            setChartData((oldArr) => [...oldArr, flagChart]);
+        }
+        setFlagChart(0);
     }, [flagChart]);
 
     useEffect(() => {
