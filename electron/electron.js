@@ -117,7 +117,7 @@ ipcMain.on('saveToDatabase', async (event, data) => {
         });
 
         // let angles = data.angle.map((angle) => parseInt(angle));
-        // console.log(measurementToSave);
+        console.log(measurementToSave);
 
         try {
             await measurementToSave.save();

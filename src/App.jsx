@@ -26,8 +26,9 @@ function App() {
     const [availablePorts, setAvailablePorts] = useState('');
     const [selectedPort, setSelectedPort] = useState('');
     const [chartData, setChartData] = useState([]);
-
     const [angleAnimation, setAngleAnimation] = useState(0);
+
+    const [flagChart, setFlagChart] = useState('');
 
     useEffect(() => {
         // run once on-load
@@ -42,9 +43,14 @@ function App() {
         console.log('usefect animation, rerending hopefully');
     }, [angleAnimation]);
 
-    // useEffect(() => {
-    //     console.log('rerendering chartdata');
-    // }, [chartData]);
+    useEffect(() => {
+        console.log('(new distance received): ' + flagChart);
+        setChartData((oldArr) => [...oldArr, flagChart]);
+    }, [flagChart]);
+
+    useEffect(() => {
+        console.log('chart data changed: ' + chartData);
+    }, [chartData]);
 
     useEffect(() => {
         console.log('usefect selected port');
@@ -74,9 +80,13 @@ function App() {
         // let z = x || 0.11;
         // console.log(z);
 
-        console.log('env iterations: ' + process.env.ITERATIONS);
-        console.log('chartData: ' + chartData);
-        console.log('charData length: ' + chartData.length);
+        // console.log('env iterations: ' + process.env.ITERATIONS);
+        // console.log('chartData: ' + chartData);
+        // console.log('charData length: ' + chartData.length);
+
+        setTestArray((oldarr) => [...oldarr, 4]);
+
+        console.log(testArray);
     };
 
     return (
@@ -89,13 +99,17 @@ function App() {
                 setSelectedPort={setSelectedPort}
             />
 
-            <Communication setAngle={setAngleAnimation} setChartData={setChartData} />
+            <Communication
+                setAngle={setAngleAnimation}
+                setChartData={setChartData}
+                setFlagChart={setFlagChart}
+            />
 
             <Animation angle={angleAnimation} />
 
             <button onClick={showme}>click me</button>
             <div className="w-100">
-                <Chart chartData={chartData} />
+                <Chart chartData={chartData} setChartData={setChartData} />
             </div>
         </div>
     );

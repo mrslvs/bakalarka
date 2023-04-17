@@ -13,7 +13,7 @@ import { Line } from 'react-chartjs-2';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-const Chart = ({ chartData }) => {
+const Chart = ({ chartData, setChartData }) => {
     const options = {
         responsive: true,
         plugins: {
@@ -33,6 +33,8 @@ const Chart = ({ chartData }) => {
     }
     // const labels = ['January', 'February'];
 
+    let testData = [5, 5, 5, 5];
+
     const data = {
         labels,
         datasets: [
@@ -40,13 +42,25 @@ const Chart = ({ chartData }) => {
                 label: 'Dataset 1',
                 // data: [1, 2],
                 data: chartData,
+                // data: testData,
                 borderColor: 'rgb(255, 99, 132)',
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
             },
         ],
     };
 
-    return <Line options={options} data={data} />;
+    const increase = () => {
+        testData.push(5);
+        console.log('testData: ' + testData);
+        setChartData(1);
+    };
+
+    return (
+        <div>
+            <Line options={options} data={data} />
+            <button onClick={increase}>click me</button>
+        </div>
+    );
 };
 
 export default Chart;
