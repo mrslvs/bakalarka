@@ -27,7 +27,11 @@ const Chart = () => {
         },
     };
 
-    const labels = ['January', 'February'];
+    let labels = [];
+    for (let i = 0; i < process.env.ITERATIONS; i++) {
+        labels.push(i * process.env.COMMUNICATION_DELAY);
+    }
+    // const labels = ['January', 'February'];
 
     const data = {
         labels,

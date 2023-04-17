@@ -25,6 +25,8 @@ const { ipcRenderer } = require('electron');
 function App() {
     const [availablePorts, setAvailablePorts] = useState('');
     const [selectedPort, setSelectedPort] = useState('');
+    const [chartLabels, setChartLabels] = useState('');
+    const [chartData, setChartData] = useState('');
 
     const [angleAnimation, setAngleAnimation] = useState(0);
 
