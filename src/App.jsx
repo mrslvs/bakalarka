@@ -25,8 +25,7 @@ const { ipcRenderer } = require('electron');
 function App() {
     const [availablePorts, setAvailablePorts] = useState('');
     const [selectedPort, setSelectedPort] = useState('');
-    const [chartLabels, setChartLabels] = useState('');
-    const [chartData, setChartData] = useState('');
+    const [chartData, setChartData] = useState([]);
 
     const [angleAnimation, setAngleAnimation] = useState(0);
 
@@ -42,6 +41,10 @@ function App() {
     useEffect(() => {
         console.log('usefect animation, rerending hopefully');
     }, [angleAnimation]);
+
+    // useEffect(() => {
+    //     console.log('rerendering chartdata');
+    // }, [chartData]);
 
     useEffect(() => {
         console.log('usefect selected port');
@@ -64,15 +67,16 @@ function App() {
     // });
 
     const showme = () => {
-        console.log(availablePorts);
-        console.log(selectedPort);
-        console.log('ok');
-        let x = null;
-        let z = x || 0.11;
-        console.log(z);
+        // console.log(availablePorts);
+        // console.log(selectedPort);
+        // console.log('ok');
+        // let x = null;
+        // let z = x || 0.11;
+        // console.log(z);
 
-        console.log('env: ');
-        console.log(process.env.ITERATIONS);
+        console.log('env iterations: ' + process.env.ITERATIONS);
+        console.log('chartData: ' + chartData);
+        console.log('charData length: ' + chartData.length);
     };
 
     return (
@@ -85,13 +89,13 @@ function App() {
                 setSelectedPort={setSelectedPort}
             />
 
-            <Communication setAngle={setAngleAnimation} />
+            <Communication setAngle={setAngleAnimation} setChartData={setChartData} />
 
             <Animation angle={angleAnimation} />
 
             <button onClick={showme}>click me</button>
             <div className="w-100">
-                <Chart />
+                <Chart chartData={chartData} />
             </div>
         </div>
     );

@@ -1,7 +1,7 @@
 import React from 'react';
 const { ipcRenderer } = require('electron');
 
-const Communication = ({ setAngle }) => {
+const Communication = ({ setAngle, setChartData }) => {
     let distancesReceived = [];
     let armAnglesReceived = [];
     let joystickPosition;
@@ -51,6 +51,8 @@ const Communication = ({ setAngle }) => {
         }
 
         setAngle(armAngle);
+        setChartData((oldArray) => [...oldArray, distance]);
+        console.log('this is what we set with setChartdata each iteration:' + distance);
 
         // console.log(distancesReceived);
     });

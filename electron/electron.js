@@ -107,7 +107,7 @@ parser.on('data', (data) => {
 ipcMain.on('saveToDatabase', async (event, data) => {
     try {
         // parseInt() because IPC return integer as '140\r'
-        console.log('this is angle:');
+        // console.log('this is angle:');
 
         const measurementToSave = new Measurement({
             communication_delay: process.env.COMMUNICATION_DELAY,
