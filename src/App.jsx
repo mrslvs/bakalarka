@@ -15,7 +15,6 @@ const { ipcRenderer } = require('electron');
 // delete PortForm.jsx ?
 // separate joystick
 // min-max for arduino
-// rename IPC startComResponseTest id
 //
 // changing animation only if in gamepad or arduino-joystick mode
 //      modes:

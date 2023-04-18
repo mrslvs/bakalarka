@@ -101,7 +101,7 @@ ipcMain.on('startComRequest', async (event, data) => {
 parser.on('data', (data) => {
     console.log(data);
 
-    mainWindow.webContents.send('startComResponseTest', data);
+    mainWindow.webContents.send('receivedData', data);
 });
 
 ipcMain.on('saveToDatabase', async (event, data) => {

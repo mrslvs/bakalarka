@@ -32,7 +32,7 @@ const Communication = ({ setAngle, setNewDistance }) => {
         }, process.env.COMMUNICATION_DELAY);
     };
 
-    ipcRenderer.on('startComResponseTest', (evt, message) => {
+    ipcRenderer.on('receivedData', (evt, message) => {
         let distance = message.split(',')[0];
         let armAngle = message.split(',')[1];
 
