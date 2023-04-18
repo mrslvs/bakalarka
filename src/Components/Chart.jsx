@@ -21,14 +21,24 @@ const Chart = ({ chartData, setChartData }) => {
                 position: 'top',
             },
             title: {
-                display: true,
-                text: 'Chart.js Line Chart',
+                display: false,
+                text: 'Chart.js Line Chart (do not display this title)',
             },
         },
         scales: {
             y: {
                 suggestedMin: 0,
                 suggestedMax: 30,
+                title: {
+                    display: true,
+                    text: 'Centimeters',
+                },
+            },
+            x: {
+                title: {
+                    display: true,
+                    text: 'miliseconds',
+                },
             },
         },
     };
@@ -37,36 +47,20 @@ const Chart = ({ chartData, setChartData }) => {
     for (let i = 0; i < process.env.ITERATIONS; i++) {
         labels.push(i * process.env.COMMUNICATION_DELAY);
     }
-    // const labels = ['January', 'February'];
-
-    let testData = [5, 5, 5, 5];
 
     const data = {
         labels,
         datasets: [
             {
                 label: 'Dataset 1',
-                // data: [1, 2],
                 data: chartData,
-                // data: testData,
                 borderColor: 'rgb(255, 99, 132)',
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
             },
         ],
     };
 
-    const increase = () => {
-        testData.push(5);
-        console.log('testData: ' + testData);
-        setChartData(1);
-    };
-
-    return (
-        <div>
-            <Line options={options} data={data} />
-            <button onClick={increase}>click me</button>
-        </div>
-    );
+    return <Line options={options} data={data} />;
 };
 
 export default Chart;
