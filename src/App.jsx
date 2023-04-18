@@ -15,50 +15,57 @@ const { ipcRenderer } = require('electron');
 // delete PortForm.jsx ?
 // separate joystick
 // min-max for arduino
+// rename IPC startComResponseTest id
+//
 // changing animation only if in gamepad or arduino-joystick mode
-// modes:
-//      1. controlling arm
-//          1a USB gamepad
-//          1b arduino joystick
-//      2. reproducing measurements from DB file
+//      modes:
+//          1. controlling arm
+//              1a USB gamepad
+//              1b arduino joystick
+//          2. reproducing measurements from DB file
 
 function App() {
+    // PORTS
     const [availablePorts, setAvailablePorts] = useState('');
     const [selectedPort, setSelectedPort] = useState('');
+
     const [chartData, setChartData] = useState([]);
     const [angleAnimation, setAngleAnimation] = useState(0);
-
-    const [flagChart, setFlagChart] = useState('');
+    const [newDistance, setNewDistance] = useState('');
 
     useEffect(() => {
         // run once on-load
         // getPorts();
     }, []);
 
+    // PORTS
     useEffect(() => {
         console.log('usefect ports, rerending hopefully');
     }, [availablePorts]);
 
     useEffect(() => {
-        console.log('usefect animation, rerending hopefully');
-    }, [angleAnimation]);
-
-    useEffect(() => {
-        if (flagChart != 0) {
-            console.log('(new distance received): ' + flagChart);
-            setChartData((oldArr) => [...oldArr, flagChart]);
-        }
-        setFlagChart(0);
-    }, [flagChart]);
-
-    useEffect(() => {
-        console.log('chart data changed: ' + chartData);
-    }, [chartData]);
-
-    useEffect(() => {
         console.log('usefect selected port');
         console.log(selectedPort);
     }, [selectedPort]);
+
+    // ANIMATION
+    useEffect(() => {
+        // console.log('usefect animation, rerending hopefully');
+    }, [angleAnimation]);
+
+    // DISTANCE
+    useEffect(() => {
+        if (newDistance != -1) {
+            // received new distance
+            setChartData((oldArr) => [...oldArr, newDistance]);
+        }
+        setNewDistance(-1);
+    }, [newDistance]);
+
+    // CHART
+    useEffect(() => {
+        console.log('chart data changed: ' + chartData);
+    }, [chartData]);
 
     // ipcRenderer.on('startComResponse', (event, data) => {
     //     // console.log('log message inside app.jsx:');
@@ -102,11 +109,7 @@ function App() {
                 setSelectedPort={setSelectedPort}
             />
 
-            <Communication
-                setAngle={setAngleAnimation}
-                setChartData={setChartData}
-                setFlagChart={setFlagChart}
-            />
+            <Communication setAngle={setAngleAnimation} setNewDistance={setNewDistance} />
 
             <Animation angle={angleAnimation} />
 
