@@ -41,6 +41,9 @@ const Chart = ({ chartData, setChartData }) => {
                 },
             },
         },
+        animation: {
+            duration: 0,
+        },
     };
 
     let labels = [];

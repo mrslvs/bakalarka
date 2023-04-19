@@ -13,8 +13,11 @@ const { ipcRenderer } = require('electron');
 
 // TODO:
 // delete PortForm.jsx ?
+// make ports work
 // separate joystick
 // min-max for arduino
+// table showing database measurements
+// delay => vzorkovacia frekvencia (samplingRate)
 //
 // changing animation only if in gamepad or arduino-joystick mode
 //      modes:
@@ -62,9 +65,9 @@ function App() {
     }, [newDistance]);
 
     // CHART
-    useEffect(() => {
-        console.log('chart data changed: ' + chartData);
-    }, [chartData]);
+    // useEffect(() => {
+    //     console.log('chart data changed: ' + chartData);
+    // }, [chartData]);
 
     // ipcRenderer.on('startComResponse', (event, data) => {
     //     // console.log('log message inside app.jsx:');
