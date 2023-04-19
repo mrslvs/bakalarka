@@ -29,7 +29,7 @@ const Communication = ({ setAngle, setNewDistance }) => {
                 ipcRenderer.send('startComRequest', joystickPosition);
             }
             iter++;
-        }, process.env.COMMUNICATION_DELAY);
+        }, process.env.SAMPLING_RATE);
     };
 
     ipcRenderer.on('receivedData', (evt, message) => {

@@ -48,7 +48,7 @@ const Chart = ({ chartData, setChartData }) => {
 
     let labels = [];
     for (let i = 0; i < process.env.ITERATIONS; i++) {
-        labels.push(i * process.env.COMMUNICATION_DELAY);
+        labels.push(i * process.env.SAMPLING_RATE);
     }
 
     const data = {

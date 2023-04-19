@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const measurementSchema = new Schema({
-    communication_delay: {
+    sampling_rate: {
         type: Number,
         required: true,
     },

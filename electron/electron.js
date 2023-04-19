@@ -110,7 +110,7 @@ ipcMain.on('saveToDatabase', async (event, data) => {
         // console.log('this is angle:');
 
         const measurementToSave = new Measurement({
-            communication_delay: process.env.COMMUNICATION_DELAY,
+            sampling_rate: process.env.SAMPLING_RATE,
             user: 'test_user',
             angle: data.angle.map((angle) => parseInt(angle)),
             distance: data.distance.map((distance) => parseInt(distance)),
