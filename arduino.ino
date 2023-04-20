@@ -54,17 +54,16 @@ void processMessage(String output_message){
 
     moveArm(tmp);
     Serial.println(output_message);
-  }else if(str.startsWith(startStringAnalog)){
+  }
+  else if(str.startsWith(startStringAnalog)){
     int xValue = analogRead(joyX);
     
     if(xValue > 511){
       moveArm(1);
       Serial.println(output_message);
-      xValue = 511;
     }else if(xValue < 511){
       moveArm(-1);
       Serial.println(output_message);
-      xValue = 511;
     }
     
   }

@@ -55,6 +55,11 @@ const startCom = async (event, data) => {
     port.write(tmp);
 };
 
+const startComAnalog = async (event, data) => {
+    let tmp = 'startanalogpass' + '\n';
+    port.write(tmp);
+};
+
 // parser.on('data', (data) => {
 //     // if (data == 1111) {
 //     //     // console.log('comm initiated');
@@ -80,4 +85,4 @@ const getAvailablePorts = async () => {
     return ports;
 };
 
-module.exports = { getAvailablePorts, startCom, parser };
+module.exports = { getAvailablePorts, startCom, startComAnalog, parser };

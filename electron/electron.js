@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const path = require('path');
 const { app, BrowserWindow, ipcMain, ipcRenderer } = require('electron');
-const { getAvailablePorts, startCom, parser } = require('../src/API/serial');
+const { getAvailablePorts, startCom, startComAnalog, parser } = require('../src/API/serial');
 const { connect } = require('../src/API/mongo');
 const { Measurement } = require('../src/Models/Measurement');
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -93,6 +93,14 @@ ipcMain.on('startComRequest', async (event, data) => {
         // console.log('ddd:');
         // console.log(data);
         const msg = await startCom(event, data);
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+ipcMain.on('startComRequestAnalog', async (event, data) => {
+    try {
+        const msg = await startComAnalog(event, data);
     } catch (err) {
         console.log(err);
     }
