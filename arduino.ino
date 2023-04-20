@@ -4,6 +4,7 @@
 #define PIN_TRIGGER 12
 #define PIN_ECHO 13
 #define MAX_DISTANCE 450
+#define joyX A0
 int servo_global = 100;
 
 NewPing sonar(PIN_TRIGGER, PIN_ECHO, MAX_DISTANCE);
@@ -43,6 +44,7 @@ void loop() {
 
 void processMessage(String output_message){
   String startString = "startpass";
+  String startStringAnalog = "startanalogpass";
   String str = Serial.readStringUntil('\n');
 
   if(str.startsWith(startString)){
@@ -52,6 +54,19 @@ void processMessage(String output_message){
 
     moveArm(tmp);
     Serial.println(output_message);
+  }else if(str.startsWith(startStringAnalog)){
+    int xValue = analogRead(joyX);
+    
+    if(xValue > 511){
+      moveArm(1);
+      Serial.println(output_message);
+      xValue = 511;
+    }else if(xValue < 511){
+      moveArm(-1);
+      Serial.println(output_message);
+      xValue = 511;
+    }
+    
   }
 }
 
