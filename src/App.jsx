@@ -34,6 +34,7 @@ function App() {
     const [chartData, setChartData] = useState([]);
     const [angleAnimation, setAngleAnimation] = useState(0);
     const [newDistance, setNewDistance] = useState('');
+    const [tableData, setTableData] = useState(null);
 
     useEffect(() => {
         // run once on-load
@@ -119,7 +120,7 @@ function App() {
             <div className="w-100">
                 <Chart chartData={chartData} setChartData={setChartData} />
             </div>
-            <Database />
+            <Database tableData={tableData} setTableData={setTableData} />
         </div>
     );
 }
