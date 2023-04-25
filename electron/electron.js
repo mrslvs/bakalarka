@@ -110,25 +110,27 @@ var util = require('util');
 
 ipcMain.on('requestDatabaseData', async (event, data) => {
     try {
-        let result = await Measurement.findById('644825e7df6720f60a019134');
+        // let result = await Measurement.findById('644825e7df6720f60a019134');
+        let result = await Measurement.find();
 
-        // let testx = Measurement.findById('643c80c04499147f32beaf9c').map((measure) => {
-        //     return {
-        //         id: measure._id.toHexString(),
-        //     };
-        // });
+        let responseArray = [];
 
-        let distanceArray = result.distance.map((value) => value);
-        let x = 'hello';
-        let testObj = {
-            distanceArray,
-            x,
-        };
-        // console.log(typeof distanceArray);
+        result.forEach((measurement) => {
+            let distanceArray = measurement.distance.map((value) => value);
+            let angleArray = measurement.angle.map((value) => value);
 
-        // event.reply('databaseData', result.distance);
-        // event.reply('databaseData', distanceArray);
-        event.reply('databaseData', testObj);
+            let tmpObject = {
+                id: measurement.id,
+                sampling_rate: measurement.sampling_rate,
+                user: measurement.user,
+                distance: distanceArray,
+                angle: angleArray,
+            };
+
+            responseArray.push(tmpObject);
+        });
+
+        event.reply('databaseData', responseArray);
     } catch (err) {
         console.log('error while getting all measurements');
         console.log(err);
