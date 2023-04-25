@@ -106,6 +106,35 @@ ipcMain.on('startComRequestAnalog', async (event, data) => {
     }
 });
 
+var util = require('util');
+
+ipcMain.on('requestDatabaseData', async (event, data) => {
+    try {
+        let result = await Measurement.findById('644825e7df6720f60a019134');
+
+        // let testx = Measurement.findById('643c80c04499147f32beaf9c').map((measure) => {
+        //     return {
+        //         id: measure._id.toHexString(),
+        //     };
+        // });
+
+        let distanceArray = result.distance.map((value) => value);
+        let x = 'hello';
+        let testObj = {
+            distanceArray,
+            x,
+        };
+        // console.log(typeof distanceArray);
+
+        // event.reply('databaseData', result.distance);
+        // event.reply('databaseData', distanceArray);
+        event.reply('databaseData', testObj);
+    } catch (err) {
+        console.log('error while getting all measurements');
+        console.log(err);
+    }
+});
+
 parser.on('data', (data) => {
     console.log(data);
 

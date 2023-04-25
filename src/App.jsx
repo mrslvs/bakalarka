@@ -5,6 +5,7 @@ import Animation from './Components/Animation';
 import Chart from './Components/Chart';
 import Port from './Components/Port';
 import Communication from './Components/Communication';
+import Database from './Components/Database';
 
 // https://github.com/electron/electron/issues/9920
 //      import { ipcRenderer } from 'electron'; NOT WORKING
@@ -12,13 +13,12 @@ import Communication from './Components/Communication';
 const { ipcRenderer } = require('electron');
 
 // TODO:
+// ✔️ separate joystick
+// ✔️ rename delay => vzorkovacia frekvencia (samplingRate)
 // delete PortForm.jsx ?
-// make ports work
-// separate joystick
+// make ports work (selecting port)
 // min-max for arduino
 // table showing database measurements
-// delay => vzorkovacia frekvencia (samplingRate)
-//
 // changing animation only if in gamepad or arduino-joystick mode
 //      modes:
 //          1. controlling arm
@@ -119,6 +119,7 @@ function App() {
             <div className="w-100">
                 <Chart chartData={chartData} setChartData={setChartData} />
             </div>
+            <Database />
         </div>
     );
 }
