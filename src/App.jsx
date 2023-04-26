@@ -120,7 +120,12 @@ function App() {
             <div className="w-100">
                 <Chart chartData={chartData} setChartData={setChartData} />
             </div>
-            <Database tableData={tableData} setTableData={setTableData} />
+            <Database
+                tableData={tableData}
+                setTableData={setTableData}
+                setAngle={setAngleAnimation}
+                setNewDistance={setNewDistance}
+            />
         </div>
     );
 }
