@@ -7,8 +7,6 @@ const Database = ({ tableData, setTableData, setAngle, setNewDistance }) => {
     };
 
     ipcRenderer.on('databaseData', (evt, message) => {
-        // console.log('got database data:');
-        // console.log(message);
         setTableData(message);
     });
 
@@ -26,22 +24,6 @@ const Database = ({ tableData, setTableData, setAngle, setNewDistance }) => {
                     }
                     i++;
                 }, measurement.sampling_rate);
-
-                // for (let i = 0; i < measurement.angle.length; i++) {
-                //     setInterval(() => {
-                //         setAngle(measurement.angle[i]);
-                //         setNewDistance(measurement.distance[i]);
-                //     }, measurement.sampling_rate);
-                // }
-
-                // for (let i = 0; i < iter; i++) {
-                //     setTimeout(() => {
-                //         console.log('[' + i + '] ' + measurement.angle[i]);
-
-                //         // setAngle(measurement.angle[i]);
-                //         // setNewDistance(measurement.distance[i]);
-                //     }, 2000);
-                // }
             }
         });
     };
