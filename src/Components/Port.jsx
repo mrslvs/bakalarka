@@ -34,6 +34,7 @@ const Port = ({ availablePorts, setAvailablePorts, setSelectedPort }) => {
                         setSelectedPort(e.target.value);
                     }}
                 >
+                    <option>First refresh</option>
                     {availablePorts ? (
                         availablePorts.map((port) => {
                             return port.manufacturer ? (
@@ -42,7 +43,7 @@ const Port = ({ availablePorts, setAvailablePorts, setSelectedPort }) => {
                                     {port.manufacturer}{' '}
                                 </option>
                             ) : (
-                                <option disabled={false} key={port.path}>
+                                <option disabled={true} key={port.path}>
                                     {'unknwon manufacturer'}
                                 </option>
                             );
