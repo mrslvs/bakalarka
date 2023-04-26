@@ -170,6 +170,10 @@ ipcMain.on('saveToDatabase', async (event, data) => {
     }
 });
 
+ipcMain.on('portSelected', async (event, data) => {
+    console.log('port has been selected:' + data);
+});
+
 // window.addEventListener('gamepadconnected', (e) => {
 //     console.log(
 //         'Gamepad connected at index %d: %s. %d buttons, %d axes.',

@@ -43,12 +43,13 @@ function App() {
 
     // PORTS
     useEffect(() => {
-        console.log('usefect ports, rerending hopefully');
+        // console.log('usefect ports, rerending hopefully');
     }, [availablePorts]);
 
     useEffect(() => {
-        console.log('usefect selected port');
-        console.log(selectedPort);
+        // console.log('usefect selected port');
+        // console.log(selectedPort);
+        if (selectedPort) ipcRenderer.send('portSelected', selectedPort);
     }, [selectedPort]);
 
     // ANIMATION
