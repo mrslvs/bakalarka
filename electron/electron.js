@@ -2,7 +2,13 @@ require('dotenv').config();
 
 const path = require('path');
 const { app, BrowserWindow, ipcMain, ipcRenderer } = require('electron');
-const { getAvailablePorts, startCom, startComAnalog, parser } = require('../src/API/serial');
+const {
+    getAvailablePorts,
+    // startCom,
+    // startComAnalog,
+    parser,
+    createPort,
+} = require('../src/API/serial');
 const { connect } = require('../src/API/mongo');
 const { Measurement } = require('../src/Models/Measurement');
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -62,30 +68,40 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 
-(async () => {
-    await connect(process.env.DB_CONNECTION_URL);
+// (async () => {
+//     await connect(process.env.DB_CONNECTION_URL);
 
-    let testArr = [3, 3, 3, 3, 3, 9, 9, 9, 9];
+//     let testArr = [3, 3, 3, 3, 3, 9, 9, 9, 9];
 
-    const testMeasurement = new Measurement({
-        time_delta: 90,
-        user: 'test_user',
-        distance: testArr,
-    });
+//     const testMeasurement = new Measurement({
+//         time_delta: 90,
+//         user: 'test_user',
+//         distance: testArr,
+//     });
+// })();
 
-    // try {
-    //     await testMeasurement.save();
-    //     console.log('saved');
-    // } catch (error) {
-    //     console.log("couldn't save the test data, error:");
-    //     console.log(error);
-    // }
-})();
+let port = null;
+
+const startCom = async (event, data) => {
+    let tmp = 'startpassLX' + data + '\n';
+    port.write(tmp);
+};
+
+const startComAnalog = async (event, data) => {
+    let tmp = 'startanalogpass' + '\n';
+    port.write(tmp);
+};
 
 ipcMain.on('portRequest', async (event, data) => {
     console.log(data);
     const ports = await getAvailablePorts();
     event.reply('portResponse', ports);
+});
+
+ipcMain.on('portSelected', async (event, data) => {
+    console.log('port has been selected:' + data);
+    port = createPort(data);
+    port.pipe(parser);
 });
 
 ipcMain.on('startComRequest', async (event, data) => {
@@ -168,10 +184,6 @@ ipcMain.on('saveToDatabase', async (event, data) => {
     } catch (err) {
         console.log('error while saving data');
     }
-});
-
-ipcMain.on('portSelected', async (event, data) => {
-    console.log('port has been selected:' + data);
 });
 
 // window.addEventListener('gamepadconnected', (e) => {
