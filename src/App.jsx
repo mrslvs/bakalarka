@@ -89,11 +89,10 @@ function App() {
             <Communication setAngle={setAngleAnimation} setNewDistance={setNewDistance} />
 
             <Animation angle={angleAnimation} />
+            <Chart chartData={chartData} setChartData={setChartData} />
 
             <button onClick={showme}>click me</button>
-            <div className="w-100">
-                <Chart chartData={chartData} setChartData={setChartData} />
-            </div>
+
             <Database
                 tableData={tableData}
                 setTableData={setTableData}

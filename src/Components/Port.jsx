@@ -11,7 +11,7 @@ const Port = ({ availablePorts, setAvailablePorts, setSelectedPort }) => {
     });
 
     return (
-        <div>
+        <div className="flex bg-fuchsia-300">
             {/* GET PORTS */}
             <form
                 onSubmit={(e) => {
@@ -26,14 +26,14 @@ const Port = ({ availablePorts, setAvailablePorts, setSelectedPort }) => {
 
             {/* SET PORT */}
             <form>
-                <label>Available ports:</label>
                 <select
                     id="ports"
                     onChange={(e) => {
                         setSelectedPort(e.target.value);
                     }}
+                    className="max-w-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 >
-                    <option>Select Arduino</option>
+                    <option>Select Arduino port</option>
                     {availablePorts ? (
                         availablePorts.map((port) => {
                             return port.manufacturer ? (

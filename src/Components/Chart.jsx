@@ -63,7 +63,11 @@ const Chart = ({ chartData, setChartData }) => {
         ],
     };
 
-    return <Line options={options} data={data} />;
+    return (
+        <div className="bg-green-400 max-w-lg">
+            <Line options={options} data={data} />;
+        </div>
+    );
 };
 
 export default Chart;

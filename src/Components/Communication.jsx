@@ -115,7 +115,7 @@ const Communication = ({ setAngle, setNewDistance }) => {
     // });
 
     return (
-        <div>
+        <div className="flex bg-fuchsia-500">
             <form
                 onSubmit={(e) => {
                     e.preventDefault();

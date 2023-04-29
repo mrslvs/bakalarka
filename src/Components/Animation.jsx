@@ -2,7 +2,7 @@ import React from 'react';
 
 const Animation = ({ angle }) => {
     return (
-        <div id="animation">
+        <div id="animation" className="bg-fuchsia-900">
             <svg
                 width="228"
                 height="208"
