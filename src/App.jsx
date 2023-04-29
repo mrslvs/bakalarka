@@ -80,8 +80,8 @@ function App() {
         <div className="bg-slate-300">
             <Header></Header>
 
-            <div className="grid grid-cols-4 bg-black">
-                <div className="col-start-1 col-end-4">
+            <div className="grid grid-cols-3 bg-black">
+                <div className="col-start-1 col-end-3">
                     <div className="flex p-2 bg-red-400 ">
                         <Port
                             availablePorts={availablePorts}
@@ -94,7 +94,7 @@ function App() {
                         />
                     </div>
 
-                    <div className=" col-start-4 bg-yellow-400 p-2">
+                    <div className=" col-start-3 bg-yellow-400 p-2">
                         <Chart chartData={chartData} setChartData={setChartData} />
                         <Animation angle={angleAnimation} />
                     </div>
