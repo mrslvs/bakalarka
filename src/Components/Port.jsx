@@ -11,27 +11,36 @@ const Port = ({ availablePorts, setAvailablePorts, setSelectedPort }) => {
     });
 
     return (
-        <div className="flex shrink-0 w-1/2 justify-center bg-fuchsia-300 p-2">
+        <div className="inline-flex w-1/2 justify-center bg-fuchsia-300">
+            {/* // <div className="inline-flex shrink-0 w-1/2 justify-center bg-fuchsia-300 p-2"> */}
             {/* GET PORTS */}
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
                     getPorts();
                 }}
+                // className="w-2/5 border border-black"
+                className="flex items-center border border-black mr-2"
             >
-                <button type="submit" className="button">
+                <button
+                    type="submit"
+                    // className="button"
+                    className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br font-medium rounded-lg text-sm px-5 py-2.5 text-center h-10"
+                >
                     Refresh ports
                 </button>
             </form>
 
             {/* SET PORT */}
-            <form className="border border-red-400 shrink-0">
+            {/* <form className="w-3/5 border border-black"> */}
+            <form className="flex items-center border border-black">
                 <select
                     id="ports"
                     onChange={(e) => {
                         setSelectedPort(e.target.value);
                     }}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+                    // className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 w-60 h-10"
                 >
                     <option>Select Arduino port</option>
                     {availablePorts ? (
