@@ -3,7 +3,6 @@ const { ipcRenderer } = require('electron');
 
 const Port = ({ availablePorts, setAvailablePorts, setSelectedPort }) => {
     ipcRenderer.on('portResponse', (event, data) => {
-        // console.log(data);
         setAvailablePorts(data);
     });
 
@@ -24,13 +23,11 @@ const Port = ({ availablePorts, setAvailablePorts, setSelectedPort }) => {
                 <label>Available ports:</label>
                 <select
                     id="ports"
-                    // defaultValue={'Please update available ports'}
                     onChange={(e) => {
-                        console.log('pf.jxs: ' + e.target.value);
                         setSelectedPort(e.target.value);
                     }}
                 >
-                    <option>First refresh</option>
+                    <option>Select Arduino</option>
                     {availablePorts ? (
                         availablePorts.map((port) => {
                             return port.manufacturer ? (
