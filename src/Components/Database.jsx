@@ -39,8 +39,18 @@ const Database = ({ tableData, setTableData, setAngle, setNewDistance }) => {
     return (
         <div>
             <p>database table goes here</p>
-            <button onClick={requestDatabaseData}>get data</button>
-            <button onClick={checkConnection}>check connection</button>
+            <button
+                onClick={requestDatabaseData}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+                get data
+            </button>
+            <button
+                onClick={checkConnection}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+                check connection
+            </button>
             <table>
                 <thead>
                     <tr>

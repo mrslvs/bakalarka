@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './Assets/Styles/index.css';
+import Header from './Components/Header';
 import Animation from './Components/Animation';
-// import PortForm from './Components/PortForm';
 import Chart from './Components/Chart';
 import Port from './Components/Port';
 import Communication from './Components/Communication';
@@ -77,8 +77,8 @@ function App() {
     };
 
     return (
-        <div className="App bg-slate-400">
-            <h1 className="text-blue-600">Hello, electron world!</h1>
+        <div className="App bg-slate-300">
+            <Header></Header>
 
             <Port
                 availablePorts={availablePorts}
