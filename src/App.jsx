@@ -15,10 +15,11 @@ const { ipcRenderer } = require('electron');
 // TODO:
 // ✔️ separate joystick
 // ✔️ rename delay => vzorkovacia frekvencia (samplingRate)
-// delete PortForm.jsx ?
-// make ports work (selecting port)
+// ✔️ delete PortForm.jsx ?
+// ✔️ make ports work (selecting port)
+// ✔️ table showing database measurements
+// 
 // min-max for arduino
-// table showing database measurements
 // changing animation only if in gamepad or arduino-joystick mode
 //      modes:
 //          1. controlling arm
@@ -66,26 +67,6 @@ function App() {
         setNewDistance(-1);
     }, [newDistance]);
 
-    // CHART
-    // useEffect(() => {
-    //     console.log('chart data changed: ' + chartData);
-    // }, [chartData]);
-
-    // ipcRenderer.on('startComResponse', (event, data) => {
-    //     // console.log('log message inside app.jsx:');
-    //     // xx,yyy
-    //     console.log('comm response: ' + data);
-    //     const divided = data.split(',');
-    //     const angle = divided[1];
-    //     // console.log(angle);
-    //     if (!isNaN(angle)) {
-    //         let newAngle = armTop + parseInt(angle);
-    //         // console.log(newAngle);
-    //         // setArmAnimation(armTop + angle);
-    //         setArmAnimation(newAngle);
-    //     }
-    // });
-
     const showme = () => {
         // console.log(availablePorts);
         // console.log(selectedPort);
@@ -93,14 +74,6 @@ function App() {
         // let x = null;
         // let z = x || 0.11;
         // console.log(z);
-
-        // console.log('env iterations: ' + process.env.ITERATIONS);
-        // console.log('chartData: ' + chartData);
-        // console.log('charData length: ' + chartData.length);
-
-        setTestArray((oldarr) => [...oldarr, 4]);
-
-        console.log(testArray);
     };
 
     return (
