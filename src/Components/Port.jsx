@@ -2,6 +2,10 @@ import React from 'react';
 const { ipcRenderer } = require('electron');
 
 const Port = ({ availablePorts, setAvailablePorts, setSelectedPort }) => {
+    const getPorts = () => {
+        ipcRenderer.send('portRequest', 'client portRequest');
+    };
+
     ipcRenderer.on('portResponse', (event, data) => {
         setAvailablePorts(data);
     });
@@ -12,12 +16,13 @@ const Port = ({ availablePorts, setAvailablePorts, setSelectedPort }) => {
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
-                    ipcRenderer.send('portRequest', 'client portRequest');
+                    getPorts();
                 }}
             >
                 <button
                     type="submit"
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    // button styles inspiration: https://flowbite.com/docs/components/buttons/
+                    className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
                 >
                     Refresh ports
                 </button>
