@@ -44,13 +44,13 @@ const Database = ({ tableData, setTableData, setAngle, setNewDistance }) => {
             <button onClick={checkConnection} className="button">
                 check connection
             </button>
-            <table className="border border-black">
+            <table className="table-custom">
                 <thead>
-                    <tr className="border border-black">
-                        <th className="border border-black">ID</th>
-                        <th className="border border-black">Sampling Rate</th>
-                        <th className="border border-black">User</th>
-                        <th className="border border-black">Actions</th>
+                    <tr>
+                        <th className="table-custom">ID</th>
+                        <th className="table-custom">Sampling Rate</th>
+                        <th className="table-custom">User</th>
+                        <th className="table-custom">Actions</th>
                     </tr>
                 </thead>
 
@@ -58,13 +58,11 @@ const Database = ({ tableData, setTableData, setAngle, setNewDistance }) => {
                     {tableData ? (
                         tableData.map((measurement) => {
                             return (
-                                <tr key={measurement.id} className="border border-black">
-                                    <td className="border border-black">{measurement.id}</td>
-                                    <td className="border border-black">
-                                        {measurement.sampling_rate}
-                                    </td>
-                                    <td className="border border-black">{measurement.user}</td>
-                                    <td>
+                                <tr key={measurement.id}>
+                                    <td className="table-custom">{measurement.id}</td>
+                                    <td className="table-custom">{measurement.sampling_rate}</td>
+                                    <td className="table-custom">{measurement.user}</td>
+                                    <td className="table-custom">
                                         <button
                                             onClick={() => {
                                                 runAnimation(measurement.id);
