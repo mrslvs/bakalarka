@@ -94,7 +94,7 @@ function App() {
                         />
                     </div>
 
-                    <div className=" col-start-3 bg-yellow-400 p-2">
+                    <div className="bg-yellow-400 p-2">
                         <Chart chartData={chartData} setChartData={setChartData} />
                         <Animation angle={angleAnimation} />
                     </div>

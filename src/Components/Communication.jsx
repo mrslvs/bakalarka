@@ -115,7 +115,7 @@ const Communication = ({ setAngle, setNewDistance }) => {
     // });
 
     return (
-        <div className="bg-fuchsia-500 p-2">
+        <div className="flex bg-fuchsia-500 p-2">
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
@@ -123,7 +123,7 @@ const Communication = ({ setAngle, setNewDistance }) => {
                 }}
             >
                 <button type="submit" className="button">
-                    Start Communication
+                    Start gamepad
                 </button>
             </form>
             <form
@@ -133,7 +133,7 @@ const Communication = ({ setAngle, setNewDistance }) => {
                 }}
             >
                 <button type="submit" className="button">
-                    Start Communication analog
+                    Start analog
                 </button>
             </form>
         </div>
