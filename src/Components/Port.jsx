@@ -2,10 +2,6 @@ import React from 'react';
 const { ipcRenderer } = require('electron');
 
 const Port = ({ availablePorts, setAvailablePorts, setSelectedPort }) => {
-    const getPorts = () => {
-        ipcRenderer.send('portRequest', 'client portRequest');
-    };
-
     ipcRenderer.on('portResponse', (event, data) => {
         // console.log(data);
         setAvailablePorts(data);
@@ -17,10 +13,10 @@ const Port = ({ availablePorts, setAvailablePorts, setSelectedPort }) => {
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
-                    getPorts();
+                    ipcRenderer.send('portRequest', 'client portRequest');
                 }}
             >
-                <button>Update ports</button>
+                <button>Refresh ports</button>
             </form>
 
             {/* SET PORT */}

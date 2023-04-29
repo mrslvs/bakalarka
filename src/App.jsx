@@ -18,7 +18,7 @@ const { ipcRenderer } = require('electron');
 // ✔️ delete PortForm.jsx ?
 // ✔️ make ports work (selecting port)
 // ✔️ table showing database measurements
-// 
+//
 // min-max for arduino
 // changing animation only if in gamepad or arduino-joystick mode
 //      modes:
@@ -39,7 +39,7 @@ function App() {
 
     useEffect(() => {
         // run once on-load
-        // getPorts();
+        ipcRenderer.send('portRequest', 'client portRequest');
     }, []);
 
     // PORTS
