@@ -6,8 +6,16 @@ const Database = ({ tableData, setTableData, setAngle, setNewDistance }) => {
         ipcRenderer.send('requestDatabaseData', null);
     };
 
+    const checkConnection = () => {
+        ipcRenderer.send('checkDatabaseConnection', null);
+    };
+
     ipcRenderer.on('databaseData', (evt, message) => {
         setTableData(message);
+    });
+
+    ipcRenderer.on('isConnected', (evt, message) => {
+        message ? console.log('connected') : console.log('not connected');
     });
 
     const runAnimation = (key) => {
@@ -32,6 +40,7 @@ const Database = ({ tableData, setTableData, setAngle, setNewDistance }) => {
         <div>
             <p>database table goes here</p>
             <button onClick={requestDatabaseData}>get data</button>
+            <button onClick={checkConnection}>check connection</button>
             <table>
                 <thead>
                     <tr>

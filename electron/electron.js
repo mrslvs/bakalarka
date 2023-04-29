@@ -153,6 +153,11 @@ ipcMain.on('requestDatabaseData', async (event, data) => {
     }
 });
 
+ipcMain.on('checkDatabaseConnection', async (event, data) => {
+    const isConnected = await connect(process.env.DB_CONNECTION_URL);
+    event.reply('isConnected', isConnected);
+});
+
 parser.on('data', (data) => {
     console.log(data);
 
