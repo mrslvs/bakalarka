@@ -19,11 +19,7 @@ const Port = ({ availablePorts, setAvailablePorts, setSelectedPort }) => {
                     getPorts();
                 }}
             >
-                <button
-                    type="submit"
-                    // button styles inspiration: https://flowbite.com/docs/components/buttons/
-                    className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-                >
+                <button type="submit" className="button">
                     Refresh ports
                 </button>
             </form>
