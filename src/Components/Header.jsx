@@ -10,7 +10,7 @@ const Header = () => {
             <img src={logo} alt="Logo" className="w-20 self-center" />
 
             {/* HEADER */}
-            <h1 className="text-blue-600 self-center ">Arduino controll software</h1>
+            <h1 className="text-blue-600 self-center font-bruno">Arduino controll software</h1>
         </div>
     );
 };
