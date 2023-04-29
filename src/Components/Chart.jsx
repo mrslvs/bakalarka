@@ -64,8 +64,8 @@ const Chart = ({ chartData, setChartData }) => {
     };
 
     return (
-        <div className="bg-green-400 max-w-lg">
-            <Line options={options} data={data} />;
+        <div className="bg-green-400">
+            <Line options={options} data={data} />
         </div>
     );
 };

@@ -38,20 +38,19 @@ const Database = ({ tableData, setTableData, setAngle, setNewDistance }) => {
 
     return (
         <div>
-            <p>database table goes here</p>
             <button onClick={requestDatabaseData} className="button">
                 get data
             </button>
             <button onClick={checkConnection} className="button">
                 check connection
             </button>
-            <table>
+            <table className="border border-black">
                 <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Sampling Rate</th>
-                        <th>User</th>
-                        <th>Actions</th>
+                    <tr className="border border-black">
+                        <th className="border border-black">ID</th>
+                        <th className="border border-black">Sampling Rate</th>
+                        <th className="border border-black">User</th>
+                        <th className="border border-black">Actions</th>
                     </tr>
                 </thead>
 
@@ -59,10 +58,12 @@ const Database = ({ tableData, setTableData, setAngle, setNewDistance }) => {
                     {tableData ? (
                         tableData.map((measurement) => {
                             return (
-                                <tr key={measurement.id}>
-                                    <td>{measurement.id}</td>
-                                    <td>{measurement.sampling_rate}</td>
-                                    <td>{measurement.user}</td>
+                                <tr key={measurement.id} className="border border-black">
+                                    <td className="border border-black">{measurement.id}</td>
+                                    <td className="border border-black">
+                                        {measurement.sampling_rate}
+                                    </td>
+                                    <td className="border border-black">{measurement.user}</td>
                                     <td>
                                         <button
                                             onClick={() => {

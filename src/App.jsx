@@ -80,25 +80,30 @@ function App() {
         <div className="App bg-slate-300">
             <Header></Header>
 
-            <Port
-                availablePorts={availablePorts}
-                setAvailablePorts={setAvailablePorts}
-                setSelectedPort={setSelectedPort}
-            />
+            <div className="p-2 bg-red-400 ">
+                <Port
+                    availablePorts={availablePorts}
+                    setAvailablePorts={setAvailablePorts}
+                    setSelectedPort={setSelectedPort}
+                />
+                <Communication setAngle={setAngleAnimation} setNewDistance={setNewDistance} />
+            </div>
 
-            <Communication setAngle={setAngleAnimation} setNewDistance={setNewDistance} />
+            <div className="flex bg-yellow-400 p-2">
+                <Animation angle={angleAnimation} />
+                <Chart chartData={chartData} setChartData={setChartData} />
+            </div>
 
-            <Animation angle={angleAnimation} />
-            <Chart chartData={chartData} setChartData={setChartData} />
+            {/* <button onClick={showme}>click me</button> */}
 
-            <button onClick={showme}>click me</button>
-
-            <Database
-                tableData={tableData}
-                setTableData={setTableData}
-                setAngle={setAngleAnimation}
-                setNewDistance={setNewDistance}
-            />
+            <div className="bg-pink-200 p-2">
+                <Database
+                    tableData={tableData}
+                    setTableData={setTableData}
+                    setAngle={setAngleAnimation}
+                    setNewDistance={setNewDistance}
+                />
+            </div>
         </div>
     );
 }
