@@ -44,7 +44,7 @@ const Database = ({ tableData, setTableData, setAngle, setNewDistance }) => {
             <button onClick={checkConnection} className="button">
                 check connection
             </button>
-            <table className="table-custom">
+            <table className="table-custom text-xs">
                 <thead>
                     <tr>
                         <th className="table-custom">ID</th>

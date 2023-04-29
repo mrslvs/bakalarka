@@ -77,32 +77,39 @@ function App() {
     };
 
     return (
-        <div className="App bg-slate-300">
+        <div className="bg-slate-300">
             <Header></Header>
 
-            <div className="p-2 bg-red-400 ">
-                <Port
-                    availablePorts={availablePorts}
-                    setAvailablePorts={setAvailablePorts}
-                    setSelectedPort={setSelectedPort}
-                />
-                <Communication setAngle={setAngleAnimation} setNewDistance={setNewDistance} />
-            </div>
+            <div className="grid grid-cols-4 bg-black">
+                <div className="col-start-1 col-end-4">
+                    <div className="flex p-2 bg-red-400 ">
+                        <Port
+                            availablePorts={availablePorts}
+                            setAvailablePorts={setAvailablePorts}
+                            setSelectedPort={setSelectedPort}
+                        />
+                        <Communication
+                            setAngle={setAngleAnimation}
+                            setNewDistance={setNewDistance}
+                        />
+                    </div>
 
-            <div className="flex bg-yellow-400 p-2">
-                <Animation angle={angleAnimation} />
-                <Chart chartData={chartData} setChartData={setChartData} />
-            </div>
+                    <div className=" col-start-4 bg-yellow-400 p-2">
+                        <Chart chartData={chartData} setChartData={setChartData} />
+                        <Animation angle={angleAnimation} />
+                    </div>
+                </div>
 
-            {/* <button onClick={showme}>click me</button> */}
+                {/* <button onClick={showme}>click me</button> */}
 
-            <div className="bg-pink-200 p-2">
-                <Database
-                    tableData={tableData}
-                    setTableData={setTableData}
-                    setAngle={setAngleAnimation}
-                    setNewDistance={setNewDistance}
-                />
+                <div className="bg-pink-200 p-2">
+                    <Database
+                        tableData={tableData}
+                        setTableData={setTableData}
+                        setAngle={setAngleAnimation}
+                        setNewDistance={setNewDistance}
+                    />
+                </div>
             </div>
         </div>
     );
