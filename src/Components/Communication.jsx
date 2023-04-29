@@ -122,7 +122,12 @@ const Communication = ({ setAngle, setNewDistance }) => {
                     startCommunication();
                 }}
             >
-                <button type="submit">Start Communication</button>
+                <button
+                    type="submit"
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                >
+                    Start Communication
+                </button>
             </form>
             <form
                 onSubmit={(e) => {
@@ -130,7 +135,12 @@ const Communication = ({ setAngle, setNewDistance }) => {
                     startCommunicationAnalog();
                 }}
             >
-                <button type="submit">Start Communication analog</button>
+                <button
+                    type="submit"
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                >
+                    Start Communication analog
+                </button>
             </form>
         </div>
     );
