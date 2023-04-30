@@ -1,5 +1,6 @@
 import React from 'react';
 const { ipcRenderer } = require('electron');
+import { MdReplay } from 'react-icons/md';
 
 const Database = ({ tableData, setTableData, setAngle, setNewDistance }) => {
     const requestDatabaseData = () => {
@@ -44,13 +45,13 @@ const Database = ({ tableData, setTableData, setAngle, setNewDistance }) => {
             <button onClick={checkConnection} className="button">
                 check connection
             </button>
-            <table className="table-custom text-xs">
+            <table className="table-custom table-custom-text ">
                 <thead>
                     <tr>
                         <th className="table-custom table-fixed w-44">ID</th>
                         <th className="table-custom table-fixed w-24">Sampling Rate</th>
                         <th className="table-custom table-fixed w-28">User</th>
-                        <th className="table-custom">Actions</th>
+                        <th className="table-custom">Replay</th>
                     </tr>
                 </thead>
 
@@ -59,16 +60,18 @@ const Database = ({ tableData, setTableData, setAngle, setNewDistance }) => {
                         tableData.map((measurement) => {
                             return (
                                 <tr key={measurement.id}>
-                                    <td className="table-custom">{measurement.id}</td>
-                                    <td className="table-custom">{measurement.sampling_rate}</td>
-                                    <td className="table-custom">{measurement.user}</td>
-                                    <td className="table-custom">
+                                    <td className="table-custom text-center">{measurement.id}</td>
+                                    <td className="table-custom text-end pr-2">
+                                        {measurement.sampling_rate}
+                                    </td>
+                                    <td className="table-custom text-center">{measurement.user}</td>
+                                    <td className="table-custom text-center">
                                         <button
                                             onClick={() => {
                                                 runAnimation(measurement.id);
                                             }}
                                         >
-                                            test me
+                                            <MdReplay className="w-6 h-6 text-blue-900 hover:text-red-900" />
                                         </button>
                                     </td>
                                 </tr>

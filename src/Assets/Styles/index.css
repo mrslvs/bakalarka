@@ -12,4 +12,7 @@
     .table-custom {
         @apply border border-black;
     }
+    .table-custom-text {
+        font-size: 10px;
+    }
 }
