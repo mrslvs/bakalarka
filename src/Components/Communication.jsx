@@ -1,5 +1,8 @@
 import React from 'react';
 const { ipcRenderer } = require('electron');
+import { BsJoystick } from 'react-icons/bs';
+import { GrGamepad } from 'react-icons/gr';
+import { FaGamepad } from 'react-icons/fa';
 
 const Communication = ({ setAngle, setNewDistance }) => {
     let distancesReceived = [];
@@ -123,8 +126,9 @@ const Communication = ({ setAngle, setNewDistance }) => {
                 }}
                 className="flex items-center border border-black"
             >
-                <button type="submit" className="button">
-                    Start gamepad
+                <button type="submit" className="button inline-flex items-center justify-center">
+                    <span className="pr-1">Start gamepad</span>
+                    <FaGamepad className="w-6 h-6" />
                 </button>
             </form>
             <form
@@ -134,8 +138,9 @@ const Communication = ({ setAngle, setNewDistance }) => {
                 }}
                 className="flex items-center border border-black"
             >
-                <button type="submit" className="button">
-                    Start analog
+                <button type="submit" className="button inline-flex items-center justify-center">
+                    <span className="pr-1">Start analog</span>
+                    <BsJoystick className="w-5 h-5" />
                 </button>
             </form>
         </div>

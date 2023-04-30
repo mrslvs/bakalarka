@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from '../Assets/Images/fei_logo_transparent.png';
+import { BsFillInfoCircleFill } from 'react-icons/bs';
 
 const Header = () => {
     return (
@@ -18,7 +19,8 @@ const Header = () => {
                 </h1>
             </div>
             <div className="flex justify-end w-1/3">
-                <p className="text-blue-600 self-center bg-blue-400">information</p>
+                {/* <p className="text-blue-600 self-center bg-blue-400">information</p> */}
+                <BsFillInfoCircleFill className="w-8 h-8 text-blue-600" />
             </div>
         </div>
     );
