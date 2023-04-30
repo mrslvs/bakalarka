@@ -13,11 +13,12 @@ import { Line } from 'react-chartjs-2';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-const Chart = ({ chartData, setChartData }) => {
+const Chart = ({ chartData }) => {
     const options = {
         responsive: true,
         plugins: {
             legend: {
+                display: false,
                 position: 'top',
             },
             title: {
@@ -37,7 +38,7 @@ const Chart = ({ chartData, setChartData }) => {
             x: {
                 title: {
                     display: true,
-                    text: 'miliseconds',
+                    text: 'Miliseconds',
                 },
             },
         },
