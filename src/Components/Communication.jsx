@@ -115,12 +115,13 @@ const Communication = ({ setAngle, setNewDistance }) => {
     // });
 
     return (
-        <div className="flex w-1/2 justify-center bg-fuchsia-500 p-2">
+        <div className="inline-flex w-1/2 justify-center bg-fuchsia-500">
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
                     startCommunication();
                 }}
+                className="flex items-center border border-black"
             >
                 <button type="submit" className="button">
                     Start gamepad
@@ -131,6 +132,7 @@ const Communication = ({ setAngle, setNewDistance }) => {
                     e.preventDefault();
                     startCommunicationAnalog();
                 }}
+                className="flex items-center border border-black"
             >
                 <button type="submit" className="button">
                     Start analog
