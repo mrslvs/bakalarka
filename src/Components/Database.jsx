@@ -47,9 +47,9 @@ const Database = ({ tableData, setTableData, setAngle, setNewDistance }) => {
             <table className="table-custom text-xs">
                 <thead>
                     <tr>
-                        <th className="table-custom">ID</th>
-                        <th className="table-custom">Sampling Rate</th>
-                        <th className="table-custom">User</th>
+                        <th className="table-custom table-fixed w-44">ID</th>
+                        <th className="table-custom table-fixed w-24">Sampling Rate</th>
+                        <th className="table-custom table-fixed w-28">User</th>
                         <th className="table-custom">Actions</th>
                     </tr>
                 </thead>
