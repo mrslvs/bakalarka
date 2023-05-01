@@ -19,6 +19,7 @@ const { ipcRenderer } = require('electron');
 // ✔️ make ports work (selecting port)
 // ✔️ table showing database measurements
 //
+// set port to default value missing key
 // gamepads as global var
 // cannot start without port selected
 // repeat mesurement button
@@ -60,9 +61,10 @@ function App() {
     }, [availablePorts]);
 
     useEffect(() => {
-        // console.log('usefect selected port');
-        // console.log(selectedPort);
-        if (selectedPort) ipcRenderer.send('portSelected', selectedPort);
+        // bceause default option ist the only "path" that contains strings
+        console.log(selectedPort);
+        if (selectedPort && !selectedPort.includes(' '))
+            ipcRenderer.send('portSelected', selectedPort);
     }, [selectedPort]);
 
     // ANIMATION
@@ -111,12 +113,14 @@ function App() {
                             availablePorts={availablePorts}
                             setAvailablePorts={setAvailablePorts}
                             setSelectedPort={setSelectedPort}
+                            isMeasuring={isMeasuring}
                         />
                         <Communication
                             setAngle={setAngleAnimation}
                             setNewDistance={setNewDistance}
                             databaseStatus={databaseStatus}
                             saveToDatabase={saveToDatabase}
+                            setIsMeasuring={setIsMeasuring}
                         />
                     </div>
 

@@ -4,7 +4,13 @@ import { BsJoystick } from 'react-icons/bs';
 import { GrGamepad } from 'react-icons/gr';
 import { FaGamepad } from 'react-icons/fa';
 
-const Communication = ({ setAngle, setNewDistance, databaseStatus, saveToDatabase }) => {
+const Communication = ({
+    setAngle,
+    setNewDistance,
+    databaseStatus,
+    saveToDatabase,
+    setIsMeasuring,
+}) => {
     let distancesReceived = [];
     let armAnglesReceived = [];
     let joystickPosition;
@@ -17,6 +23,7 @@ const Communication = ({ setAngle, setNewDistance, databaseStatus, saveToDatabas
     }, 16);
 
     const startCommunication = () => {
+        setIsMeasuring(true);
         // if (gamepad == null) {
         // console.log('gamepad is null');
         // } else {
@@ -55,6 +62,7 @@ const Communication = ({ setAngle, setNewDistance, databaseStatus, saveToDatabas
 
             distancesReceived = [];
             armAnglesReceived = [];
+            setIsMeasuring(false);
         }
 
         setAngle(armAngle);
@@ -62,6 +70,7 @@ const Communication = ({ setAngle, setNewDistance, databaseStatus, saveToDatabas
     });
 
     const startCommunicationAnalog = () => {
+        setIsMeasuring(true);
         // if (gamepad == null) {
         // console.log('gamepad is null');
         // } else {
