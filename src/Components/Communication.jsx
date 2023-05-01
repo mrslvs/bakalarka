@@ -42,6 +42,7 @@ const Communication = ({ setAngle, setNewDistance, databaseStatus, saveToDatabas
         distancesReceived.push(distance);
         armAnglesReceived.push(armAngle);
 
+        console.log(distance.length + '/' + process.env.ITERATIONS);
         if (distancesReceived.length == process.env.ITERATIONS) {
             console.log('cycle end - lets save into DB');
 
@@ -50,8 +51,13 @@ const Communication = ({ setAngle, setNewDistance, databaseStatus, saveToDatabas
                 angle: armAnglesReceived,
             };
 
-            if (databaseStatus && saveToDatabase)
+            // if (databaseStatus && saveToDatabase)
+            //     ipcRenderer.send('saveToDatabase', sendDataAsObject);
+            console.log('lets save to db1');
+            if (saveToDatabase) {
+                console.log('lets save to db2');
                 ipcRenderer.send('saveToDatabase', sendDataAsObject);
+            }
         }
 
         setAngle(armAngle);

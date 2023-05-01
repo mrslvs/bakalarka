@@ -167,7 +167,7 @@ parser.on('data', (data) => {
 // ipcMain.on('saveToDatabase', async (event, data) => {
 //     try {
 //         // parseInt() because IPC return integer as '140\r'
-//         // console.log('this is angle:');
+//         console.log('starting saveToDatabase');
 
 //         const measurementToSave = new Measurement({
 //             sampling_rate: process.env.SAMPLING_RATE,
@@ -176,7 +176,6 @@ parser.on('data', (data) => {
 //             distance: data.distance.map((distance) => parseInt(distance)),
 //         });
 
-//         // let angles = data.angle.map((angle) => parseInt(angle));
 //         console.log(measurementToSave);
 
 //         try {
@@ -184,11 +183,11 @@ parser.on('data', (data) => {
 //             console.log('saved');
 //         } catch (error) {
 //             console.log("couldn't save the test data, error:");
-//             // console.log(error);
-//             event.reply('isConnected', false);
+//             console.log(tmp);
 //         }
 //     } catch (err) {
-// console.log('error while saving data');
+//         console.log('error while saving data');
+//         // console.log(error);
 //     }
 // });
 
@@ -210,8 +209,7 @@ ipcMain.on('saveToDatabase', async (event, data) => {
     } catch (error) {
         console.log("couldn't save the test data, error:");
         // console.log(error);
-        event.reply('isConnected', false);
-        return;
+        mainWindow.webContents.send('isConnected', false);
     }
 });
 
