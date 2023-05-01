@@ -12,6 +12,8 @@ const Database = ({
     setNewDistance,
     databaseStatus,
     setDatabaseStatus,
+    saveToDatabase,
+    setSaveToDatabase,
 }) => {
     const requestDatabaseData = () => {
         ipcRenderer.send('requestDatabaseData', null);
@@ -50,8 +52,20 @@ const Database = ({
         });
     };
 
+    const hanldeCheckbox = () => {
+        // without this separate function, checked state cycles uncontrollably: https://www.robinwieruch.de/react-checkbox/
+        setSaveToDatabase(!saveToDatabase);
+    };
+
     return (
         <div>
+            <input
+                type="checkbox"
+                checked={saveToDatabase}
+                onChange={hanldeCheckbox}
+                disabled={databaseStatus != 0}
+            />
+            <span>Save measurement</span>
             <button
                 onClick={requestDatabaseData}
                 disabled={databaseStatus == 0}

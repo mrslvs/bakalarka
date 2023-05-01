@@ -43,7 +43,7 @@ function App() {
     // 0 - ok
     // 1 - checking
     // 2 - not connected
-    const [saveToDatabase, setSaveToDatabase] = useState(true);
+    const [saveToDatabase, setSaveToDatabase] = useState(false);
 
     useEffect(() => {
         // run once on-load
@@ -76,7 +76,10 @@ function App() {
         setNewDistance(-1);
     }, [newDistance]);
 
-    useEffect(() => {}, [databaseStatus]);
+    useEffect(() => {
+        // icons changing
+    }, [databaseStatus]);
+    // useEffect(() => {}, [databaseStatus]);
 
     const showme = () => {
         // console.log(availablePorts);
@@ -124,6 +127,8 @@ function App() {
                         setNewDistance={setNewDistance}
                         databaseStatus={databaseStatus}
                         setDatabaseStatus={setDatabaseStatus}
+                        saveToDatabase={saveToDatabase}
+                        setSaveToDatabase={setSaveToDatabase}
                     />
                 </div>
             </div>
