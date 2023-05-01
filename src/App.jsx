@@ -20,6 +20,7 @@ const { ipcRenderer } = require('electron');
 // ✔️ table showing database measurements
 //
 // set port to default value missing key
+// fix communication when samsung is selected
 // gamepads as global var
 // cannot start without port selected
 // repeat mesurement button
@@ -61,12 +62,9 @@ function App() {
     }, [availablePorts]);
 
     useEffect(() => {
-        // bceause default option ist the only "path" that contains strings
+        // because default option ist the only "path" that contains strings
         // if (selectedPort && !selectedPort.includes(' '))
-        if (selectedPort) {
-            console.log('odosielam:' + selectedPort);
-            ipcRenderer.send('portSelected', selectedPort);
-        }
+        if (selectedPort) ipcRenderer.send('portSelected', selectedPort);
     }, [selectedPort]);
 
     // ANIMATION

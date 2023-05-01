@@ -41,7 +41,7 @@ const Port = ({ availablePorts, setAvailablePorts, setSelectedPort, isMeasuring 
                     id="ports"
                     disabled={isMeasuring}
                     onChange={(e) => {
-                        // console.log(e.target.value);
+                        // first option "Select Arduino port" is the only path that includes ' '
                         e.target.value.includes(' ')
                             ? setSelectedPort('')
                             : setSelectedPort(e.target.value);
