@@ -29,7 +29,7 @@ const Port = ({ availablePorts, setAvailablePorts, setSelectedPort }) => {
                     // className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br font-medium rounded-lg text-sm px-5 py-2.5 text-center h-10"
                     className="button inline-flex items-center justify-center"
                 >
-                    <span>Refresh ports</span>
+                    <span className="pr-1">Refresh ports</span>
                     <FiRefreshCw className="w-4 h-4" />
                 </button>
             </form>

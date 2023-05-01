@@ -1,7 +1,8 @@
 import React from 'react';
 const { ipcRenderer } = require('electron');
-import { MdReplay } from 'react-icons/md';
+import { AiFillPlaySquare } from 'react-icons/ai';
 import { SiMongodb } from 'react-icons/si';
+import { FaCloudDownloadAlt } from 'react-icons/fa';
 
 const Database = ({ tableData, setTableData, setAngle, setNewDistance }) => {
     const requestDatabaseData = () => {
@@ -44,7 +45,8 @@ const Database = ({ tableData, setTableData, setAngle, setNewDistance }) => {
                 onClick={requestDatabaseData}
                 className="button inline-flex items-center justify-center"
             >
-                <span>get data</span>
+                <span className="pr-1">get data</span>
+                <FaCloudDownloadAlt className="w-5 h-5" />
             </button>
             <button
                 onClick={checkConnection}
@@ -79,7 +81,7 @@ const Database = ({ tableData, setTableData, setAngle, setNewDistance }) => {
                                                 runAnimation(measurement.id);
                                             }}
                                         >
-                                            <MdReplay className="w-6 h-6 text-blue-900 hover:text-red-900" />
+                                            <AiFillPlaySquare className="w-6 h-6 text-blue-900 hover:text-red-900" />
                                         </button>
                                     </td>
                                 </tr>
