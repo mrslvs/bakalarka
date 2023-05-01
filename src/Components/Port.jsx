@@ -1,5 +1,6 @@
 import React from 'react';
 const { ipcRenderer } = require('electron');
+import { FiRefreshCw } from 'react-icons/fi';
 
 const Port = ({ availablePorts, setAvailablePorts, setSelectedPort }) => {
     const getPorts = () => {
@@ -25,9 +26,11 @@ const Port = ({ availablePorts, setAvailablePorts, setSelectedPort }) => {
                 <button
                     type="submit"
                     // className="button"
-                    className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br font-medium rounded-lg text-sm px-5 py-2.5 text-center h-10"
+                    // className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br font-medium rounded-lg text-sm px-5 py-2.5 text-center h-10"
+                    className="button inline-flex items-center justify-center"
                 >
-                    Refresh ports
+                    <span>Refresh ports</span>
+                    <FiRefreshCw className="w-4 h-4" />
                 </button>
             </form>
 

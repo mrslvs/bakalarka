@@ -1,6 +1,7 @@
 import React from 'react';
 const { ipcRenderer } = require('electron');
 import { MdReplay } from 'react-icons/md';
+import { SiMongodb } from 'react-icons/si';
 
 const Database = ({ tableData, setTableData, setAngle, setNewDistance }) => {
     const requestDatabaseData = () => {
@@ -39,11 +40,18 @@ const Database = ({ tableData, setTableData, setAngle, setNewDistance }) => {
 
     return (
         <div>
-            <button onClick={requestDatabaseData} className="button">
-                get data
+            <button
+                onClick={requestDatabaseData}
+                className="button inline-flex items-center justify-center"
+            >
+                <span>get data</span>
             </button>
-            <button onClick={checkConnection} className="button">
-                check connection
+            <button
+                onClick={checkConnection}
+                className="button inline-flex items-center justify-center"
+            >
+                <span>check connection</span>
+                <SiMongodb className="w-4 h-4" />
             </button>
             <table className="table-custom table-custom-text ">
                 <thead>
