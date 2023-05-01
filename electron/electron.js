@@ -164,30 +164,54 @@ parser.on('data', (data) => {
     mainWindow.webContents.send('receivedData', data);
 });
 
+// ipcMain.on('saveToDatabase', async (event, data) => {
+//     try {
+//         // parseInt() because IPC return integer as '140\r'
+//         // console.log('this is angle:');
+
+//         const measurementToSave = new Measurement({
+//             sampling_rate: process.env.SAMPLING_RATE,
+//             user: 'test_user',
+//             angle: data.angle.map((angle) => parseInt(angle)),
+//             distance: data.distance.map((distance) => parseInt(distance)),
+//         });
+
+//         // let angles = data.angle.map((angle) => parseInt(angle));
+//         console.log(measurementToSave);
+
+//         try {
+//             await measurementToSave.save();
+//             console.log('saved');
+//         } catch (error) {
+//             console.log("couldn't save the test data, error:");
+//             // console.log(error);
+//             event.reply('isConnected', false);
+//         }
+//     } catch (err) {
+// console.log('error while saving data');
+//     }
+// });
+
 ipcMain.on('saveToDatabase', async (event, data) => {
+    // parseInt() because IPC return integer as '140\r'
+
+    const measurementToSave = new Measurement({
+        sampling_rate: process.env.SAMPLING_RATE,
+        user: 'test_user',
+        angle: data.angle.map((angle) => parseInt(angle)),
+        distance: data.distance.map((distance) => parseInt(distance)),
+    });
+
+    console.log(measurementToSave);
+
     try {
-        // parseInt() because IPC return integer as '140\r'
-        // console.log('this is angle:');
-
-        const measurementToSave = new Measurement({
-            sampling_rate: process.env.SAMPLING_RATE,
-            user: 'test_user',
-            angle: data.angle.map((angle) => parseInt(angle)),
-            distance: data.distance.map((distance) => parseInt(distance)),
-        });
-
-        // let angles = data.angle.map((angle) => parseInt(angle));
-        console.log(measurementToSave);
-
-        try {
-            await measurementToSave.save();
-            console.log('saved');
-        } catch (error) {
-            console.log("couldn't save the test data, error:");
-            console.log(error);
-        }
-    } catch (err) {
-        console.log('error while saving data');
+        await measurementToSave.save();
+        console.log('saved');
+    } catch (error) {
+        console.log("couldn't save the test data, error:");
+        // console.log(error);
+        event.reply('isConnected', false);
+        return;
     }
 });
 

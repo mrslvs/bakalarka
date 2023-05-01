@@ -4,7 +4,7 @@ import { BsJoystick } from 'react-icons/bs';
 import { GrGamepad } from 'react-icons/gr';
 import { FaGamepad } from 'react-icons/fa';
 
-const Communication = ({ setAngle, setNewDistance }) => {
+const Communication = ({ setAngle, setNewDistance, databaseStatus, saveToDatabase }) => {
     let distancesReceived = [];
     let armAnglesReceived = [];
     let joystickPosition;
@@ -50,7 +50,8 @@ const Communication = ({ setAngle, setNewDistance }) => {
                 angle: armAnglesReceived,
             };
 
-            ipcRenderer.send('saveToDatabase', sendDataAsObject);
+            if (databaseStatus && saveToDatabase)
+                ipcRenderer.send('saveToDatabase', sendDataAsObject);
         }
 
         setAngle(armAngle);

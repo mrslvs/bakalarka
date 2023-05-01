@@ -19,6 +19,7 @@ const { ipcRenderer } = require('electron');
 // ✔️ make ports work (selecting port)
 // ✔️ table showing database measurements
 //
+// gamepads as global var
 // min-max for arduino
 // changing animation only if in gamepad or arduino-joystick mode
 //      modes:
@@ -42,7 +43,7 @@ function App() {
     // 0 - ok
     // 1 - checking
     // 2 - not connected
-    const [saveToDatabase, setSaveToDatabase] = useState(false);
+    const [saveToDatabase, setSaveToDatabase] = useState(true);
 
     useEffect(() => {
         // run once on-load
@@ -84,6 +85,8 @@ function App() {
         // let x = null;
         // let z = x || 0.11;
         // console.log(z);
+        // const gamepads = navigator.getGamepads();
+        // gamepads[1] ? console.log('ok') : console.log('null');
     };
 
     return (
@@ -101,6 +104,8 @@ function App() {
                         <Communication
                             setAngle={setAngleAnimation}
                             setNewDistance={setNewDistance}
+                            databaseStatus={databaseStatus}
+                            saveToDatabase={saveToDatabase}
                         />
                     </div>
 
@@ -110,9 +115,8 @@ function App() {
                     </div>
                 </div>
 
-                {/* <button onClick={showme}>click me</button> */}
-
                 <div className="bg-pink-200 p-2">
+                    {/* <button onClick={showme}>click me</button> */}
                     <Database
                         tableData={tableData}
                         setTableData={setTableData}

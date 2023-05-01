@@ -27,7 +27,7 @@ const Database = ({
     });
 
     ipcRenderer.on('isConnected', (evt, message) => {
-        // message ? console.log('connected') : console.log('not connected');
+        message ? console.log('connected') : console.log('not connected triggered in electorn.js');
         let status = message ? 0 : 2;
         setDatabaseStatus(status);
     });
