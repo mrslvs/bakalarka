@@ -62,9 +62,11 @@ function App() {
 
     useEffect(() => {
         // bceause default option ist the only "path" that contains strings
-        console.log(selectedPort);
-        if (selectedPort && !selectedPort.includes(' '))
+        // if (selectedPort && !selectedPort.includes(' '))
+        if (selectedPort) {
+            console.log('odosielam:' + selectedPort);
             ipcRenderer.send('portSelected', selectedPort);
+        }
     }, [selectedPort]);
 
     // ANIMATION

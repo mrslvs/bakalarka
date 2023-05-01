@@ -1,6 +1,6 @@
 const { SerialPort, ReadlineParser } = require('serialport');
 
-const parser = new ReadlineParser();
+// let parser = new ReadlineParser();
 
 const createPort = (path) => {
     return new SerialPort({
@@ -17,4 +17,9 @@ const getAvailablePorts = async () => {
     return ports;
 };
 
-module.exports = { getAvailablePorts, parser, createPort };
+module.exports = {
+    getAvailablePorts,
+    //  parser,
+    createPort,
+    ReadlineParser,
+};

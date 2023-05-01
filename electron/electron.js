@@ -6,8 +6,9 @@ const {
     getAvailablePorts,
     // startCom,
     // startComAnalog,
-    parser,
+    // parser,
     createPort,
+    ReadlineParser,
 } = require('../src/API/serial');
 const { connect } = require('../src/API/mongo');
 const { Measurement } = require('../src/Models/Measurement');
@@ -81,8 +82,10 @@ app.on('activate', () => {
 // })();
 
 let port = null;
+let parser = new ReadlineParser();
 
 const startCom = async (event, data) => {
+    console.log('starting gamepad comm');
     let tmp = 'startpassLX' + data + '\n';
     port.write(tmp);
 };
@@ -100,9 +103,45 @@ ipcMain.on('portRequest', async (event, data) => {
 
 ipcMain.on('portSelected', async (event, data) => {
     console.log('port has been selected:' + data);
-    port = createPort(data);
+    if (port) {
+        port.unpipe(parser);
+        // parser.pause();
+        // parser.destroy;
+        port.close();
+
+        // let tmpPort = createPort(data);
+        // port = tmpPort;
+
+        port = createPort(data);
+
+        // parser = new ReadlineParser();
+        // port.pipe(parser);
+        // console.log(port._readableState);
+    } else {
+        port = createPort(data);
+        // port.pipe(parser);
+    }
+    // parser = new ReadlineParser();
     port.pipe(parser);
 });
+
+// ipcMain.on('portSelected', async (event, data) => {
+//     console.log('port has been selected:' + data);
+//     if (port) {
+//         // console.log(port.path);
+//         // port.path = data;
+//         let tmpPort = createPort(data);
+//         port = tmpPort;
+//         // parser = new ReadlineParser();
+//         // port.pipe(parser);
+//         // console.log(port._readableState);
+//     } else {
+//         port = createPort(data);
+//         // port.pipe(parser);
+//     }
+//     parser = new ReadlineParser();
+//     port.pipe(parser);
+// });
 
 ipcMain.on('startComRequest', async (event, data) => {
     try {
