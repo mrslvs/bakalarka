@@ -9,8 +9,8 @@ const Database = ({
     setTableData,
     setAngle,
     setNewDistance,
-    databaseFlag,
-    setDatabaseFlag,
+    isDatabase,
+    setIsDatabase,
 }) => {
     const requestDatabaseData = () => {
         ipcRenderer.send('requestDatabaseData', null);
@@ -25,8 +25,8 @@ const Database = ({
     });
 
     ipcRenderer.on('isConnected', (evt, message) => {
-        message ? console.log('connected') : console.log('not connected');
-        setDatabaseFlag(message);
+        // message ? console.log('connected') : console.log('not connected');
+        setIsDatabase(message);
     });
 
     const runAnimation = (key) => {
@@ -51,12 +51,12 @@ const Database = ({
         <div>
             <button
                 onClick={requestDatabaseData}
+                disabled={!isDatabase}
                 className={
-                    databaseFlag
+                    isDatabase
                         ? 'button inline-flex items-center justify-center'
                         : 'button-disabled inline-flex items-center justify-center'
                 }
-                disabled={!databaseFlag}
             >
                 <span className="pr-1">get data</span>
                 <FaCloudDownloadAlt className="w-5 h-5" />

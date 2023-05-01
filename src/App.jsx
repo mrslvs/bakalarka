@@ -38,7 +38,7 @@ function App() {
     const [tableData, setTableData] = useState(null);
 
     // flags
-    const [databaseFlag, setDatabaseFlag] = useState(false);
+    const [isDatabase, setIsDatabase] = useState(false);
 
     useEffect(() => {
         // run once on-load
@@ -112,8 +112,8 @@ function App() {
                         setTableData={setTableData}
                         setAngle={setAngleAnimation}
                         setNewDistance={setNewDistance}
-                        databaseFlag={databaseFlag}
-                        setDatabaseFlag={setDatabaseFlag}
+                        isDatabase={isDatabase}
+                        setIsDatabase={setIsDatabase}
                     />
                 </div>
             </div>
