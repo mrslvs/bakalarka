@@ -38,7 +38,11 @@ function App() {
     const [tableData, setTableData] = useState(null);
 
     // flags
-    const [isDatabase, setIsDatabase] = useState(false);
+    const [databaseStatus, setDatabaseStatus] = useState(1);
+    // 0 - ok
+    // 1 - checking
+    // 2 - not connected
+    const [saveToDatabase, setSaveToDatabase] = useState(false);
 
     useEffect(() => {
         // run once on-load
@@ -70,6 +74,8 @@ function App() {
         }
         setNewDistance(-1);
     }, [newDistance]);
+
+    useEffect(() => {}, [databaseStatus]);
 
     const showme = () => {
         // console.log(availablePorts);
@@ -112,8 +118,8 @@ function App() {
                         setTableData={setTableData}
                         setAngle={setAngleAnimation}
                         setNewDistance={setNewDistance}
-                        isDatabase={isDatabase}
-                        setIsDatabase={setIsDatabase}
+                        databaseStatus={databaseStatus}
+                        setDatabaseStatus={setDatabaseStatus}
                     />
                 </div>
             </div>

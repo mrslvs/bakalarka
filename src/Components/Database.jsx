@@ -3,20 +3,22 @@ const { ipcRenderer } = require('electron');
 import { AiFillPlaySquare } from 'react-icons/ai';
 import { SiMongodb } from 'react-icons/si';
 import { FaCloudDownloadAlt } from 'react-icons/fa';
+import { FiRefreshCw } from 'react-icons/fi';
 
 const Database = ({
     tableData,
     setTableData,
     setAngle,
     setNewDistance,
-    isDatabase,
-    setIsDatabase,
+    databaseStatus,
+    setDatabaseStatus,
 }) => {
     const requestDatabaseData = () => {
         ipcRenderer.send('requestDatabaseData', null);
     };
 
     const checkConnection = () => {
+        setDatabaseStatus(1);
         ipcRenderer.send('checkDatabaseConnection', null);
     };
 
@@ -26,7 +28,8 @@ const Database = ({
 
     ipcRenderer.on('isConnected', (evt, message) => {
         // message ? console.log('connected') : console.log('not connected');
-        setIsDatabase(message);
+        let status = message ? 0 : 2;
+        setDatabaseStatus(status);
     });
 
     const runAnimation = (key) => {
@@ -51,9 +54,9 @@ const Database = ({
         <div>
             <button
                 onClick={requestDatabaseData}
-                disabled={!isDatabase}
+                disabled={databaseStatus == 0}
                 className={
-                    isDatabase
+                    databaseStatus == 0
                         ? 'button inline-flex items-center justify-center'
                         : 'button-disabled inline-flex items-center justify-center'
                 }
@@ -66,7 +69,12 @@ const Database = ({
                 className="button inline-flex items-center justify-center"
             >
                 <span>check connection</span>
-                <SiMongodb className="w-4 h-4" />
+                {databaseStatus == 1 ? (
+                    <FiRefreshCw className="w-4 h-4" />
+                ) : (
+                    <SiMongodb className="w-4 h-4" />
+                )}
+                {/* <SiMongodb className="w-4 h-4" /> */}
             </button>
             <table className="table-custom table-custom-text ">
                 <thead>
