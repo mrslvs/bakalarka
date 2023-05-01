@@ -12,26 +12,34 @@ import Database from './Components/Database';
 //      solution provided by Amthieu
 const { ipcRenderer } = require('electron');
 
-// TODO:
+// TODO - DONE:
 // ✔️ separate joystick
 // ✔️ rename delay => vzorkovacia frekvencia (samplingRate)
 // ✔️ delete PortForm.jsx ?
 // ✔️ make ports work (selecting port)
 // ✔️ table showing database measurements
-//
-// set port to default value missing key
-// fix communication when samsung is selected
-// gamepads as global var
-// cannot start without port selected
-// repeat mesurement button
-// min-max for arduino
-// changing animation only if in gamepad or arduino-joystick mode
+// ✔️ fix communication when samsung is selected
+// ✔️ set port to default value missing key
+// ✔️ cannot start without port selected
+// ✔️ changing animation only if in gamepad or arduino-joystick mode
 //      modes:
-//          1. controlling arm
-//              1a USB gamepad
-//              1b arduino joystick
-//          2. reproducing measurements from DB file
+//          ✔️ 1. controlling arm
+//              ✔️ 1a USB gamepad
+//              ✔️ 1b arduino joystick
+//          ✔️ 2. reproducing measurements from DB file
+// TODO:
+// COMM:
+//      repeat measurement button + disability of comm buttons after first measurement
+// DB:
+//      disablity of DB play button
+//      db status color
+//      animated refresh button while checking connection
+// MISC:
 // clean code
+// min-max for arduino
+// sensitivity for joysticks
+// gamepads as global var
+// state diagram using petri
 
 function App() {
     // PORTS
@@ -50,6 +58,7 @@ function App() {
     // 2 - not connected
     const [saveToDatabase, setSaveToDatabase] = useState(false);
     const [isMeasuring, setIsMeasuring] = useState(false);
+    const [readyToMeasure, setReadyToMeasure] = useState(true);
 
     useEffect(() => {
         // run once on-load
