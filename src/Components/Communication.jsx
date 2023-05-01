@@ -52,6 +52,9 @@ const Communication = ({ setAngle, setNewDistance, databaseStatus, saveToDatabas
 
             if (databaseStatus == 0 && saveToDatabase)
                 ipcRenderer.send('saveToDatabase', sendDataAsObject);
+
+            distancesReceived = [];
+            armAnglesReceived = [];
         }
 
         setAngle(armAngle);

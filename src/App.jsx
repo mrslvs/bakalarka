@@ -93,6 +93,11 @@ function App() {
         // console.log(z);
         // const gamepads = navigator.getGamepads();
         // gamepads[1] ? console.log('ok') : console.log('null');
+
+        setChartData([]);
+        setAngleAnimation(0);
+        setNewDistance(-1);
+        setTableData(null);
     };
 
     return (
