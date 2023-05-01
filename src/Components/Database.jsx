@@ -4,7 +4,14 @@ import { AiFillPlaySquare } from 'react-icons/ai';
 import { SiMongodb } from 'react-icons/si';
 import { FaCloudDownloadAlt } from 'react-icons/fa';
 
-const Database = ({ tableData, setTableData, setAngle, setNewDistance }) => {
+const Database = ({
+    tableData,
+    setTableData,
+    setAngle,
+    setNewDistance,
+    databaseFlag,
+    setDatabaseFlag,
+}) => {
     const requestDatabaseData = () => {
         ipcRenderer.send('requestDatabaseData', null);
     };
@@ -19,6 +26,7 @@ const Database = ({ tableData, setTableData, setAngle, setNewDistance }) => {
 
     ipcRenderer.on('isConnected', (evt, message) => {
         message ? console.log('connected') : console.log('not connected');
+        setDatabaseFlag(message);
     });
 
     const runAnimation = (key) => {
@@ -43,7 +51,12 @@ const Database = ({ tableData, setTableData, setAngle, setNewDistance }) => {
         <div>
             <button
                 onClick={requestDatabaseData}
-                className="button inline-flex items-center justify-center"
+                className={
+                    databaseFlag
+                        ? 'button inline-flex items-center justify-center'
+                        : 'button-disabled inline-flex items-center justify-center'
+                }
+                disabled={!databaseFlag}
             >
                 <span className="pr-1">get data</span>
                 <FaCloudDownloadAlt className="w-5 h-5" />

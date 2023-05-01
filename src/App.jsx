@@ -37,9 +37,13 @@ function App() {
     const [newDistance, setNewDistance] = useState('');
     const [tableData, setTableData] = useState(null);
 
+    // flags
+    const [databaseFlag, setDatabaseFlag] = useState(false);
+
     useEffect(() => {
         // run once on-load
         ipcRenderer.send('portRequest', 'client portRequest');
+        ipcRenderer.send('checkDatabaseConnection', null);
     }, []);
 
     // PORTS
@@ -108,6 +112,8 @@ function App() {
                         setTableData={setTableData}
                         setAngle={setAngleAnimation}
                         setNewDistance={setNewDistance}
+                        databaseFlag={databaseFlag}
+                        setDatabaseFlag={setDatabaseFlag}
                     />
                 </div>
             </div>
