@@ -20,6 +20,8 @@ const { ipcRenderer } = require('electron');
 // ✔️ table showing database measurements
 //
 // gamepads as global var
+// cannot start without port selected
+// repeat mesurement button
 // min-max for arduino
 // changing animation only if in gamepad or arduino-joystick mode
 //      modes:
@@ -44,6 +46,7 @@ function App() {
     // 1 - checking
     // 2 - not connected
     const [saveToDatabase, setSaveToDatabase] = useState(false);
+    const [isMeasuring, setIsMeasuring] = useState(false);
 
     useEffect(() => {
         // run once on-load
