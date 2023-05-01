@@ -9,6 +9,7 @@ const Communication = ({
     setNewDistance,
     databaseStatus,
     saveToDatabase,
+    isMeasuring,
     setIsMeasuring,
     selectedPort,
 }) => {
@@ -142,9 +143,9 @@ const Communication = ({
             >
                 <button
                     type="submit"
-                    disabled={databaseStatus == 1 || !selectedPort}
+                    disabled={databaseStatus == 1 || !selectedPort || isMeasuring}
                     className={
-                        databaseStatus == 1 || !selectedPort
+                        databaseStatus == 1 || !selectedPort || isMeasuring
                             ? 'button-disabled inline-flex items-center justify-center'
                             : 'button inline-flex items-center justify-center'
                     }
@@ -162,9 +163,9 @@ const Communication = ({
             >
                 <button
                     type="submit"
-                    disabled={databaseStatus == 1 || !selectedPort}
+                    disabled={databaseStatus == 1 || !selectedPort || isMeasuring}
                     className={
-                        databaseStatus == 1 || !selectedPort
+                        databaseStatus == 1 || !selectedPort || isMeasuring
                             ? 'button-disabled inline-flex items-center justify-center'
                             : 'button inline-flex items-center justify-center'
                     }

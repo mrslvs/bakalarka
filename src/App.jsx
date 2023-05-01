@@ -121,6 +121,7 @@ function App() {
                             setNewDistance={setNewDistance}
                             databaseStatus={databaseStatus}
                             saveToDatabase={saveToDatabase}
+                            isMeasuring={isMeasuring}
                             setIsMeasuring={setIsMeasuring}
                             selectedPort={selectedPort}
                         />
