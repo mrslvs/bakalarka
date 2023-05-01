@@ -105,23 +105,12 @@ ipcMain.on('portSelected', async (event, data) => {
     console.log('port has been selected:' + data);
     if (port) {
         port.unpipe(parser);
-        // parser.pause();
-        // parser.destroy;
         port.close();
 
-        // let tmpPort = createPort(data);
-        // port = tmpPort;
-
         port = createPort(data);
-
-        // parser = new ReadlineParser();
-        // port.pipe(parser);
-        // console.log(port._readableState);
     } else {
         port = createPort(data);
-        // port.pipe(parser);
     }
-    // parser = new ReadlineParser();
     port.pipe(parser);
 });
 

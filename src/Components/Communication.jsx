@@ -10,6 +10,7 @@ const Communication = ({
     databaseStatus,
     saveToDatabase,
     setIsMeasuring,
+    selectedPort,
 }) => {
     let distancesReceived = [];
     let armAnglesReceived = [];
@@ -141,9 +142,9 @@ const Communication = ({
             >
                 <button
                     type="submit"
-                    disabled={databaseStatus == 1}
+                    disabled={databaseStatus == 1 || !selectedPort}
                     className={
-                        databaseStatus == 1
+                        databaseStatus == 1 || !selectedPort
                             ? 'button-disabled inline-flex items-center justify-center'
                             : 'button inline-flex items-center justify-center'
                     }
@@ -161,9 +162,9 @@ const Communication = ({
             >
                 <button
                     type="submit"
-                    disabled={databaseStatus == 1}
+                    disabled={databaseStatus == 1 || !selectedPort}
                     className={
-                        databaseStatus == 1
+                        databaseStatus == 1 || !selectedPort
                             ? 'button-disabled inline-flex items-center justify-center'
                             : 'button inline-flex items-center justify-center'
                     }

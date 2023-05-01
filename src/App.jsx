@@ -31,6 +31,7 @@ const { ipcRenderer } = require('electron');
 //              1a USB gamepad
 //              1b arduino joystick
 //          2. reproducing measurements from DB file
+// clean code
 
 function App() {
     // PORTS
@@ -121,6 +122,7 @@ function App() {
                             databaseStatus={databaseStatus}
                             saveToDatabase={saveToDatabase}
                             setIsMeasuring={setIsMeasuring}
+                            selectedPort={selectedPort}
                         />
                     </div>
 
