@@ -120,11 +120,14 @@ function App() {
         // console.log(z);
         // const gamepads = navigator.getGamepads();
         // gamepads[1] ? console.log('ok') : console.log('null');
-
-        setChartData([]);
-        setAngleAnimation(0);
-        setNewDistance(-1);
-        setTableData(null);
+        // =======================
+        // setChartData([]);
+        // setAngleAnimation(0);
+        // setNewDistance(-1);
+        // setTableData(null);
+        console.log('databaseStatus:' + databaseStatus);
+        console.log('selectedPort:' + selectedPort);
+        console.log('isMeasuring:' + isMeasuring);
     };
 
     return (
@@ -151,6 +154,7 @@ function App() {
                             setChartData={setChartData}
                             setAngleAnimation={setAngleAnimation}
                             setTableData={setTableData}
+                            tableData={tableData}
                         />
                     </div>
 

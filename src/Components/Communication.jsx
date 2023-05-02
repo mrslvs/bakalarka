@@ -15,6 +15,7 @@ const Communication = ({
     setChartData,
     setAngleAnimation,
     setTableData,
+    tableData,
 }) => {
     let distancesReceived = [];
     let armAnglesReceived = [];
@@ -65,8 +66,14 @@ const Communication = ({
             if (databaseStatus == 0 && saveToDatabase)
                 ipcRenderer.send('saveToDatabase', sendDataAsObject);
 
-            distancesReceived = [];
-            armAnglesReceived = [];
+            // VERY IMPORTANT: https://stackoverflow.com/questions/1232040/how-do-i-empty-an-array-in-javascript
+            // distancesReceived = [];
+            // armAnglesReceived = [];
+            // ===========
+            // console.log('length:' + distancesReceived.length);
+            // distancesReceived.length = 0;
+            // armAnglesReceived.length = 0;
+            // console.log('length:' + distancesReceived.length);
             setIsMeasuring(false);
         }
 
@@ -134,13 +141,20 @@ const Communication = ({
     //     setAngle(armAngle);
     //     setNewDistance(distance);
     // });
-    // const clear = () => {
-    //     setChartData([]);
-    //     setAngleAnimation(0);
-    //     setNewDistance(-1);
-    //     setTableData(null);
-    // };
-    let canStartComm = databaseStatus != 1 && selectedPort && !isMeasuring;
+
+    const clear = () => {
+        setChartData([]);
+        setAngleAnimation(0);
+        setNewDistance(-1);
+        setTableData(null);
+        while (distancesReceived.length) {
+            distancesReceived.pop();
+        }
+        while (armAnglesReceived.length) {
+            armAnglesReceived.pop();
+        }
+    };
+    let canStartComm = databaseStatus != 1 && selectedPort && !isMeasuring && !tableData;
 
     return (
         <div className="inline-flex w-1/2 justify-center bg-fuchsia-500">
@@ -184,7 +198,7 @@ const Communication = ({
                     <BsJoystick className="w-5 h-5" />
                 </button>
             </form>
-            {/* <button
+            <button
                 onClick={clear}
                 disabled={isMeasuring}
                 className={
@@ -194,7 +208,7 @@ const Communication = ({
                 }
             >
                 Clear
-            </button> */}
+            </button>
         </div>
     );
 };
