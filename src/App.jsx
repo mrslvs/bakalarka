@@ -35,6 +35,7 @@ const { ipcRenderer } = require('electron');
 //      db status color
 //      animated refresh button while checking connection
 // MISC:
+// when iterations set to 50, end of comm doesn't trigger
 // clean code
 // min-max for arduino
 // sensitivity for joysticks
@@ -104,6 +105,7 @@ function App() {
     useEffect(() => {
         if (newDistance != -1) {
             // received new distance
+            console.log(newDistance);
             setChartData((oldArr) => [...oldArr, newDistance]);
         }
         setNewDistance(-1);

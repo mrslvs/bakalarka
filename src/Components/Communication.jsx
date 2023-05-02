@@ -67,6 +67,7 @@ const Communication = ({
 
             distancesReceived = [];
             armAnglesReceived = [];
+            console.log('didnt get here');
             setIsMeasuring(false);
         }
 
