@@ -140,6 +140,7 @@ const Communication = ({
     //     setNewDistance(-1);
     //     setTableData(null);
     // };
+    let canStartComm = databaseStatus != 1 && selectedPort && !isMeasuring;
 
     return (
         <div className="inline-flex w-1/2 justify-center bg-fuchsia-500">
@@ -152,11 +153,11 @@ const Communication = ({
             >
                 <button
                     type="submit"
-                    disabled={databaseStatus == 1 || !selectedPort || isMeasuring}
+                    disabled={!canStartComm}
                     className={
-                        databaseStatus == 1 || !selectedPort || isMeasuring
-                            ? 'button-disabled inline-flex items-center justify-center'
-                            : 'button inline-flex items-center justify-center'
+                        canStartComm
+                            ? 'button inline-flex items-center justify-center'
+                            : 'button-disabled inline-flex items-center justify-center'
                     }
                 >
                     <span className="pr-1">Start gamepad</span>
@@ -172,11 +173,11 @@ const Communication = ({
             >
                 <button
                     type="submit"
-                    disabled={databaseStatus == 1 || !selectedPort || isMeasuring}
+                    disabled={!canStartComm}
                     className={
-                        databaseStatus == 1 || !selectedPort || isMeasuring
-                            ? 'button-disabled inline-flex items-center justify-center'
-                            : 'button inline-flex items-center justify-center'
+                        canStartComm
+                            ? 'button inline-flex items-center justify-center'
+                            : 'button-disabled inline-flex items-center justify-center'
                     }
                 >
                     <span className="pr-1">Start analog</span>

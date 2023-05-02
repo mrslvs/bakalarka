@@ -73,7 +73,7 @@ function App() {
     const [isMeasuring, setIsMeasuring] = useState(false);
 
     // rework
-    const [readyToMeasure, setReadyToMeasure] = useState(true);
+    const [readyToMeasure, setReadyToMeasure] = useState(false);
 
     useEffect(() => {
         // run once on-load
