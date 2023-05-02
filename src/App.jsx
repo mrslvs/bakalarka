@@ -40,7 +40,20 @@ const { ipcRenderer } = require('electron');
 // sensitivity for joysticks
 // gamepads as global var
 // state diagram using petri
+// remove servo noise, buzzing (YT video)
 
+// BUTTONS disable
+// refresh ports => you can always refresh ports
+// start comm (gamepad/analog)
+// save measurement
+// get data
+// check connection
+// ______________________________________________
+// states:
+//      checking database connection    (refresh port / select port)
+//      connection established          (start comm / save / get data)
+//      running comm                    (refresh port / MAYBE get data)
+//      finished comm                   (refresh port / clear)
 function App() {
     // PORTS
     const [availablePorts, setAvailablePorts] = useState('');
@@ -58,6 +71,8 @@ function App() {
     // 2 - not connected
     const [saveToDatabase, setSaveToDatabase] = useState(false);
     const [isMeasuring, setIsMeasuring] = useState(false);
+
+    // rework
     const [readyToMeasure, setReadyToMeasure] = useState(true);
 
     useEffect(() => {
@@ -133,6 +148,9 @@ function App() {
                             isMeasuring={isMeasuring}
                             setIsMeasuring={setIsMeasuring}
                             selectedPort={selectedPort}
+                            setChartData={setChartData}
+                            setAngleAnimation={setAngleAnimation}
+                            setTableData={setTableData}
                         />
                     </div>
 

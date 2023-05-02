@@ -12,6 +12,9 @@ const Communication = ({
     isMeasuring,
     setIsMeasuring,
     selectedPort,
+    setChartData,
+    setAngleAnimation,
+    setTableData,
 }) => {
     let distancesReceived = [];
     let armAnglesReceived = [];
@@ -131,6 +134,12 @@ const Communication = ({
     //     setAngle(armAngle);
     //     setNewDistance(distance);
     // });
+    // const clear = () => {
+    //     setChartData([]);
+    //     setAngleAnimation(0);
+    //     setNewDistance(-1);
+    //     setTableData(null);
+    // };
 
     return (
         <div className="inline-flex w-1/2 justify-center bg-fuchsia-500">
@@ -174,6 +183,17 @@ const Communication = ({
                     <BsJoystick className="w-5 h-5" />
                 </button>
             </form>
+            {/* <button
+                onClick={clear}
+                disabled={isMeasuring}
+                className={
+                    isMeasuring
+                        ? 'button-disabled inline-flex items-center justify-center'
+                        : 'button inline-flex items-center justify-center'
+                }
+            >
+                Clear
+            </button> */}
         </div>
     );
 };
