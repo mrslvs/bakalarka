@@ -73,7 +73,7 @@ function App() {
     const [isMeasuring, setIsMeasuring] = useState(false);
 
     // rework
-    const [readyToMeasure, setReadyToMeasure] = useState(true);
+    const [readyToMeasure, setReadyToMeasure] = useState(false);
 
     useEffect(() => {
         // run once on-load
@@ -89,7 +89,10 @@ function App() {
     useEffect(() => {
         // because default option ist the only "path" that contains strings
         // if (selectedPort && !selectedPort.includes(' '))
-        if (selectedPort) ipcRenderer.send('portSelected', selectedPort);
+        if (selectedPort) {
+            setReadyToMeasure(true);
+            ipcRenderer.send('portSelected', selectedPort);
+        }
     }, [selectedPort]);
 
     // ANIMATION
@@ -110,6 +113,10 @@ function App() {
         // icons changing
     }, [databaseStatus]);
     // useEffect(() => {}, [databaseStatus]);
+
+    useEffect(() => {
+        if (isMeasuring) setReadyToMeasure(false);
+    }, [isMeasuring]);
 
     const showme = () => {
         // console.log(availablePorts);
@@ -139,6 +146,7 @@ function App() {
                             setAvailablePorts={setAvailablePorts}
                             setSelectedPort={setSelectedPort}
                             isMeasuring={isMeasuring}
+                            setReadyToMeasure={setReadyToMeasure}
                         />
                         <Communication
                             setAngle={setAngleAnimation}
@@ -147,10 +155,11 @@ function App() {
                             saveToDatabase={saveToDatabase}
                             isMeasuring={isMeasuring}
                             setIsMeasuring={setIsMeasuring}
-                            selectedPort={selectedPort}
                             setChartData={setChartData}
                             setAngleAnimation={setAngleAnimation}
                             setTableData={setTableData}
+                            readyToMeasure={readyToMeasure}
+                            setReadyToMeasure={setReadyToMeasure}
                         />
                     </div>
 

@@ -1,7 +1,6 @@
 import React from 'react';
 const { ipcRenderer } = require('electron');
 import { BsJoystick } from 'react-icons/bs';
-import { GrGamepad } from 'react-icons/gr';
 import { FaGamepad } from 'react-icons/fa';
 
 const Communication = ({
@@ -11,10 +10,11 @@ const Communication = ({
     saveToDatabase,
     isMeasuring,
     setIsMeasuring,
-    selectedPort,
     setChartData,
     setAngleAnimation,
     setTableData,
+    readyToMeasure,
+    setReadyToMeasure,
 }) => {
     let distancesReceived = [];
     let armAnglesReceived = [];
@@ -134,12 +134,15 @@ const Communication = ({
     //     setAngle(armAngle);
     //     setNewDistance(distance);
     // });
-    // const clear = () => {
-    //     setChartData([]);
-    //     setAngleAnimation(0);
-    //     setNewDistance(-1);
-    //     setTableData(null);
-    // };
+
+    const clear = () => {
+        setChartData([]);
+        setAngleAnimation(0);
+        setNewDistance(-1);
+        setTableData(null);
+
+        if (!isMeasuring) setReadyToMeasure(true);
+    };
 
     return (
         <div className="inline-flex w-1/2 justify-center bg-fuchsia-500">
@@ -152,9 +155,11 @@ const Communication = ({
             >
                 <button
                     type="submit"
-                    disabled={databaseStatus == 1 || !selectedPort || isMeasuring}
+                    // disabled={databaseStatus == 1 || !selectedPort || isMeasuring}
+                    disabled={!readyToMeasure}
                     className={
-                        databaseStatus == 1 || !selectedPort || isMeasuring
+                        // databaseStatus == 1 || !selectedPort || isMeasuring
+                        !readyToMeasure
                             ? 'button-disabled inline-flex items-center justify-center'
                             : 'button inline-flex items-center justify-center'
                     }
@@ -172,9 +177,11 @@ const Communication = ({
             >
                 <button
                     type="submit"
-                    disabled={databaseStatus == 1 || !selectedPort || isMeasuring}
+                    // disabled={databaseStatus == 1 || !selectedPort || isMeasuring}
+                    disabled={!readyToMeasure}
                     className={
-                        databaseStatus == 1 || !selectedPort || isMeasuring
+                        // databaseStatus == 1 || !selectedPort || isMeasuring
+                        !readyToMeasure
                             ? 'button-disabled inline-flex items-center justify-center'
                             : 'button inline-flex items-center justify-center'
                     }
@@ -183,7 +190,7 @@ const Communication = ({
                     <BsJoystick className="w-5 h-5" />
                 </button>
             </form>
-            {/* <button
+            <button
                 onClick={clear}
                 disabled={isMeasuring}
                 className={
@@ -193,7 +200,7 @@ const Communication = ({
                 }
             >
                 Clear
-            </button> */}
+            </button>
         </div>
     );
 };
