@@ -73,7 +73,7 @@ function App() {
     const [isMeasuring, setIsMeasuring] = useState(false);
 
     // rework
-    const [readyToMeasure, setReadyToMeasure] = useState(false);
+    const [readyToMeasureAgain, setReadyToMeasureAgain] = useState(true);
 
     useEffect(() => {
         // run once on-load
@@ -159,6 +159,8 @@ function App() {
                             setAngleAnimation={setAngleAnimation}
                             setTableData={setTableData}
                             tableData={tableData}
+                            readyToMeasureAgain={readyToMeasureAgain}
+                            setReadyToMeasureAgain={setReadyToMeasureAgain}
                             // distancesReceived={distancesReceived}
                             // setDistancesReceived={setDistancesReceived}
                             // armAnglesReceived={armAnglesReceived}

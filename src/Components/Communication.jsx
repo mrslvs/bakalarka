@@ -15,6 +15,8 @@ const Communication = ({
     setAngleAnimation,
     setTableData,
     tableData,
+    readyToMeasureAgain,
+    setReadyToMeasureAgain,
 
     // distancesReceived,
     // setDistancesReceived,
@@ -68,6 +70,7 @@ const Communication = ({
 
         if (distancesReceived.length == process.env.ITERATIONS) {
             console.log('end of comm triggered');
+            setReadyToMeasureAgain(false);
             let sendDataAsObject = {
                 distance: distancesReceived,
                 angle: armAnglesReceived,
@@ -133,13 +136,15 @@ const Communication = ({
         setTableData(null);
         distancesReceived.length = 0;
         armAnglesReceived.length = 0;
+        setReadyToMeasureAgain(true);
     };
 
     const showData = () => {
         console.log('distancesReceived (' + distancesReceived.length + '): ' + distancesReceived);
     };
 
-    let canStartComm = databaseStatus != 1 && selectedPort && !isMeasuring && !tableData;
+    let canStartComm =
+        databaseStatus != 1 && selectedPort && !isMeasuring && !tableData && readyToMeasureAgain;
 
     return (
         <div className="inline-flex w-1/2 justify-center bg-fuchsia-500">
