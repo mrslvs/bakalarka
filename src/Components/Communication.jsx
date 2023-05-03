@@ -1,7 +1,6 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 const { ipcRenderer } = require('electron');
 import { BsJoystick } from 'react-icons/bs';
-import { GrGamepad } from 'react-icons/gr';
 import { FaGamepad } from 'react-icons/fa';
 
 const Communication = ({
@@ -16,9 +15,16 @@ const Communication = ({
     setAngleAnimation,
     setTableData,
     tableData,
+
+    // distancesReceived,
+    // setDistancesReceived,
+    // armAnglesReceived,
+    // setArmAnglesReceived,
 }) => {
     let distancesReceived = [];
     let armAnglesReceived = [];
+    // const [distancesReceived, setDistancesReceived] = useState([]);
+    // const [armAnglesReceived, setArmAnglesReceived] = useState([]);
     let joystickPosition;
 
     setInterval(() => {
@@ -30,13 +36,6 @@ const Communication = ({
 
     const startCommunication = () => {
         setIsMeasuring(true);
-        // if (gamepad == null) {
-        // console.log('gamepad is null');
-        // } else {
-        // joystickPostion = gamepads[0].axes[1];
-        // console.log('... got joystick position:');
-        // console.log(joystickPostion);
-        // }
 
         let iter = 0;
 
@@ -48,16 +47,20 @@ const Communication = ({
         }, process.env.SAMPLING_RATE);
     };
 
+    ipcRenderer.removeAllListeners('receivedData');
+
     ipcRenderer.on('receivedData', (evt, message) => {
         let distance = message.split(',')[0];
         let armAngle = message.split(',')[1];
 
         distancesReceived.push(distance);
         armAnglesReceived.push(armAngle);
+        console.log(distance);
+        // setDistancesReceived((oldArray) => [...oldArray, distance]);
+        // setArmAnglesReceived((oldArray) => [...oldArray, armAngle]);
 
         if (distancesReceived.length == process.env.ITERATIONS) {
-            console.log('cycle end - lets save into DB');
-
+            console.log('end of comm triggered');
             let sendDataAsObject = {
                 distance: distancesReceived,
                 angle: armAnglesReceived,
@@ -73,7 +76,29 @@ const Communication = ({
             // console.log('length:' + distancesReceived.length);
             // distancesReceived.length = 0;
             // armAnglesReceived.length = 0;
-            // console.log('length:' + distancesReceived.length);
+
+            // distance = -1;
+            // armAngle = -1;
+            // delete sendDataAsObject.distance;
+            // delete sendDataAsObject.angle;
+            // setAngle(null);
+            // setNewDistance(-1);
+
+            // while (distancesReceived.length) {
+            //     distancesReceived.pop();
+            // }
+            // while (armAnglesReceived.length) {
+            //     armAnglesReceived.pop();
+            // }
+            // while (tmpDist.length) {
+            //     tmpDist.pop();
+            // }
+            // while (tmpAng.length) {
+            //     tmpAng.pop();
+            // }
+            // distancesReceived.splice(0, distancesReceived.length);
+            // armAnglesReceived.splice(0, armAnglesReceived.length);
+
             setIsMeasuring(false);
         }
 
@@ -83,13 +108,6 @@ const Communication = ({
 
     const startCommunicationAnalog = () => {
         setIsMeasuring(true);
-        // if (gamepad == null) {
-        // console.log('gamepad is null');
-        // } else {
-        // joystickPostion = gamepads[0].axes[1];
-        // console.log('... got joystick position:');
-        // console.log(joystickPostion);
-        // }
 
         let iter = 0;
 
@@ -101,59 +119,17 @@ const Communication = ({
         }, process.env.SAMPLING_RATE);
     };
 
-    // const startCommunicationAnalog = () => {
-    //     // if (gamepad == null) {
-    //     // console.log('gamepad is null');
-    //     // } else {
-    //     // joystickPostion = gamepads[0].axes[1];
-    //     // console.log('... got joystick position:');
-    //     // console.log(joystickPostion);
-    //     // }
-
-    //     let iter = 0;
-
-    //     setInterval(() => {
-    //         if (iter < process.env.ITERATIONS) {
-    //             ipcRenderer.send('startComRequestAnalog', 0);
-    //         }
-    //         iter++;
-    //     }, process.env.SAMPLING_RATE);
-    // };
-
-    // ipcRenderer.on('receivedData', (evt, message) => {
-    //     let distance = message.split(',')[0];
-    //     let armAngle = message.split(',')[1];
-
-    //     distancesReceived.push(distance);
-    //     armAnglesReceived.push(armAngle);
-
-    //     if (distancesReceived.length == process.env.ITERATIONS) {
-    //         console.log('cycle end - lets save into DB');
-
-    //         let sendDataAsObject = {
-    //             distance: distancesReceived,
-    //             angle: armAnglesReceived,
-    //         };
-
-    //         ipcRenderer.send('saveToDatabase', sendDataAsObject);
-    //     }
-
-    //     setAngle(armAngle);
-    //     setNewDistance(distance);
-    // });
-
     const clear = () => {
         setChartData([]);
         setAngleAnimation(0);
         setNewDistance(-1);
         setTableData(null);
-        while (distancesReceived.length) {
-            distancesReceived.pop();
-        }
-        while (armAnglesReceived.length) {
-            armAnglesReceived.pop();
-        }
     };
+
+    const showData = () => {
+        console.log('distancesReceived:' + distancesReceived);
+    };
+
     let canStartComm = databaseStatus != 1 && selectedPort && !isMeasuring && !tableData;
 
     return (
@@ -209,6 +185,7 @@ const Communication = ({
             >
                 Clear
             </button>
+            <button onClick={showData}>show data</button>
         </div>
     );
 };

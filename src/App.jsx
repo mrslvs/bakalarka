@@ -128,7 +128,11 @@ function App() {
         console.log('databaseStatus:' + databaseStatus);
         console.log('selectedPort:' + selectedPort);
         console.log('isMeasuring:' + isMeasuring);
+        console.log('chartData:' + chartData);
     };
+
+    // const [distancesReceived, setDistancesReceived] = useState([]);
+    // const [armAnglesReceived, setArmAnglesReceived] = useState([]);
 
     return (
         <div className="bg-slate-300">
@@ -155,6 +159,10 @@ function App() {
                             setAngleAnimation={setAngleAnimation}
                             setTableData={setTableData}
                             tableData={tableData}
+                            // distancesReceived={distancesReceived}
+                            // setDistancesReceived={setDistancesReceived}
+                            // armAnglesReceived={armAnglesReceived}
+                            // setArmAnglesReceived={setArmAnglesReceived}
                         />
                     </div>
 
