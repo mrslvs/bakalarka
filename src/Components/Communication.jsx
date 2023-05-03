@@ -21,10 +21,10 @@ const Communication = ({
     // armAnglesReceived,
     // setArmAnglesReceived,
 }) => {
-    let distancesReceived = [];
-    let armAnglesReceived = [];
-    // const [distancesReceived, setDistancesReceived] = useState([]);
-    // const [armAnglesReceived, setArmAnglesReceived] = useState([]);
+    // let distancesReceived = [];
+    // let armAnglesReceived = [];
+    const [distancesReceived, setDistancesReceived] = useState([]);
+    const [armAnglesReceived, setArmAnglesReceived] = useState([]);
     let joystickPosition;
 
     setInterval(() => {
@@ -55,9 +55,16 @@ const Communication = ({
 
         distancesReceived.push(distance);
         armAnglesReceived.push(armAngle);
-        console.log(distance);
         // setDistancesReceived((oldArray) => [...oldArray, distance]);
         // setArmAnglesReceived((oldArray) => [...oldArray, armAngle]);
+        console.log(
+            'Received distance:' +
+                distance +
+                ' pushing into distancesReceived(' +
+                distancesReceived.length +
+                '):' +
+                distancesReceived
+        );
 
         if (distancesReceived.length == process.env.ITERATIONS) {
             console.log('end of comm triggered');
@@ -124,10 +131,12 @@ const Communication = ({
         setAngleAnimation(0);
         setNewDistance(-1);
         setTableData(null);
+        distancesReceived.length = 0;
+        armAnglesReceived.length = 0;
     };
 
     const showData = () => {
-        console.log('distancesReceived:' + distancesReceived);
+        console.log('distancesReceived (' + distancesReceived.length + '): ' + distancesReceived);
     };
 
     let canStartComm = databaseStatus != 1 && selectedPort && !isMeasuring && !tableData;
