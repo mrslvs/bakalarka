@@ -27,10 +27,10 @@ const { ipcRenderer } = require('electron');
 //              ✔️ 1a USB gamepad
 //              ✔️ 1b arduino joystick
 //          ✔️ 2. reproducing measurements from DB file
+// ✔️ repeat measurement button + disability of comm buttons after first measurement
 // TODO:
-// COMM:
-//      repeat measurement button + disability of comm buttons after first measurement
 // DB:
+//      disablity of SAVE to DB button
 //      disablity of DB play button
 //      db status color
 //      animated refresh button while checking connection
