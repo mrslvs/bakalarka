@@ -13,44 +13,25 @@ Servo servo;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  servo.attach(10);
+  servo.attach(9);
   servo.write(servo_global);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  
-// SONAR
-  int distance = sonar.ping_cm();
-  delay(5);
-  
-  if(distance > 0){
-    distance = 0;
-
-    for(int i = 0; i < 2; i++){
-      distance += sonar.ping_cm();
-      delay(5);
-    }
-
-    distance /= 2;
-  }
-
-  String output_message = String(distance) + ',' + String(servo_global);
-
   if(Serial.available() > 0){
-    processMessage(output_message);
+    processMessage();
   }
 }
 
-void processMessage(String output_message){
+//void processMessage(String output_message){
+void processMessage(){
   String startString = "startpass";
   String startStringAnalog = "startanalogpass";
   String str = Serial.readStringUntil('\n');
+  String output_message = String(getDistance()) + ',' + String(servo_global);
 
   if(str.startsWith(startString)){
-//    Serial.println(str.substring(startString.length()));
     float tmp = getJoystick(str.substring(startString.length()));
-//    Serial.println(String(tmp));
 
     moveArm(tmp);
     Serial.println(output_message);
@@ -76,7 +57,8 @@ float getJoystick(String msg){
   return joystick;
 }
 
-void moveArm(float joystickPos){  
+void moveArm(float joystickPos){
+//  servo.attach(10);
   if(joystickPos >  0){
     servo_global += 5;
   }else if(joystickPos < 0){
@@ -84,4 +66,22 @@ void moveArm(float joystickPos){
   }
 
   servo.write(servo_global);
+//  delay(15);
+//  servo.detach();
+}
+
+int getDistance(){
+  int distance = sonar.ping_cm();
+  delay(5);
+  
+  if(distance > 0){
+    for(int i = 0; i < 3; i++){
+      distance += sonar.ping_cm();
+      delay(5);
+    }
+
+    distance /= 4;
+  }
+
+  return distance;
 }
