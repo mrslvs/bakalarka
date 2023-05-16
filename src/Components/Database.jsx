@@ -86,7 +86,7 @@ const Database = ({
             >
                 <span>check connection</span>
                 {databaseStatus == 1 ? (
-                    <FiRefreshCw className="w-4 h-4" />
+                    <FiRefreshCw className="w-4 h-4 animate-spin" />
                 ) : (
                     <SiMongodb className="w-4 h-4" />
                 )}
