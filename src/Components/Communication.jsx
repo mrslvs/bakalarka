@@ -199,7 +199,7 @@ const Communication = ({
             >
                 Clear
             </button>
-            <button onClick={showData}>show data</button>
+            {/* <button onClick={showData}>show data</button> */}
         </div>
     );
 };

@@ -67,7 +67,7 @@ const Database = ({
                 onChange={hanldeCheckbox}
                 disabled={databaseStatus != 0}
             />
-            <span>Save measurement</span>
+            <span>Save to DB</span>
             <button
                 onClick={requestDatabaseData}
                 disabled={databaseStatus == 0}

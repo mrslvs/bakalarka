@@ -175,7 +175,7 @@ function App() {
                 </div>
 
                 <div className="bg-pink-200 p-2">
-                    <button onClick={showme}>click me</button>
+                    {/* <button onClick={showme}>click me</button> */}
                     <Database
                         tableData={tableData}
                         setTableData={setTableData}
