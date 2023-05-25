@@ -6,6 +6,7 @@ import Chart from './Components/Chart';
 import Port from './Components/Port';
 import Communication from './Components/Communication';
 import Database from './Components/Database';
+import Modal from './Components/Modal';
 
 // https://github.com/electron/electron/issues/9920
 //      import { ipcRenderer } from 'electron'; NOT WORKING
@@ -75,6 +76,9 @@ function App() {
     // rework
     const [readyToMeasureAgain, setReadyToMeasureAgain] = useState(true);
 
+    // modal
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     useEffect(() => {
         // run once on-load
         ipcRenderer.send('portRequest', 'client portRequest');
@@ -136,7 +140,8 @@ function App() {
 
     return (
         <div className="bg-slate-300">
-            <Header></Header>
+            <Header setIsModalOpen={setIsModalOpen}></Header>
+            {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} />}
 
             <div className="grid grid-cols-3 bg-black">
                 <div className="col-start-1 col-end-3">

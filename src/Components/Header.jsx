@@ -2,7 +2,11 @@ import React from 'react';
 import logo from '../Assets/Images/fei_logo_transparent.png';
 import { BsFillInfoCircleFill } from 'react-icons/bs';
 
-const Header = () => {
+const Header = ({ setIsModalOpen }) => {
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
     return (
         <div className="flex w-1/1 p-3 justify-between bg-slate-400">
             {/* IMAGE */}
@@ -18,7 +22,7 @@ const Header = () => {
                     Arduino controll software
                 </h1>
             </div>
-            <div className="flex justify-end w-1/3">
+            <div className="flex justify-end w-1/3" onClick={openModal}>
                 {/* <p className="text-blue-600 self-center bg-blue-400">information</p> */}
                 <BsFillInfoCircleFill className="w-8 h-8 text-blue-600" />
             </div>
