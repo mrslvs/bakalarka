@@ -16,6 +16,7 @@ const Database = ({
     setSaveToDatabase,
 }) => {
     const requestDatabaseData = () => {
+        console.log('requesting database data');
         ipcRenderer.send('requestDatabaseData', null);
     };
 
@@ -70,11 +71,11 @@ const Database = ({
             <span>Save to DB</span>
             <button
                 onClick={requestDatabaseData}
-                disabled={databaseStatus == 0}
+                disabled={databaseStatus != 0}
                 className={
-                    databaseStatus == 0
-                        ? 'button inline-flex items-center justify-center'
-                        : 'button-disabled inline-flex items-center justify-center'
+                    databaseStatus != 0
+                        ? 'button-disabled inline-flex items-center justify-center'
+                        : 'button inline-flex items-center justify-center'
                 }
             >
                 <span className="pr-1">get data</span>

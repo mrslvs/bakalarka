@@ -154,6 +154,7 @@ var util = require('util');
 
 ipcMain.on('requestDatabaseData', async (event, data) => {
     try {
+        console.log('requesting database data');
         // let result = await Measurement.findById('644825e7df6720f60a019134');
         let result = await Measurement.find();
 
