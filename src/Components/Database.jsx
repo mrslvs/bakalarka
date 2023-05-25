@@ -45,7 +45,7 @@ const Database = ({
                 let i = 0;
 
                 setInterval(() => {
-                    if (i < 100) {
+                    if (i < measurement.angle.length) {
                         setAngle(measurement.angle[i]);
                         setNewDistance(measurement.distance[i]);
                     }
