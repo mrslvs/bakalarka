@@ -93,43 +93,49 @@ const Database = ({
                 )}
                 {/* <SiMongodb className="w-4 h-4" /> */}
             </button>
-            <table className="table-custom table-custom-text ">
-                <thead>
-                    <tr>
-                        <th className="table-custom table-fixed w-44">ID</th>
-                        <th className="table-custom table-fixed w-24">Sampling Rate</th>
-                        <th className="table-custom table-fixed w-28">User</th>
-                        <th className="table-custom">Replay</th>
-                    </tr>
-                </thead>
+            <div className="h-24 overflow-y-auto">
+                <table className="table-custom table-custom-text table-fixed">
+                    <thead className="sticky top-0 bg-black text-white">
+                        <tr>
+                            <th className="table-custom table-fixed w-44">ID</th>
+                            <th className="table-custom table-fixed w-24">Sampling Rate</th>
+                            <th className="table-custom table-fixed w-28">User</th>
+                            <th className="table-custom">Replay</th>
+                        </tr>
+                    </thead>
 
-                <tbody>
-                    {tableData ? (
-                        tableData.map((measurement) => {
-                            return (
-                                <tr key={measurement.id}>
-                                    <td className="table-custom text-center">{measurement.id}</td>
-                                    <td className="table-custom text-end pr-2">
-                                        {measurement.sampling_rate}
-                                    </td>
-                                    <td className="table-custom text-center">{measurement.user}</td>
-                                    <td className="table-custom text-center">
-                                        <button
-                                            onClick={() => {
-                                                runAnimation(measurement.id);
-                                            }}
-                                        >
-                                            <AiFillPlaySquare className="w-6 h-6 text-blue-900 hover:text-red-900" />
-                                        </button>
-                                    </td>
-                                </tr>
-                            );
-                        })
-                    ) : (
-                        <></>
-                    )}
-                </tbody>
-            </table>
+                    <tbody>
+                        {tableData ? (
+                            tableData.map((measurement) => {
+                                return (
+                                    <tr key={measurement.id}>
+                                        <td className="table-custom text-center">
+                                            {measurement.id}
+                                        </td>
+                                        <td className="table-custom text-end pr-2">
+                                            {measurement.sampling_rate}
+                                        </td>
+                                        <td className="table-custom text-center">
+                                            {measurement.user}
+                                        </td>
+                                        <td className="table-custom text-center">
+                                            <button
+                                                onClick={() => {
+                                                    runAnimation(measurement.id);
+                                                }}
+                                            >
+                                                <AiFillPlaySquare className="w-6 h-6 text-blue-900 hover:text-red-900" />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                );
+                            })
+                        ) : (
+                            <></>
+                        )}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };
