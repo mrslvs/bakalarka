@@ -36,18 +36,36 @@ const Communication = ({
         }
     }, 16);
 
-    const startCommunication = () => {
+    const startCommunication = (isAnalog) => {
         setIsMeasuring(true);
 
         let iter = 0;
+        console.log(isAnalog);
 
         setInterval(() => {
             if (iter < process.env.ITERATIONS) {
-                ipcRenderer.send('startComRequest', joystickPosition);
+                if (isAnalog) {
+                    ipcRenderer.send('startComRequestAnalog', 0);
+                } else {
+                    ipcRenderer.send('startComRequest', joystickPosition);
+                }
             }
             iter++;
         }, process.env.SAMPLING_RATE);
     };
+
+    // const startCommunicationAnalog = () => {
+    //     setIsMeasuring(true);
+
+    //     let iter = 0;
+
+    //     setInterval(() => {
+    //         if (iter < process.env.ITERATIONS) {
+    //             ipcRenderer.send('startComRequestAnalog', 0);
+    //         }
+    //         iter++;
+    //     }, process.env.SAMPLING_RATE);
+    // };
 
     ipcRenderer.removeAllListeners('receivedData');
 
@@ -59,14 +77,15 @@ const Communication = ({
         armAnglesReceived.push(armAngle);
         // setDistancesReceived((oldArray) => [...oldArray, distance]);
         // setArmAnglesReceived((oldArray) => [...oldArray, armAngle]);
-        console.log(
-            'Received distance:' +
-                distance +
-                ' pushing into distancesReceived(' +
-                distancesReceived.length +
-                '):' +
-                distancesReceived
-        );
+
+        // console.log(
+        //     'Received distance:' +
+        //         distance +
+        //         ' pushing into distancesReceived(' +
+        //         distancesReceived.length +
+        //         '):' +
+        //         distancesReceived
+        // );
 
         if (distancesReceived.length == process.env.ITERATIONS) {
             console.log('end of comm triggered');
@@ -116,19 +135,6 @@ const Communication = ({
         setNewDistance(distance);
     });
 
-    const startCommunicationAnalog = () => {
-        setIsMeasuring(true);
-
-        let iter = 0;
-
-        setInterval(() => {
-            if (iter < process.env.ITERATIONS) {
-                ipcRenderer.send('startComRequestAnalog', 0);
-            }
-            iter++;
-        }, process.env.SAMPLING_RATE);
-    };
-
     const clear = () => {
         setChartData([]);
         setAngleAnimation(0);
@@ -151,7 +157,7 @@ const Communication = ({
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
-                    startCommunication();
+                    startCommunication(false);
                 }}
                 className="flex items-center border border-black"
             >
@@ -171,7 +177,7 @@ const Communication = ({
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
-                    startCommunicationAnalog();
+                    startCommunication(true);
                 }}
                 className="flex items-center border border-black"
             >

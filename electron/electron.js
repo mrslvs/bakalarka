@@ -85,7 +85,7 @@ let port = null;
 let parser = new ReadlineParser();
 
 const startCom = async (event, data) => {
-    console.log('starting gamepad comm');
+    // console.log('starting gamepad comm');
     let tmp = 'startpassLX' + data + '\n';
     port.write(tmp);
 };
