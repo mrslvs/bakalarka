@@ -18,4 +18,8 @@
     .table-custom-text {
         font-size: 10px;
     }
+    .main-window {
+        max-height: 720px;
+        min-height: 720px;
+    }
 }

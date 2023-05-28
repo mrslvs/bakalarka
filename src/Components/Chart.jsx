@@ -65,7 +65,7 @@ const Chart = ({ chartData }) => {
     };
 
     return (
-        <div className="">
+        <div className="max-h-80">
             <Line options={options} data={data} />
         </div>
     );

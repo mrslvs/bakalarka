@@ -12,7 +12,7 @@ const Port = ({ availablePorts, setAvailablePorts, setSelectedPort, isMeasuring 
     });
 
     return (
-        <div className="inline-flex w-1/2 justify-center bg-fuchsia-300">
+        <div className="inline-flex w-1/2 justify-center">
             {/* // <div className="inline-flex shrink-0 w-1/2 justify-center bg-fuchsia-300 p-2"> */}
             {/* GET PORTS */}
             <form
@@ -21,7 +21,7 @@ const Port = ({ availablePorts, setAvailablePorts, setSelectedPort, isMeasuring 
                     getPorts();
                 }}
                 // className="w-2/5 border border-black"
-                className="flex items-center border border-black mr-2"
+                className="flex items-center mr-2"
             >
                 <button
                     type="submit"
@@ -36,7 +36,7 @@ const Port = ({ availablePorts, setAvailablePorts, setSelectedPort, isMeasuring 
 
             {/* SET PORT */}
             {/* <form className="w-3/5 border border-black"> */}
-            <form className="flex items-center border border-black">
+            <form className="flex items-center ">
                 <select
                     id="ports"
                     disabled={isMeasuring}

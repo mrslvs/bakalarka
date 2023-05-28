@@ -153,13 +153,13 @@ const Communication = ({
         databaseStatus != 1 && selectedPort && !isMeasuring && !tableData && readyToMeasureAgain;
 
     return (
-        <div className="inline-flex w-1/2 justify-center bg-fuchsia-500">
+        <div className="inline-flex w-1/2 justify-center">
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
                     startCommunication(false);
                 }}
-                className="flex items-center border border-black"
+                className="flex items-center "
             >
                 <button
                     type="submit"
@@ -179,7 +179,7 @@ const Communication = ({
                     e.preventDefault();
                     startCommunication(true);
                 }}
-                className="flex items-center border border-black"
+                className="flex items-center"
             >
                 <button
                     type="submit"

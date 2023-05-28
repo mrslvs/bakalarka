@@ -97,7 +97,7 @@ const Database = ({
                 )}
                 {/* <SiMongodb className="w-4 h-4" /> */}
             </button>
-            <div className="h-24 overflow-y-auto">
+            <div className="h-24 overflow-y-auto mt-2">
                 <table className="table-custom table-custom-text table-fixed">
                     <thead className="sticky top-0 bg-black text-white">
                         <tr>

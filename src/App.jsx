@@ -139,7 +139,7 @@ function App() {
     // const [armAnglesReceived, setArmAnglesReceived] = useState([]);
 
     return (
-        <div className="">
+        <div className="main-window bg-slate-300">
             <Header setIsModalOpen={setIsModalOpen}></Header>
             {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} />}
 
