@@ -166,8 +166,8 @@ const Communication = ({
                     disabled={!canStartComm}
                     className={
                         canStartComm
-                            ? 'button inline-flex items-center justify-center'
-                            : 'button-disabled inline-flex items-center justify-center'
+                            ? 'button inline-flex items-center justify-center mr-2'
+                            : 'button-disabled inline-flex items-center justify-center mr-2'
                     }
                 >
                     <span className="pr-1">Start gamepad</span>
@@ -186,8 +186,8 @@ const Communication = ({
                     disabled={!canStartComm}
                     className={
                         canStartComm
-                            ? 'button inline-flex items-center justify-center'
-                            : 'button-disabled inline-flex items-center justify-center'
+                            ? 'button inline-flex items-center justify-center mr-2'
+                            : 'button-disabled inline-flex items-center justify-center mr-2'
                     }
                 >
                     <span className="pr-1">Start analog</span>

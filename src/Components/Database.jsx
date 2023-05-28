@@ -68,14 +68,14 @@ const Database = ({
                 onChange={hanldeCheckbox}
                 disabled={databaseStatus != 0}
             />
-            <span>Save to DB</span>
+            <span className="mr-2">Save to DB</span>
             <button
                 onClick={requestDatabaseData}
                 disabled={databaseStatus != 0}
                 className={
                     databaseStatus != 0
-                        ? 'button-disabled inline-flex items-center justify-center'
-                        : 'button inline-flex items-center justify-center'
+                        ? 'button-disabled inline-flex items-center justify-center mr-2'
+                        : 'button inline-flex items-center justify-center mr-2'
                 }
             >
                 <span className="pr-1">get data</span>
