@@ -2,7 +2,7 @@ import React from 'react';
 
 const Animation = ({ angle }) => {
     return (
-        <div id="animation" className="flex justify-center bg-fuchsia-900 p-2 items-center">
+        <div id="animation" className="flex justify-center p-2 items-center">
             <svg
                 width="228"
                 height="208"

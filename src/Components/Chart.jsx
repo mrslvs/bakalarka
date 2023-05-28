@@ -65,7 +65,7 @@ const Chart = ({ chartData }) => {
     };
 
     return (
-        <div className="bg-green-400">
+        <div className="">
             <Line options={options} data={data} />
         </div>
     );

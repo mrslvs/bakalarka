@@ -139,13 +139,13 @@ function App() {
     // const [armAnglesReceived, setArmAnglesReceived] = useState([]);
 
     return (
-        <div className="bg-slate-300">
+        <div className="">
             <Header setIsModalOpen={setIsModalOpen}></Header>
             {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} />}
 
-            <div className="grid grid-cols-3 bg-black">
+            <div className="grid grid-cols-3">
                 <div className="col-start-1 col-end-3">
-                    <div className="flex p-2 bg-red-400 ">
+                    <div className="flex p-2 ">
                         <Port
                             availablePorts={availablePorts}
                             setAvailablePorts={setAvailablePorts}
@@ -173,13 +173,13 @@ function App() {
                         />
                     </div>
 
-                    <div className="bg-yellow-400 p-2">
+                    <div className=" p-2">
                         <Chart chartData={chartData} />
                         <Animation angle={angleAnimation} />
                     </div>
                 </div>
 
-                <div className="bg-pink-200 p-2">
+                <div className=" p-2">
                     {/* <button onClick={showme}>click me</button> */}
                     <Database
                         tableData={tableData}
