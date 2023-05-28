@@ -24,7 +24,7 @@ const Header = ({ setIsModalOpen }) => {
             </div>
             <div className="flex justify-end w-1/3" onClick={openModal}>
                 {/* <p className="text-blue-600 self-center bg-blue-400">information</p> */}
-                <BsFillInfoCircleFill className="w-8 h-8 text-blue-600" />
+                <BsFillInfoCircleFill className="w-8 h-8 text-blue-600 hover:text-blue-300" />
             </div>
         </div>
     );

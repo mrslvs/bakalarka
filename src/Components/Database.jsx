@@ -89,7 +89,11 @@ const Database = ({
                 {databaseStatus == 1 ? (
                     <FiRefreshCw className="w-4 h-4 animate-spin" />
                 ) : (
-                    <SiMongodb className="w-4 h-4" />
+                    <SiMongodb
+                        className={
+                            (databaseStatus = 0 ? 'w-4 h-4 text-green-700' : 'w-4 h-4 text-red-700')
+                        }
+                    />
                 )}
                 {/* <SiMongodb className="w-4 h-4" /> */}
             </button>
