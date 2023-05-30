@@ -13,7 +13,10 @@ const Modal = ({ setIsModalOpen }) => {
                     className="h-8 w-8 hover:text-blue-300"
                     onClick={closeModal}
                 />
-                <p>Táto aplikácia vznikla ako bakalársky projekt</p>
+                <p>
+                    Táto aplikácia vznikla ako bakalársky projekt na Fakulte elektrotechniky a
+                    informatiky STU v Bratislave.
+                </p>
             </div>
         </div>
     );
