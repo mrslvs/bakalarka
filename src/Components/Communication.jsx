@@ -19,18 +19,11 @@ const Communication = ({
     tableData,
     readyToMeasureAgain,
     setReadyToMeasureAgain,
-
-    // distancesReceived,
-    // setDistancesReceived,
-    // armAnglesReceived,
-    // setArmAnglesReceived,
 }) => {
-    // let distancesReceived = [];
-    // let armAnglesReceived = [];
     const [distancesReceived, setDistancesReceived] = useState([]);
     const [armAnglesReceived, setArmAnglesReceived] = useState([]);
     // const [sliderValue, setSliderValue] = useState(0);
-    let sliderTemp;
+    // let sliderTemp;
     let joystickPosition;
 
     // useEffect(() => {
@@ -39,11 +32,11 @@ const Communication = ({
     //     console.log('USEFFECT CHANGING: ' + sliderTemp);
     // }, [sliderValue]);
 
-    const handleSliderChange = (value) => {
-        // console.log('changing slider value from (' + sliderTemp + ') to (' + value + ')');
-        sliderTemp = value;
-        // setSliderValue(value);
-    };
+    // const handleSliderChange = (value) => {
+    // console.log('changing slider value from (' + sliderTemp + ') to (' + value + ')');
+    // sliderTemp = value;
+    // setSliderValue(value);
+    // };
 
     setInterval(() => {
         const gamepads = navigator.getGamepads();
@@ -76,27 +69,17 @@ const Communication = ({
 
         setInterval(() => {
             if (iter < process.env.ITERATIONS) {
-                const tmp = sliderTemp / 100;
-                console.log('inside function sliderTemp is: ' + sliderTemp);
-                console.log('sending slider at: ' + tmp);
-                ipcRenderer.send('startComRequest', tmp);
+                // const tmp = sliderTemp / 100;
+                // console.log('inside function sliderTemp is: ' + sliderTemp);
+                // console.log('sending slider at: ' + tmp);
+                const sliderElement = document.querySelector('.rc-slider-handle');
+                // const currentValue = sliderElement.rcSlider.getValue();
+                const value = sliderElement.getAttribute('aria-valuenow') / 100;
+                ipcRenderer.send('startComRequest', value);
             }
             iter++;
         }, process.env.SAMPLING_RATE);
     };
-
-    // const startCommunicationAnalog = () => {
-    //     setIsMeasuring(true);
-
-    //     let iter = 0;
-
-    //     setInterval(() => {
-    //         if (iter < process.env.ITERATIONS) {
-    //             ipcRenderer.send('startComRequestAnalog', 0);
-    //         }
-    //         iter++;
-    //     }, process.env.SAMPLING_RATE);
-    // };
 
     ipcRenderer.removeAllListeners('receivedData');
 
@@ -106,17 +89,6 @@ const Communication = ({
 
         distancesReceived.push(distance);
         armAnglesReceived.push(armAngle);
-        // setDistancesReceived((oldArray) => [...oldArray, distance]);
-        // setArmAnglesReceived((oldArray) => [...oldArray, armAngle]);
-
-        // console.log(
-        //     'Received distance:' +
-        //         distance +
-        //         ' pushing into distancesReceived(' +
-        //         distancesReceived.length +
-        //         '):' +
-        //         distancesReceived
-        // );
 
         if (distancesReceived.length == process.env.ITERATIONS) {
             console.log('end of comm triggered');
@@ -128,36 +100,6 @@ const Communication = ({
 
             if (databaseStatus == 0 && saveToDatabase)
                 ipcRenderer.send('saveToDatabase', sendDataAsObject);
-
-            // VERY IMPORTANT: https://stackoverflow.com/questions/1232040/how-do-i-empty-an-array-in-javascript
-            // distancesReceived = [];
-            // armAnglesReceived = [];
-            // ===========
-            // console.log('length:' + distancesReceived.length);
-            // distancesReceived.length = 0;
-            // armAnglesReceived.length = 0;
-
-            // distance = -1;
-            // armAngle = -1;
-            // delete sendDataAsObject.distance;
-            // delete sendDataAsObject.angle;
-            // setAngle(null);
-            // setNewDistance(-1);
-
-            // while (distancesReceived.length) {
-            //     distancesReceived.pop();
-            // }
-            // while (armAnglesReceived.length) {
-            //     armAnglesReceived.pop();
-            // }
-            // while (tmpDist.length) {
-            //     tmpDist.pop();
-            // }
-            // while (tmpAng.length) {
-            //     tmpAng.pop();
-            // }
-            // distancesReceived.splice(0, distancesReceived.length);
-            // armAnglesReceived.splice(0, armAnglesReceived.length);
 
             setIsMeasuring(false);
         }
@@ -273,18 +215,13 @@ const Communication = ({
             >
                 Clear
             </button>
-            {/* <button onClick={showData}>show data</button> */}
-            {/* <input
-                type="range"
-                min="0"
-                max="200"
-                value="100"
-                class="slider"
-                id="myRange"
-                onChange={handleSliderChange}
-            ></input> */}
             <div className="min-w-48 w-48 mt-1">
-                <Slider min={-100} max={100} defaultValue={0} onChange={handleSliderChange} />
+                <Slider
+                    min={-100}
+                    max={100}
+                    defaultValue={0}
+                    // onChange={handleSliderChange}
+                />
                 {/* <p className="flex justify-center">{sliderValue / 100}</p> */}
             </div>
         </div>
