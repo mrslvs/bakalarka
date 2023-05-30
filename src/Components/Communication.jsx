@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 const { ipcRenderer } = require('electron');
 import { BsJoystick } from 'react-icons/bs';
 import { FaGamepad } from 'react-icons/fa';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css'; // Import the default styles
 
 const Communication = ({
     setAngle,
@@ -27,7 +29,21 @@ const Communication = ({
     // let armAnglesReceived = [];
     const [distancesReceived, setDistancesReceived] = useState([]);
     const [armAnglesReceived, setArmAnglesReceived] = useState([]);
+    // const [sliderValue, setSliderValue] = useState(0);
+    let sliderTemp;
     let joystickPosition;
+
+    // useEffect(() => {
+    //     console.log('slider value has been changed and reflected in useEffect');
+    //     sliderTemp = sliderValue;
+    //     console.log('USEFFECT CHANGING: ' + sliderTemp);
+    // }, [sliderValue]);
+
+    const handleSliderChange = (value) => {
+        // console.log('changing slider value from (' + sliderTemp + ') to (' + value + ')');
+        sliderTemp = value;
+        // setSliderValue(value);
+    };
 
     setInterval(() => {
         const gamepads = navigator.getGamepads();
@@ -49,6 +65,21 @@ const Communication = ({
                 } else {
                     ipcRenderer.send('startComRequest', joystickPosition);
                 }
+            }
+            iter++;
+        }, process.env.SAMPLING_RATE);
+    };
+
+    const startCommSlider = () => {
+        setIsMeasuring(true);
+        let iter = 0;
+
+        setInterval(() => {
+            if (iter < process.env.ITERATIONS) {
+                const tmp = sliderTemp / 100;
+                console.log('inside function sliderTemp is: ' + sliderTemp);
+                console.log('sending slider at: ' + tmp);
+                ipcRenderer.send('startComRequest', tmp);
             }
             iter++;
         }, process.env.SAMPLING_RATE);
@@ -146,14 +177,16 @@ const Communication = ({
     };
 
     const showData = () => {
-        console.log('distancesReceived (' + distancesReceived.length + '): ' + distancesReceived);
+        // console.log('distancesReceived (' + distancesReceived.length + '): ' + distancesReceived);
+        console.log('sliderTemp:' + sliderTemp);
     };
 
     let canStartComm =
         databaseStatus != 1 && selectedPort && !isMeasuring && !tableData && readyToMeasureAgain;
 
     return (
-        <div className="inline-flex w-1/2 justify-center">
+        <div className="w-1/1 flex justify-center">
+            <button onClick={showData}> show data</button>
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
@@ -194,18 +227,66 @@ const Communication = ({
                     <BsJoystick className="w-5 h-5" />
                 </button>
             </form>
+
+            {/* <button
+                disabled={!canStartComm}
+                className={
+                    canStartComm
+                        ? 'button inline-flex items-center justify-center mr-2'
+                        : 'button-disabled inline-flex items-center justify-center mr-2'
+                }
+                onClick={startCommSlider}
+            >
+                <span className="pr-1">Start slider</span>
+                <BsJoystick className="w-5 h-5" />
+            </button> */}
+
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    startCommSlider();
+                }}
+                className="flex items-center"
+            >
+                <button
+                    type="submit"
+                    disabled={!canStartComm}
+                    className={
+                        canStartComm
+                            ? 'button inline-flex items-center justify-center mr-2'
+                            : 'button-disabled inline-flex items-center justify-center mr-2'
+                    }
+                >
+                    <span className="pr-1">Start Slider</span>
+                    <BsJoystick className="w-5 h-5" />
+                </button>
+            </form>
+
             <button
                 onClick={clear}
                 disabled={isMeasuring}
                 className={
                     isMeasuring
-                        ? 'button-disabled inline-flex items-center justify-center'
-                        : 'button inline-flex items-center justify-center'
+                        ? 'button-disabled inline-flex items-center justify-center mr-2'
+                        : 'button inline-flex items-center justify-center mr-2'
                 }
             >
                 Clear
             </button>
             {/* <button onClick={showData}>show data</button> */}
+            {/* <input
+                type="range"
+                min="0"
+                max="200"
+                value="100"
+                class="slider"
+                id="myRange"
+                onChange={handleSliderChange}
+            ></input> */}
+            <div className="min-w-48 w-48 mt-1">
+                <Slider min={-100} max={100} defaultValue={0} onChange={handleSliderChange} />
+                {/* <p className="flex justify-center">{sliderValue / 100}</p> */}
+            </div>
         </div>
     );
 };

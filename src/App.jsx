@@ -142,6 +142,21 @@ function App() {
         <div className="main-window bg-slate-300">
             <Header setIsModalOpen={setIsModalOpen}></Header>
             {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} />}
+            <Communication
+                setAngle={setAngleAnimation}
+                setNewDistance={setNewDistance}
+                databaseStatus={databaseStatus}
+                saveToDatabase={saveToDatabase}
+                isMeasuring={isMeasuring}
+                setIsMeasuring={setIsMeasuring}
+                selectedPort={selectedPort}
+                setChartData={setChartData}
+                setAngleAnimation={setAngleAnimation}
+                setTableData={setTableData}
+                tableData={tableData}
+                readyToMeasureAgain={readyToMeasureAgain}
+                setReadyToMeasureAgain={setReadyToMeasureAgain}
+            />
 
             <div className="grid grid-cols-3">
                 <div className="col-start-1 col-end-3">
@@ -151,25 +166,6 @@ function App() {
                             setAvailablePorts={setAvailablePorts}
                             setSelectedPort={setSelectedPort}
                             isMeasuring={isMeasuring}
-                        />
-                        <Communication
-                            setAngle={setAngleAnimation}
-                            setNewDistance={setNewDistance}
-                            databaseStatus={databaseStatus}
-                            saveToDatabase={saveToDatabase}
-                            isMeasuring={isMeasuring}
-                            setIsMeasuring={setIsMeasuring}
-                            selectedPort={selectedPort}
-                            setChartData={setChartData}
-                            setAngleAnimation={setAngleAnimation}
-                            setTableData={setTableData}
-                            tableData={tableData}
-                            readyToMeasureAgain={readyToMeasureAgain}
-                            setReadyToMeasureAgain={setReadyToMeasureAgain}
-                            // distancesReceived={distancesReceived}
-                            // setDistancesReceived={setDistancesReceived}
-                            // armAnglesReceived={armAnglesReceived}
-                            // setArmAnglesReceived={setArmAnglesReceived}
                         />
                     </div>
 

@@ -42,7 +42,7 @@ const createWindow = () => {
     }
 
     // Open the DevTools.
-    // mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished
@@ -136,7 +136,7 @@ ipcMain.on('portSelected', async (event, data) => {
 ipcMain.on('startComRequest', async (event, data) => {
     try {
         // console.log('ddd:');
-        // console.log(data);
+        // console.log('received request to start communication with data: ' + data);
         const msg = await startCom(event, data);
     } catch (err) {
         console.log(err);
