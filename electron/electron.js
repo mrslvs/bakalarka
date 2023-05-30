@@ -35,11 +35,12 @@ const createWindow = () => {
 
     // and load the index.html of the app.
     //   mainWindow.loadFile(path.join(__dirname, "index.html"));
-    if (app.isPackaged) {
-        mainWindow.loadFile(path.join(__dirname, '../dist/index.html'));
-    } else {
-        mainWindow.loadURL('http://localhost:5173');
-    }
+    // if (app.isPackaged) {
+    //     mainWindow.loadFile(path.join(__dirname, '../dist/index.html'));
+    // } else {
+    //     mainWindow.loadURL('http://localhost:5173');
+    // }
+    mainWindow.loadFile('react_build/index.html');
 
     // Open the DevTools.
     // mainWindow.webContents.openDevTools();
