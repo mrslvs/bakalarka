@@ -120,7 +120,7 @@ const Communication = ({
 
     const showData = () => {
         // console.log('distancesReceived (' + distancesReceived.length + '): ' + distancesReceived);
-        console.log('sliderTemp:' + sliderTemp);
+        // console.log('sliderTemp:' + sliderTemp);
     };
 
     let canStartComm =
@@ -128,7 +128,7 @@ const Communication = ({
 
     return (
         <div className="w-1/1 flex justify-center">
-            <button onClick={showData}> show data</button>
+            {/* <button onClick={showData}> show data</button> */}
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
