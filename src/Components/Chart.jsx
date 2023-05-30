@@ -48,8 +48,8 @@ const Chart = ({ chartData }) => {
     };
 
     let labels = [];
-    for (let i = 0; i < process.env.ITERATIONS; i++) {
-        labels.push(i * process.env.SAMPLING_RATE);
+    for (let i = 0; i < 100; i++) {
+        labels.push(i * 80);
     }
 
     const data = {

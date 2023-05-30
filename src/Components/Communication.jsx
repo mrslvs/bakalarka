@@ -52,7 +52,7 @@ const Communication = ({
         console.log(isAnalog);
 
         setInterval(() => {
-            if (iter < process.env.ITERATIONS) {
+            if (iter < 100) {
                 if (isAnalog) {
                     ipcRenderer.send('startComRequestAnalog', 0);
                 } else {
@@ -60,7 +60,7 @@ const Communication = ({
                 }
             }
             iter++;
-        }, process.env.SAMPLING_RATE);
+        }, 80);
     };
 
     const startCommSlider = () => {
@@ -68,7 +68,7 @@ const Communication = ({
         let iter = 0;
 
         setInterval(() => {
-            if (iter < process.env.ITERATIONS) {
+            if (iter < 100) {
                 // const tmp = sliderTemp / 100;
                 // console.log('inside function sliderTemp is: ' + sliderTemp);
                 // console.log('sending slider at: ' + tmp);
@@ -78,7 +78,7 @@ const Communication = ({
                 ipcRenderer.send('startComRequest', value);
             }
             iter++;
-        }, process.env.SAMPLING_RATE);
+        }, 80);
     };
 
     ipcRenderer.removeAllListeners('receivedData');
@@ -90,7 +90,7 @@ const Communication = ({
         distancesReceived.push(distance);
         armAnglesReceived.push(armAngle);
 
-        if (distancesReceived.length == process.env.ITERATIONS) {
+        if (distancesReceived.length == 100) {
             console.log('end of comm triggered');
             setReadyToMeasureAgain(false);
             let sendDataAsObject = {

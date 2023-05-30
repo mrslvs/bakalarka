@@ -185,7 +185,9 @@ ipcMain.on('requestDatabaseData', async (event, data) => {
 });
 
 ipcMain.on('checkDatabaseConnection', async (event, data) => {
-    const isConnected = await connect(process.env.DB_CONNECTION_URL);
+    const isConnected = await connect(
+        'mongodb+srv://sekerkamiroslav:neskusajtorazdva@cluster0.ii5htzf.mongodb.net/bakalarka?retryWrites=true&w=majority'
+    );
     event.reply('isConnected', isConnected);
 });
 
@@ -226,7 +228,7 @@ ipcMain.on('saveToDatabase', async (event, data) => {
     // parseInt() because IPC return integer as '140\r'
 
     const measurementToSave = new Measurement({
-        sampling_rate: process.env.SAMPLING_RATE,
+        sampling_rate: 80,
         user: 'test_user',
         angle: data.angle.map((angle) => parseInt(angle)),
         distance: data.distance.map((distance) => parseInt(distance)),
