@@ -222,7 +222,7 @@ const Communication = ({
                     defaultValue={0}
                     // onChange={handleSliderChange}
                 />
-                {/* <p className="flex justify-center">{sliderValue / 100}</p> */}
+                <p className="flex justify-center">Slider Controll</p>
             </div>
         </div>
     );
